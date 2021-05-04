@@ -71,7 +71,7 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <a href="#" class="text-indigo-600 hover:text-indigo-900">Ver</a>
                                             <a href="#" class="text-indigo-600 hover:text-indigo-900">Editar</a>
-                                            <a href="#" class="text-indigo-600 hover:text-indigo-900">Eliminar</a>
+                                            <button wire:click="destroy({{ $user->id }})" class="text-indigo-600 hover:text-indigo-900">Eliminar</button>
                                             <a href="#" class="text-indigo-600 hover:text-indigo-900">Enviar</a>
                                         </td>
                                     </tr>

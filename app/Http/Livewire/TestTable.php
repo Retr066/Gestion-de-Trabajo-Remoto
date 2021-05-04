@@ -29,4 +29,7 @@ class TestTable extends Component
         $this->page = 1;
         $this->perPage = '5';
     }
+    public function destroy($id){
+        User::find($id)->delete();
+    }
 }

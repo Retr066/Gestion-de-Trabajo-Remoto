@@ -44,7 +44,6 @@ class InformeTable extends Component
 
     public function destroy($id){
         Informe::find($id)->delete();
-
     }
 
     public function mount(){

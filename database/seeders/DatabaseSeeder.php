@@ -66,10 +66,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-        InformesRealizadas::factory()->count(50)->create();
-        InformesPlanificadas::factory()->count(50)->create();
-        Informe::factory()->count(100)->create();
-        Area::factory()->count(100)->create();
+
+        Area::factory()->count(50)->create();
+
+        /* Informe::factory()->count()->create(); */
+        /* InformesRealizadas::factory()->count(50)->create();
+        InformesPlanificadas::factory()->count(50)->create(); */
 
     }
 }
