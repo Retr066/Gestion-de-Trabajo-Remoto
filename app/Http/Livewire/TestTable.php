@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 use App\Models\User;
+use App\Models\Area;
 use Livewire\Component;
 use Livewire\WithPagination;
 class TestTable extends Component
@@ -21,7 +22,7 @@ class TestTable extends Component
             'users' => User::where('name','LIKE',"%{$this->search}%")
             ->orWhere('email','LIKE',"%{$this->search}%")
             ->paginate($this->perPage)
-        ]);
+        ],);
     }
     public function clear(){
         $this->search = '';

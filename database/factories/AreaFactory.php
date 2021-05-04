@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Factories;
-
+use App\Models\User;
 use App\Models\Area;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,7 +22,11 @@ class AreaFactory extends Factory
     public function definition()
     {
         return [
+            'user_id' => function(){
+                return User::factory()->create()->id;
+            },
             'nombre_area'=>$this->faker->jobTitle,
+
         ];
     }
 }

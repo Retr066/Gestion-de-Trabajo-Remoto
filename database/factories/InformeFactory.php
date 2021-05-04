@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Factories;
-
+use App\Models\User;
 use App\Models\Informe;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,7 +22,9 @@ class InformeFactory extends Factory
     public function definition()
     {
         return [
-            'usuario_id'=> 1,
+                'usuario_id' => function(){
+                return User::factory()->create()->id;
+            },
             'nombres'=> $this->faker->name,
             'nombre_area_informe'=>$this->faker->jobTitle,
             'fecha_inicio_realizadas'=>$this->faker->dateTimeBetween($startDate = '-30 years', $endDate = 'now', $timezone = null),

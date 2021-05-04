@@ -21,4 +21,15 @@ class Informe extends Model
         'fecha_inicio_planificadas',
         'fecha_fin_planificadas',
     ];
+
+    public function r_informe_realizadas()
+    {
+        return $this->hasMany(InformesRealizadas::class,'id_informe_realizadas','id');
+    }
+    public function r_informe_planificadas()
+    {
+        return $this->hasMany(InformesPlanificadas::class,'id_informe_planificadas','id');
+    }
+
+
 }

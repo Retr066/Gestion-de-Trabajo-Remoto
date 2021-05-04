@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\Area;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -58,4 +58,12 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+    public function r_area()
+    {
+        return $this->hasOne(Area::class,'user_id','id');
+    }
+    public function r_informe()
+    {
+        return $this->hasMany(Informe::class,'usuario_id','id');
+    }
 }

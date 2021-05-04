@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Factories;
-
+use  App\Models\Informe;
 use App\Models\InformesRealizadas;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,7 +22,9 @@ class InformesRealizadasFactory extends Factory
     public function definition()
     {
         return [
-            'id_informe_realizadas'=> 1,
+            'id_informe_realizadas'=>  function(){
+                return Informe::factory()->create()->id;
+            },
             'nombre_rubro_realizadas'=> $this->faker->jobTitle,
             'descripcion_rubro_realizadas'=>$this->faker->sentence,
             'horas_solas_realizadas'=>$this->faker->numberBetween($min = 10, $max = 100),

@@ -217,7 +217,7 @@
                                                         </div>
                                                         <div class="md:w-1/3 flex  justify-center items-center mt-7">
                                                             <x-jet-button class="flex justify-center items-center
-                                                            rounded-full h-10 w-20">+</x-jet-button>
+                                                            rounded-full h-10 w-20"><i class="text-4xl fas fa-plus"></i></x-jet-button>
 
                                                         </div>
 
@@ -357,9 +357,9 @@
                                                 value="0" placeholder="0">
 
                                                     </div>
-                                                    <div class="md:w-1/3 flex  justify-center items-center mt-7">
+                                                    <div class="md:w-1/3 flex  justify-center items-center mt-7" >
                                                         <x-jet-button class="flex justify-center items-center
-                                                        rounded-full h-10 w-20">+</x-jet-button>
+                                                        rounded-full h-10 w-20 " ><i class="text-4xl fas fa-plus"></i></x-jet-button>
 
                                                     </div>
 

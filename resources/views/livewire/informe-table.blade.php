@@ -26,26 +26,47 @@
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         ID
+                                        <button wire:click="sortable('id')">
+                                            <span class="fa fa{{ $camp === 'id' ? $icon : '-circle' }}"></span>
+                                        </button>
                                     </th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         ID_USUARIO
+                                        <button wire:click="sortable('usuario_id')">
+                                            <span class="fa fa{{ $camp === 'usuario_id' ? $icon : '-circle' }}"></span>
+                                        </button>
                                     </th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         NOMBRES
+                                        <button wire:click="sortable('nombres')">
+                                            <span class="fa fa{{ $camp === 'nombres' ? $icon : '-circle' }}"></span>
+                                        </button>
                                     </th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         NOMBRE DE AREA
+                                        <button wire:click="sortable('nombre_area_informe')">
+                                            <span class="fa fa{{ $camp === 'nombre_area_informe' ? $icon : '-circle' }}"></span>
+                                        </button>
                                     </th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         FECHA
+                                        <button wire:click="sortable('fecha_inicio_realizadas')">
+                                            <span class="fa fa{{ $camp === 'fecha_inicio_realizadas' ? $icon : '-circle' }}"></span>
+                                        </button>
+                                        <button wire:click="sortable('fecha_fin_realizadas')">
+                                            <span class="fa fa{{ $camp === 'fecha_fin_realizadas' ? $icon : '-circle' }}"></span>
+                                        </button>
                                     </th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         HORAS TOTALES
+                                        <button wire:click="sortable('horas_total_realizadas')">
+                                            <span class="fa fa{{ $camp === 'horas_total_realizadas' ? $icon : '-circle' }}"></span>
+                                        </button>
                                     </th>
                                     <th scope="col" class="relative px-6 py-3">
                                         <span
@@ -58,6 +79,7 @@
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="text-sm text-gray-900">{{ $informe->id }}</div>
+
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="text-sm text-gray-900">{{ $informe->usuario_id }}</div>
