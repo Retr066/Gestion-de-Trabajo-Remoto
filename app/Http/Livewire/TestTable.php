@@ -10,26 +10,101 @@ class TestTable extends Component
     use WithPagination;
     public $search = '';
     public $perPage = '5';
+    public $user_role = '';
+    public $camp = null;
+    public $order = null;
+    public $icon = '-circle';
+    public $showModal = 'hidden';
+
     protected $queryString = [
         'search'=> ['except'=> ''],
-        'perPage' => ['except'=> '5']
+        'camp' => ['except'=>null],
+        'order' => ['except'=>null],
+        'perPage' => ['except'=> '5'],
+        'user_role'=> ['except'=> ''],
     ];
 
 
     public function render()
+
     {
+
+        $users = User::termino($this->search)
+        ->role($this->user_role);
+
+
+
+            if($this->camp && $this->order){
+                if($this->camp === 'nombre_area'){
+                    $users = $users->orderBy(Area::select('nombre_area')->whereColumn('areas.user_id','users.id'),$this->order);
+                }else{
+                    $users = $users->orderBy($this->camp,$this->order);
+                }
+
+              }else{
+                  $this->camp = null;
+                  $this->order = null;
+              }
+            $users = $users->paginate($this->perPage);
+
         return view('livewire.test-table',[
-            'users' => User::where('name','LIKE',"%{$this->search}%")
-            ->orWhere('email','LIKE',"%{$this->search}%")
-            ->paginate($this->perPage)
+            'users' => $users,
         ],);
     }
     public function clear(){
-        $this->search = '';
+        $this->reset();
+        /* $this->search = '';
         $this->page = 1;
         $this->perPage = '5';
+        $this->order =null;
+        $this->camp =null;
+        $this->icon = '-circle';
+        $this->user_role = ""; */
     }
     public function destroy($id){
         User::find($id)->delete();
     }
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+    public function mount(){
+        $this->icon = $this->iconDirection($this->order);
+    }
+
+    public function sortable($camp)
+    {
+        if($camp !== $this->camp){
+            $this->order = null;
+        }
+        switch ($this->order) {
+            case null:
+                $this->order = 'asc';
+
+                break;
+            case 'asc':
+                $this->order = 'desc';
+
+                break;
+            case 'desc':
+                $this->order = null;
+
+                break;
+        }
+        $this->icon =$this->iconDirection($this->order);
+        $this->camp = $camp;
+    }
+
+    public function iconDirection($sort):string
+    {
+        if(!$sort){
+            return '-circle';
+        }
+        return $sort === 'asc' ? '-arrow-circle-up' : '-arrow-circle-down';
+    }
+
+    public function showModal(User $user){
+        $this->emit('showModal',$user);
+    }
+
 }

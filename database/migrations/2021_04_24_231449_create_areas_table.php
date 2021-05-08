@@ -16,7 +16,7 @@ class CreateAreasTable extends Migration
         Schema::create('areas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_area')->nullable();
-           /*  $table->foreignId('user_id')->constrainedTo('users'); */
+            /* $table->foreignId('user_id')->constrainedTo('users'); */
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

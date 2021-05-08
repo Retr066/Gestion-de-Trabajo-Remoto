@@ -6,7 +6,7 @@
         <x-slot name="title">
             Nuevo Informe
         </x-slot>
-        <x-slot name="content"  >
+        <x-slot name="content">
             <!-- component -->
             <!-- This is an example component -->
             <div class="h-screen custom-scrollbar" style="overflow-y: auto; ">
@@ -70,24 +70,24 @@
                         background-repeat: no-repeat;
                     }
 
-                        ::-webkit-scrollbar {
+                    ::-webkit-scrollbar {
                         width: 20px;
-                        }
+                    }
 
-                        ::-webkit-scrollbar-track {
+                    ::-webkit-scrollbar-track {
                         background-color: transparent;
-                        }
+                    }
 
-                        ::-webkit-scrollbar-thumb {
+                    ::-webkit-scrollbar-thumb {
                         background-color: #d6dee1;
                         border-radius: 20px;
                         border: 6px solid transparent;
                         background-clip: content-box;
-                        }
+                    }
 
-                        ::-webkit-scrollbar-thumb:hover {
+                    ::-webkit-scrollbar-thumb:hover {
                         background-color: #a8bbbf;
-                        }
+                    }
 
                 </style>
 
@@ -130,141 +130,146 @@
                                 <div x-show.transition.in="step === 1">
                                     <!-- component -->
 
-                                        <div class="-mx-3 md:flex mb-6">
-                                            <div class="md:w-1/2 px-3 mb-6 md:mb-0">
-                                                <label
-                                                    class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-                                                    for="grid-first-name">
-                                                    Area
-                                                </label>
-                                                <input
-                                                    class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                                                    id="grid-first-name" type="text" placeholder="Ingenieria de Sistemas">
-                                                <!-- <p class="text-red text-xs italic">Porfavor Rellena Este Campo</p> -->
-                                            </div>
-                                            <div class="md:w-1/2 px-3">
-                                                <label
-                                                    class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-                                                    for="grid-last-name">
-                                                    Nombre Completo
-                                                </label>
-                                                <input
-                                                    class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                                                    id="grid-last-name" type="text" placeholder="Sulca">
-                                                   <!--  <p class="text-red text-xs italic">Porfavor Rellena Este Campo.</p> -->
-                                            </div>
+                                    <div class="-mx-3 md:flex mb-6">
+                                        <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+                                            <label
+                                                class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                                for="grid-first-name">
+                                                Area
+                                            </label>
+                                            <input
+                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+                                                id="grid-first-name" type="text" placeholder="Ingenieria de Sistemas">
+                                            <!-- <p class="text-red text-xs italic">Porfavor Rellena Este Campo</p> -->
                                         </div>
-                                        <div class="-mx-3 md:flex mb-6">
-                                            <div class="md:w-full px-3">
-                                                <label
-                                                    class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-                                                    for="grid-correo">
-                                                     Correo Electronico
-                                                </label>
-                                                <input
-                                                    class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3"
-                                                    id="grid-correo" type="text" placeholder="example@gmail.com">
-                                               <!--  <p class="text-grey-dark text-xs italic">Porfavor Rellena Este Campo.</p> -->
-                                            </div>
+                                        <div class="md:w-1/2 px-3">
+                                            <label
+                                                class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                                for="grid-last-name">
+                                                Nombre Completo
+                                            </label>
+                                            <input
+                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
+                                                id="grid-last-name" type="text" placeholder="Sulca">
+                                            <!--  <p class="text-red text-xs italic">Porfavor Rellena Este Campo.</p> -->
                                         </div>
-                                        <div class="-mx-3 md:flex mb-7">
-                                            <div class="md:w-1/2 px-3 mb-6 md:mb-0">
-                                                <label
-                                                    class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-                                                    for="grid-city">
-                                                    Fecha Inicio
-                                                </label>
-                                                <input
-                                                    class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                                                    id="grid-city" type="date" placeholder="dd/mm/aa">
-                                            </div>
-                                            <div class="md:w-1/2 px-3">
+                                    </div>
+                                    <div class="-mx-3 md:flex mb-6">
+                                        <div class="md:w-full px-3">
+                                            <label
+                                                class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                                for="grid-correo">
+                                                Correo Electronico
+                                            </label>
+                                            <input
+                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3"
+                                                id="grid-correo" type="text" placeholder="example@gmail.com">
+                                            <!--  <p class="text-grey-dark text-xs italic">Porfavor Rellena Este Campo.</p> -->
+                                        </div>
+                                    </div>
+                                    <div class="-mx-3 md:flex mb-7">
+                                        <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+                                            <label
+                                                class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                                for="grid-city">
+                                                Fecha Inicio
+                                            </label>
+                                            <input
+                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
+                                                id="grid-city" type="date" placeholder="dd/mm/aa">
+                                        </div>
+                                        <div class="md:w-1/2 px-3">
+                                            <label
+                                                class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                                for="grid-zip">
+                                                Fecha Fin
+                                            </label>
+                                            <input
+                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
+                                                id="grid-zip" type="date" placeholder="dd/mm/aa">
+                                        </div>
+                                    </div>
+                                    <!-- TABLA  -->
+                                    <div class="-mx-3 md:flex mb-3     flex-col justify-center items-around">
+                                        <div class="md:w-full px-3  md:flex mb-6  flex-row justify-around items-center">
+                                            <div class=" md:w-2/5   flex flex-col justify-center items-start">
                                                 <label
                                                     class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                                                     for="grid-zip">
-                                                    Fecha Fin
-                                                </label>
+                                                    Rubro </label>
+                                                <!-- rubro seleccionar -->
+                                                <select
+                                                    class="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded"
+                                                    id="grid-state">
+                                                    <option>Investigacion</option>
+                                                    <option>Dictado de Clases</option>
+                                                </select>
+                                            </div>
+                                            <div class="md:w-2/5  px-5 flex flex-col justify-center items-start">
+                                                <label
+                                                    class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                                    for="grid-zip">
+                                                    Horas Dedicadas </label>
+                                                <!-- Contador -->
                                                 <input
                                                     class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                                                    id="grid-zip" type="date" placeholder="dd/mm/aa">
+                                                    id="grid-city" type="number" value="0" placeholder="0">
+
                                             </div>
-                                        </div>
-                                        <!-- TABLA  -->
-                                        <div class = "-mx-3 md:flex mb-3     flex-col justify-center items-around">
-                                                    <div class = "md:w-full px-3  md:flex mb-6  flex-row justify-around items-center">
-                                                        <div class=" md:w-2/5   flex flex-col justify-center items-start">
-                                                            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-                                                            for="grid-zip">
-                                                            Rubro               </label>
-                                                            <!-- rubro seleccionar -->
-                                                            <select
-                                                            class="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded"
-                                                            id="grid-state">
-                                                            <option>Investigacion</option>
-                                                            <option>Dictado de Clases</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="md:w-2/5  px-5 flex flex-col justify-center items-start" >
-                                                        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-                                                            for="grid-zip">
-                                                            Horas Dedicadas          </label>
-                                                        <!-- Contador -->
-                                                            <input
-                                                    class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                                                    id="grid-city" type="number"
-                                                    value="0" placeholder="0">
+                                            <div class="md:w-1/3 flex  justify-center items-center mt-7">
+                                                <x-jet-button class="flex justify-center items-center
+                                                            rounded-full h-10 w-20"><i
+                                                        class="text-4xl fas fa-plus"></i></x-jet-button>
 
-                                                        </div>
-                                                        <div class="md:w-1/3 flex  justify-center items-center mt-7">
-                                                            <x-jet-button class="flex justify-center items-center
-                                                            rounded-full h-10 w-20"><i class="text-4xl fas fa-plus"></i></x-jet-button>
-
-                                                        </div>
-
-
-                                                    </div>
-
-                                            <div class="md:w-full px-3  md:flex mb-6">
-                                            <textarea class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" rows="4"></textarea>
                                             </div>
+
+
                                         </div>
 
+                                        <div class="md:w-full px-3  md:flex mb-6">
+                                            <textarea
+                                                class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"
+                                                rows="4"></textarea>
+                                        </div>
+                                    </div>
 
 
-                                        <table class="table-auto md:w-full rounded-t-lg m-5 w-5/6 mx-auto bg-gray-200 text-gray-800">
-                                          <tr class="text-left border-b-2 border-gray-300">
+
+                                    <table
+                                        class="table-auto md:w-full rounded-t-lg m-5 w-5/6 mx-auto bg-gray-200 text-gray-800">
+                                        <tr class="text-left border-b-2 border-gray-300">
                                             <th class="px-4 py-3">ID</th>
                                             <th class="px-4 py-3">Informe Asociado</th>
                                             <th class="px-4 py-3">Rubro</th>
                                             <th class="px-4 py-3">Descripcion</th>
                                             <th class="px-4 py-3">Horas</th>
                                             <th class="px-4 py-3">Acciones</th>
-                                          </tr>
+                                        </tr>
 
-                                          <tr class="bg-gray-100 border-b border-gray-200">
+                                        <tr class="bg-gray-100 border-b border-gray-200">
                                             <td class="px-4 py-3">Jill</td>
                                             <td class="px-4 py-3">Smith</td>
                                             <td class="px-4 py-3">50</td>
                                             <td class="px-4 py-3">Male</td>
                                             <td class="px-4 py-3">50</td>
                                             <td class="px-4 py-3">Male</td>
-                                          </tr>
+                                        </tr>
 
 
-                                        </table>
-                                        <div class="-mx-3 md:flex  justify-end items-end" >
+                                    </table>
+                                    <div class="-mx-3 md:flex  justify-end items-end">
                                         <div class='md:w-2/5  px-5 md:flex flex-col justify-center items-center'>
-                                            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                            <label
+                                                class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                                                 for="grid-zip">
-                                                Horas Totales   </label>
+                                                Horas Totales </label>
                                             <!-- Contador -->
                                             <input
                                                 class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                                                id="grid-city" type="number"
-                                                value="0" placeholder="0" readonly>
+                                                id="grid-city" type="number" value="0" placeholder="0" readonly>
                                         </div>
 
-                                        </div>
+                                    </div>
 
 
 
@@ -293,7 +298,7 @@
                                             <input
                                                 class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
                                                 id="grid-last-name" type="text" placeholder="Sulca">
-                                               <!--  <p class="text-red text-xs italic">Porfavor Rellena Este Campo.</p> -->
+                                            <!--  <p class="text-red text-xs italic">Porfavor Rellena Este Campo.</p> -->
                                         </div>
                                     </div>
                                     <div class="-mx-3 md:flex mb-6">
@@ -301,12 +306,12 @@
                                             <label
                                                 class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                                                 for="grid-correo">
-                                                 Correo Electronico
+                                                Correo Electronico
                                             </label>
                                             <input
                                                 class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3"
                                                 id="grid-correo" type="text" placeholder="example@gmail.com">
-                                           <!--  <p class="text-grey-dark text-xs italic">Porfavor Rellena Este Campo.</p> -->
+                                            <!--  <p class="text-grey-dark text-xs italic">Porfavor Rellena Este Campo.</p> -->
                                         </div>
                                     </div>
                                     <div class="-mx-3 md:flex mb-7">
@@ -332,79 +337,84 @@
                                         </div>
                                     </div>
                                     <!-- TABLA  -->
-                                    <div class = "-mx-3 md:flex mb-3     flex-col justify-center items-around">
-                                                <div class = "md:w-full px-3  md:flex mb-6  flex-row justify-around items-center">
-                                                    <div class=" md:w-2/5   flex flex-col justify-center items-start">
-                                                        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-                                                        for="grid-zip">
-                                                        Rubro               </label>
-                                                        <!-- rubro seleccionar -->
-                                                        <select
-                                                        class="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded"
-                                                        id="grid-state">
-                                                        <option>Investigacion</option>
-                                                        <option>Dictado de Clases</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="md:w-2/5  px-5 flex flex-col justify-center items-start" >
-                                                    <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-                                                        for="grid-zip">
-                                                        Horas Dedicadas          </label>
-                                                    <!-- Contador -->
-                                                        <input
-                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                                                id="grid-city" type="number"
-                                                value="0" placeholder="0">
+                                    <div class="-mx-3 md:flex mb-3     flex-col justify-center items-around">
+                                        <div class="md:w-full px-3  md:flex mb-6  flex-row justify-around items-center">
+                                            <div class=" md:w-2/5   flex flex-col justify-center items-start">
+                                                <label
+                                                    class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                                    for="grid-zip">
+                                                    Rubro </label>
+                                                <!-- rubro seleccionar -->
+                                                <select
+                                                    class="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded"
+                                                    id="grid-state">
+                                                    <option>Investigacion</option>
+                                                    <option>Dictado de Clases</option>
+                                                </select>
+                                            </div>
+                                            <div class="md:w-2/5  px-5 flex flex-col justify-center items-start">
+                                                <label
+                                                    class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                                    for="grid-zip">
+                                                    Horas Dedicadas </label>
+                                                <!-- Contador -->
+                                                <input
+                                                    class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
+                                                    id="grid-city" type="number" value="0" placeholder="0">
 
-                                                    </div>
-                                                    <div class="md:w-1/3 flex  justify-center items-center mt-7" >
-                                                        <x-jet-button class="flex justify-center items-center
-                                                        rounded-full h-10 w-20 " ><i class="text-4xl fas fa-plus"></i></x-jet-button>
+                                            </div>
+                                            <div class="md:w-1/3 flex  justify-center items-center mt-7">
+                                                <x-jet-button class="flex justify-center items-center
+                                                        rounded-full h-10 w-20 "><i class="text-4xl fas fa-plus"></i>
+                                                </x-jet-button>
 
-                                                    </div>
+                                            </div>
 
 
-                                                </div>
+                                        </div>
 
                                         <div class="md:w-full px-3  md:flex mb-6">
-                                        <textarea class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" rows="4"></textarea>
+                                            <textarea
+                                                class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"
+                                                rows="4"></textarea>
                                         </div>
                                     </div>
 
 
 
-                                    <table class="table-auto md:w-full rounded-t-lg m-5 w-5/6 mx-auto bg-gray-200 text-gray-800">
-                                      <tr class="text-left border-b-2 border-gray-300">
-                                        <th class="px-4 py-3">ID</th>
-                                        <th class="px-4 py-3">Informe Asociado</th>
-                                        <th class="px-4 py-3">Rubro</th>
-                                        <th class="px-4 py-3">Descripcion</th>
-                                        <th class="px-4 py-3">Horas</th>
-                                        <th class="px-4 py-3">Acciones</th>
-                                      </tr>
+                                    <table
+                                        class="table-auto md:w-full rounded-t-lg m-5 w-5/6 mx-auto bg-gray-200 text-gray-800">
+                                        <tr class="text-left border-b-2 border-gray-300">
+                                            <th class="px-4 py-3">ID</th>
+                                            <th class="px-4 py-3">Informe Asociado</th>
+                                            <th class="px-4 py-3">Rubro</th>
+                                            <th class="px-4 py-3">Descripcion</th>
+                                            <th class="px-4 py-3">Horas</th>
+                                            <th class="px-4 py-3">Acciones</th>
+                                        </tr>
 
-                                      <tr class="bg-gray-100 border-b border-gray-200">
-                                        <td class="px-4 py-3">Jill</td>
-                                        <td class="px-4 py-3">Smith</td>
-                                        <td class="px-4 py-3">50</td>
-                                        <td class="px-4 py-3">Male</td>
-                                        <td class="px-4 py-3">50</td>
-                                        <td class="px-4 py-3">Male</td>
-                                      </tr>
+                                        <tr class="bg-gray-100 border-b border-gray-200">
+                                            <td class="px-4 py-3">Jill</td>
+                                            <td class="px-4 py-3">Smith</td>
+                                            <td class="px-4 py-3">50</td>
+                                            <td class="px-4 py-3">Male</td>
+                                            <td class="px-4 py-3">50</td>
+                                            <td class="px-4 py-3">Male</td>
+                                        </tr>
 
 
                                     </table>
-                                    <div class="-mx-3 md:flex  justify-end items-end" >
-                                    <div class='md:w-2/5  px-5 md:flex flex-col justify-center items-center'>
-                                        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-                                            for="grid-zip">
-                                            Horas Totales   </label>
-                                        <!-- Contador -->
-                                        <input
-                                            class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                                            id="grid-city" type="number"
-                                            value="0" placeholder="0" readonly>
-                                    </div>
+                                    <div class="-mx-3 md:flex  justify-end items-end">
+                                        <div class='md:w-2/5  px-5 md:flex flex-col justify-center items-center'>
+                                            <label
+                                                class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                                for="grid-zip">
+                                                Horas Totales </label>
+                                            <!-- Contador -->
+                                            <input
+                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
+                                                id="grid-city" type="number" value="0" placeholder="0" readonly>
+                                        </div>
 
                                     </div>
 
@@ -434,13 +444,13 @@
                                 </div>
 
                                 <div class="w-1/2 text-right">
-                                    <x-jet-secondary-button wire:click="$set('open',false)" x-show="step < 2">Cerrar</x-jet-secundary-button>
-                                    <button x-show="step < 2" @click="step++"
-                                        class="w-32 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-blue-500 hover:bg-blue-600 font-medium">Siguiente</button>
+                                    <x-jet-secondary-button wire:click="$set('open',false)" x-show="step < 2">Cerrar
+                                        </x-jet-secundary-button>
+                                        <button x-show="step < 2" @click="step++"
+                                            class="w-32 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-blue-500 hover:bg-blue-600 font-medium">Siguiente</button>
 
-                                   <x-jet-button  x-show="step === 2" >Guardar</x-jet-secundary-button>
-                                    {{-- <button @click="step" x-show="step === 2"
-                                        class="w-32 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-blue-500 hover:bg-blue-600 font-medium">Completado</button> --}}
+                                        <x-jet-button x-show="step === 2">Guardar</x-jet-secundary-button>
+
                                 </div>
                             </div>
                         </div>
@@ -448,14 +458,14 @@
                     <!-- / Bottom Navigation https://placehold.co/300x300/e2e8f0/cccccc -->
                 </div>
 
- <script>
-    function app() {
-        return {
-            step: 1,
-        }
-    }
+                <script>
+                    function app() {
+                        return {
+                            step: 1,
+                        }
+                    }
 
-</script>
+                </script>
 
         </x-slot>
         <x-slot name="footer">

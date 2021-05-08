@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Colegio Manuel Ramirez Barinaga</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -47,9 +47,9 @@
     <a href="{{ url('/informes') }}" ><h2 class="titles__sublogin"><img class="titles__login" src="img/docente.png" alt="docente"/></h2></a>
          @else
              <a href="{{ route('login') }}"><img class="titles__login" src="img/user.svg" alt="user"/></a>
-           @if (Route::has('register'))
+         {{--   @if (Route::has('register'))
                  <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-             @endif
+             @endif --}}
          @endauth
  @endif
      </section>
@@ -59,7 +59,7 @@
         <img class="main__img" src="img/logo.png" alt="logo">
 
 <!-- <button class="main_button">Mayor informacion</button> -->
-        <input  type="submit" class="main_button" value="Mayor informacion"/>
+        {{-- <input  type="submit" class="main_button" value="Mayor informacion"/> --}}
        <h1 class="main__title">Colegio Manuel Ramirez Barinaga</h1>
     </section>
 

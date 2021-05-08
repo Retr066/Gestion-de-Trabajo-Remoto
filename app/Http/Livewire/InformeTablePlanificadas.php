@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 use App\Models\Informe;
 use Livewire\Component;
 use Livewire\WithPagination;
-class InformeTable extends Component
+class InformeTablePlanificadas extends Component
 {
     use WithPagination;
     public $search = '';
@@ -12,7 +12,6 @@ class InformeTable extends Component
     public $camp = null;
     public $order = null;
     public $icon = '-circle';
-
 
     protected $queryString = [
         'search'=> ['except'=> ''],
@@ -24,20 +23,20 @@ class InformeTable extends Component
     public function render()
     {
         $informes = Informe::where('usuario_id','LIKE','%'. $this->search.'%')
-                            ->orwhere('nombres','LIKE','%'. $this->search.'%')
-                            ->orwhere('nombre_area_informe','LIKE','%'. $this->search.'%')
-                            ->orwhere('fecha_inicio_realizadas','LIKE','%'. $this->search.'%')
-                            ->orwhere('fecha_fin_realizadas','LIKE','%'. $this->search.'%')
-                            ->orwhere('horas_total_realizadas','LIKE','%'. $this->search.'%');
+        ->orwhere('nombres','LIKE','%'. $this->search.'%')
+        ->orwhere('nombre_area_informe','LIKE','%'. $this->search.'%')
+        ->orwhere('fecha_inicio_realizadas','LIKE','%'. $this->search.'%')
+        ->orwhere('fecha_fin_realizadas','LIKE','%'. $this->search.'%')
+        ->orwhere('horas_total_realizadas','LIKE','%'. $this->search.'%');
 
-                            if($this->camp && $this->order){
-                                $informes = $informes->orderBy($this->camp,$this->order);
-                              }else{
-                                  $this->camp = null;
-                                  $this->order = null;
-                              }
-                            $informes = $informes->paginate($this->perPage);
-        return view('livewire.informe-table',[
+        if($this->camp && $this->order){
+            $informes = $informes->orderBy($this->camp,$this->order);
+          }else{
+              $this->camp = null;
+              $this->order = null;
+          }
+        $informes = $informes->paginate($this->perPage);
+        return view('livewire.informe-table-planificadas',[
             'informes' => $informes,
         ]);
     }
@@ -92,4 +91,5 @@ class InformeTable extends Component
         }
         return $sort === 'asc' ? '-arrow-circle-up' : '-arrow-circle-down';
     }
+
 }

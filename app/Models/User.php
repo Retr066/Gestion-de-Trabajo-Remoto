@@ -27,6 +27,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -58,6 +59,23 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function getRolAttribute(): string
+    {
+        if($this->role === 'admin') {
+            return 'SuperUsuario';
+        }else if($this->role === 'docente'){
+            return 'Docente';
+        }else if($this->role === 'jefatura'){
+            return 'Jefe';
+        }else if ($this->role === 'administracion'){
+            return 'Administracion';
+        }else{
+            return 'No tienes Roles';
+        }
+    }
+
+
     public function r_area()
     {
         return $this->hasOne(Area::class,'user_id','id');
@@ -66,4 +84,27 @@ class User extends Authenticatable
     {
         return $this->hasMany(Informe::class,'usuario_id','id');
     }
+
+    public function scopeTermino($query,$termino)
+    {
+        if($termino === ''){
+            return;
+        }
+        return $query->where('name','LIKE',"%{$termino}%")
+        ->orWhere('email','LIKE',"%{$termino}%")
+        ->orWhereHas('r_area',function($query2) use ($termino) {
+            $query2->where('nombre_area','LIKE',"%{$termino}%");
+        });
+
+
+    }
+
+    public function scopeRole($query ,$role){
+        if ($role == '') {
+        return;
+        }
+
+        return $query->whereRole($role);
+    }
+
 }

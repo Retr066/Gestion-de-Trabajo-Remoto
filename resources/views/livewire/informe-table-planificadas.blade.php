@@ -3,6 +3,7 @@
         <div class="flex bg-white px-4 py-3  sm:px-6">
             <input wire:model="search" class="form-input rounded-md shadow-sm mt-1 block w-full" type="text"
                 placeholder="Buscar...">
+
             <div class="form-input rounded-md shadow-sm mt-1 ml-6 block ">
                 <select wire:model="perPage" class="ouline-none text-gray-500 text-sm">
                     <option value="5">5 por Pagina</option>
@@ -131,5 +132,4 @@
             </div>
         @endif
     </x-table>
-
 </div>
