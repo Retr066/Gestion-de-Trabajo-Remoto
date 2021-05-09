@@ -6,14 +6,25 @@ use Illuminate\View\Component;
 
 class ComponentInput extends Component
 {
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+
+    public $label;
+    public $placeholder;
+    public $name;
+    public $type;
+
+    public function __construct(string $label,string $placeholder,string $name,string $type = 'text')
     {
-        //
+        $this->label = $label;
+        $this->placeholder = $placeholder;
+        $this->name = $name;
+        $this->type = $type;
+
     }
 
     /**

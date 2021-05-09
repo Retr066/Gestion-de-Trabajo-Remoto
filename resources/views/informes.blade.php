@@ -8,6 +8,7 @@
         <div class="md:w-4/5" x-data="{ tab: 'foo' }">
             <div x-show="tab === 'foo'">
                 <h2 class="text-center mt-8">INFORMES DE ACTIVIDADES REALIZADAS</h2>
+
                 <livewire:modal />
                 <div style="position: absolute;right: 0; display: inline-flex;" class=" md:flex inline-block  mr-8">
                     <button

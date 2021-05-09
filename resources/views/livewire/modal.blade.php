@@ -1,6 +1,10 @@
 <div>
 
-    <x-jet-button wire:click="$set('open',true)">Crear un Nuevo Informe</x-jet-button>
+    <x-jet-button wire:click="$set('open',true)"  class="">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white-600 " viewBox="0 0 24" fill="currentColor">
+  <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V8z" clip-rule="evenodd" />
+</svg>
+    </x-jet-button>
     <x-jet-dialog-modal wire:model="open">
 
         <x-slot name="title">
@@ -150,7 +154,7 @@
                                             </label>
                                             <input
                                                 class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                                                id="grid-last-name" type="text" placeholder="Sulca">
+                                                id="grid-last-name" type="text" placeholder="Sulca Medina Diego Efrain">
                                             <!--  <p class="text-red text-xs italic">Porfavor Rellena Este Campo.</p> -->
                                         </div>
                                     </div>
@@ -175,8 +179,8 @@
                                                 Fecha Inicio
                                             </label>
                                             <input
-                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                                                id="grid-city" type="date" placeholder="dd/mm/aa">
+                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 date"
+                                                id="grid-city" placeholder="dd/mm/aa">
                                         </div>
                                         <div class="md:w-1/2 px-3">
                                             <label
@@ -185,8 +189,8 @@
                                                 Fecha Fin
                                             </label>
                                             <input
-                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                                                id="grid-zip" type="date" placeholder="dd/mm/aa">
+                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 date1"
+                                                id="grid-zip" placeholder="dd/mm/aa">
                                         </div>
                                     </div>
                                     <!-- TABLA  -->
@@ -297,7 +301,7 @@
                                             </label>
                                             <input
                                                 class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                                                id="grid-last-name" type="text" placeholder="Sulca">
+                                                id="grid-last-name" type="text" placeholder="Sulca Medina Diego Efrain">
                                             <!--  <p class="text-red text-xs italic">Porfavor Rellena Este Campo.</p> -->
                                         </div>
                                     </div>
@@ -464,6 +468,21 @@
                             step: 1,
                         }
                     }
+
+                    const fp = flatpickr(".date", {
+                        "locale": "es",
+                        dateFormat: "d.m.Y",
+                        minDate: new Date().fp_incr(-7), //-7 dias
+                        maxDate: "today" // hoy
+
+                    });
+                    const fp1 = flatpickr(".date1", {
+                        "locale": "es",
+                        dateFormat: "d.m.Y",
+                        minDate: new Date().fp_incr(-7), //-7 dias
+                        maxDate: "today" // hoy
+
+                    });
 
                 </script>
 

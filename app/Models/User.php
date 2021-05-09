@@ -25,9 +25,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'lastname',
         'email',
         'password',
         'role',
+        'profile_photo_path',
     ];
 
     /**
@@ -59,7 +61,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-
+    public function getImageUserAttribute(){
+        return $this->profile_photo_path ?? $this->profile_photo_url;
+    }
     public function getRolAttribute(): string
     {
         if($this->role === 'admin') {
@@ -91,6 +95,7 @@ class User extends Authenticatable
             return;
         }
         return $query->where('name','LIKE',"%{$termino}%")
+        ->orWhere('lastname','LIKE',"%{$termino}%")
         ->orWhere('email','LIKE',"%{$termino}%")
         ->orWhereHas('r_area',function($query2) use ($termino) {
             $query2->where('nombre_area','LIKE',"%{$termino}%");

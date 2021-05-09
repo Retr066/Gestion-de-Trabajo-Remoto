@@ -7,14 +7,16 @@ use Illuminate\View\Component;
 class ComponentModal extends Component
 {
     public $showModal;
+    public $action;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(string $showModal)
+    public function __construct(string $showModal,string $action)
     {
         $this->showModal = $showModal;
+        $this->action = $action;
     }
 
     /**

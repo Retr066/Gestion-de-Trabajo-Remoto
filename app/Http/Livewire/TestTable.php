@@ -23,7 +23,10 @@ class TestTable extends Component
         'perPage' => ['except'=> '5'],
         'user_role'=> ['except'=> ''],
     ];
-
+    protected $listeners = [
+        'userListUpdate' => 'render',
+        'destroyList'=> 'destroy',
+    ];
 
     public function render()
 
@@ -61,8 +64,11 @@ class TestTable extends Component
         $this->icon = '-circle';
         $this->user_role = ""; */
     }
-    public function destroy($id){
-        User::find($id)->delete();
+    public function destroy(User $user){
+       /*  User::find($id)->delete(); */
+       $user->r_area()->delete();
+       $user->delete();
+       $this->emit('destroy',$user);
     }
     public function updatingSearch()
     {
@@ -104,7 +110,11 @@ class TestTable extends Component
     }
 
     public function showModal(User $user){
-        $this->emit('showModal',$user);
+        if($user->name){
+          $this->emit('showModal',$user);
+        } else {
+            $this->emit('showModalNewUser');
+        }
     }
 
 }
