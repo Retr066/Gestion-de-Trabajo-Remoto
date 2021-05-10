@@ -27,13 +27,8 @@
                         <x-component-input placeholder=" Ingrese su Imagen Retr0"  name="profile_photo_path" label="Imagen"
                              type="file" >
                         </x-component-input>
-                        <script>
-                        const inputElement = document.querySelector('input[type="file"]');
-                        const pond = FilePond.create(inputElement);
-                        console.log("vila cabro")
-                        console.log("vila cabro2")
-                        </script>
-                    </div>
+
+                     </div>
 
                     @if ($action == 'Registrar')
                         <div class="flex">
@@ -41,7 +36,7 @@
                                 type="password">
                             </x-component-input>
                             <x-component-input placeholder=" Confirme de clave" name="password_confirmation"
-                                type="password" label="Confirmacion de clave">
+                                 type="password" label="Confirmacion de clave">
                             </x-component-input>
                         </div>
                     @endif
@@ -49,4 +44,10 @@
             </div>
         </x-component-modal>
     </form>
+    @push('scripts')
+    <script>
+
+
+    </script>
+    @endpush
 </div>
