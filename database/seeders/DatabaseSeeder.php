@@ -22,31 +22,49 @@ class DatabaseSeeder extends Seeder
        $user = User::create([
             'name' =>'Jherson',
             'email' => 'jherson@gmail.com',
+             'role' => 'admin',
             'password' => bcrypt('12345'),
         ]);
         $user2 =  User::create([
-            'name' =>'vila',
-            'email' => 'gey@gmail.com',
+            'name' =>'Jhonatan',
+            'email' => 'jhonatan@gmail.com',
+            'role' => 'admin',
+            'password' => bcrypt('12345'),
+        ]);
+        $user3 = User::create([
+            'name' =>'Sulca',
+            'email' => 'Sulca@gmail.com',
+            'role' => 'admin',
             'password' => bcrypt('12345'),
         ]);
 
         Area::factory()->create([
             'user_id'=> $user->id,
-            'nombre_area' => 'Progamacion',
+            'nombre_area' => 'Ingenieria de Sistemas',
         ]);
 
 
         Area::factory()->create([
             'user_id'=> $user2->id,
-            'nombre_area' => 'mariconsismo',
+            'nombre_area' => 'Ingenieria de Sistemas',
+        ]);
+
+        Area::factory()->create([
+            'user_id'=> $user3->id,
+            'nombre_area' => 'Ingenieria de Sistemas',
         ]);
 
          $informe = Informe::factory()->create([
                 'usuario_id' =>  $user->id,
+                /* 'nombres' => $user->name,
+                'nombre_area_informe'=>$user->r_area->nombre_area, */
             ]);
             $informe2 =  Informe::factory()->create([
                 'usuario_id' =>  $user2->id,
+                /* 'nombres' => $user2->name,
+                'nombre_area_informe'=>$user2->r_area->nombre_area, */
             ]);
+
 
 
 

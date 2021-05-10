@@ -30,15 +30,29 @@
                 </label>
             </div>
         </div>
-        <div>
+
+        <div
+    x-data="{ isUploading: false, progress: 0 }"
+    x-on:livewire-upload-start="isUploading = true"
+    x-on:livewire-upload-finish="isUploading = false"
+    x-on:livewire-upload-error="isUploading = false"
+    x-on:livewire-upload-progress="progress = $event.detail.progress"
+>
+    <!-- File Input -->
+    <input type="file" wire:model="photo">
+
+    <!-- Progress Bar -->
+    <div x-show="isUploading">
+        <progress max="100" x-bind:value="progress"></progress>
+    </div>
+</div>
+
             <script>
                 const fp = flatpickr(".date", {
                     "locale": "es",
                     dateFormat: "d.m.Y",
                     minDate: new Date().fp_incr(-7), //-7 dias
                     maxDate: "today" // hoy
-
-
                 });
 
             </script>

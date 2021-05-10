@@ -32,44 +32,41 @@
                         </th>
                         <th scope="col"
                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            ID_USUARIO
-                            <button wire:click="sortable('usuario_id')">
-                                <span class="fa fa{{ $camp === 'usuario_id' ? $icon : '-circle' }}"></span>
+                            Fecha de Creacion
+                            <button wire:click="sortable('created_at')">
+                                <span class="fa fa{{ $camp === 'created_at' ? $icon : '-circle' }}"></span>
                             </button>
                         </th>
                         <th scope="col"
                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            NOMBRES
-                            <button wire:click="sortable('nombres')">
-                                <span class="fa fa{{ $camp === 'nombres' ? $icon : '-circle' }}"></span>
-                            </button>
-                        </th>
-                        <th scope="col"
-                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            NOMBRE DE AREA
-                            <button wire:click="sortable('nombre_area_informe')">
-                                <span class="fa fa{{ $camp === 'nombre_area_informe' ? $icon : '-circle' }}"></span>
-                            </button>
-                        </th>
-                        <th scope="col"
-                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            FECHA
-                            <button wire:click="sortable('fecha_inicio_realizadas')">
+                            Periodo
+                            <button wire:click="sortable('fecha_inicio_planificadas')">
                                 <span
-                                    class="fa fa{{ $camp === 'fecha_inicio_realizadas' ? $icon : '-circle' }}"></span>
+                                    class="fa fa{{ $camp === 'fecha_inicio_planificadas' ? $icon : '-circle' }}"></span>
                             </button>
-                            <button wire:click="sortable('fecha_fin_realizadas')">
-                                <span class="fa fa{{ $camp === 'fecha_fin_realizadas' ? $icon : '-circle' }}"></span>
+                            <button wire:click="sortable('fecha_fin_planificadas')">
+                                <span class="fa fa{{ $camp === 'fecha_fin_planificadas' ? $icon : '-circle' }}"></span>
+                            </button>
+                        </th>
+
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Horas Totales
+                            <button wire:click="sortable('horas_total_planificadas')">
+                                <span
+                                    class="fa fa{{ $camp === 'horas_total_planificadas' ? $icon : '-circle' }}"></span>
                             </button>
                         </th>
                         <th scope="col"
                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            HORAS TOTALES
-                            <button wire:click="sortable('horas_total_realizadas')">
-                                <span
-                                    class="fa fa{{ $camp === 'horas_total_realizadas' ? $icon : '-circle' }}"></span>
+                            Estado
+                            <button wire:click="sortable('estado')">
+                                <span class="fa fa{{ $camp === 'estado' ? $icon : '-circle' }}"></span>
                             </button>
                         </th>
+
+
+
                         <th scope="col" class="relative px-6 py-3">
                             <span
                                 class="text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</span>
@@ -84,29 +81,24 @@
 
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">{{ $informe->usuario_id }}</div>
+                                <div class="text-sm text-gray-900">{{ $informe->created_at }}</div>
 
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">{{ $informe->nombres }}</div>
 
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">{{ $informe->nombre_area_informe }}</div>
-
-
-                            </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm text-gray-900">
-                                    {{ $informe->fecha_inicio_realizadas }}/{{ $informe->fecha_fin_realizadas }}
+                                    {{ $informe->fecha_inicio_planificadas }}/{{ $informe->fecha_fin_planificadas }}
                                 </div>
-
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">{{ $informe->horas_total_planificadas }}</div>
 
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">{{ $informe->horas_total_realizadas }}</div>
+                                <div class="text-sm text-gray-900">{{ $informe->estado }}</div>
 
                             </td>
+
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                 <center>
                                     <button wire:click="" class=" text-indigo-400

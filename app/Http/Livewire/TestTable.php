@@ -117,4 +117,11 @@ class TestTable extends Component
         }
     }
 
+    public function showImage(User $user){
+        if($user->name){
+          $this->emit('showImage',$user);
+        } else {
+           return;
+        }
+    }
 }

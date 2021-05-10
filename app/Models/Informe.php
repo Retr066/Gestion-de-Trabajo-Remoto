@@ -10,8 +10,6 @@ class Informe extends Model
     use HasFactory;
     protected $fillable = [
         'usuario_id',
-        'nombres',
-        'nombre_area_informe',
         'estado',
         'respuesta',
         'fecha_inicio_realizadas',
@@ -22,6 +20,11 @@ class Informe extends Model
         'fecha_fin_planificadas',
     ];
 
+
+    public function r_user()
+    {
+        return $this->belongsTo(User::class, 'usuario_id', 'id');
+    }
     public function r_informe_realizadas()
     {
         return $this->hasMany(InformesRealizadas::class,'id_informe_realizadas','id');

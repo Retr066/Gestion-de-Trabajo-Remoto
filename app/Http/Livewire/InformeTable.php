@@ -21,11 +21,14 @@ class InformeTable extends Component
         'perPage' => ['except'=> '5']
     ];
 
+    protected $listeners = [
+        'informeList' => 'render',
+    ];
+
     public function render()
     {
-        $informes = Informe::where('usuario_id','LIKE','%'. $this->search.'%')
-                            ->orwhere('nombres','LIKE','%'. $this->search.'%')
-                            ->orwhere('nombre_area_informe','LIKE','%'. $this->search.'%')
+        $informes = Informe::where('created_at','LIKE','%'. $this->search.'%')
+                            ->orwhere('estado','LIKE','%'. $this->search.'%')
                             ->orwhere('fecha_inicio_realizadas','LIKE','%'. $this->search.'%')
                             ->orwhere('fecha_fin_realizadas','LIKE','%'. $this->search.'%')
                             ->orwhere('horas_total_realizadas','LIKE','%'. $this->search.'%');
@@ -92,4 +95,11 @@ class InformeTable extends Component
         }
         return $sort === 'asc' ? '-arrow-circle-up' : '-arrow-circle-down';
     }
+    /*  public function showModal(User $user){
+        if($user->name){
+          $this->emit('showModal',$user);
+        } else {
+            $this->emit('showModalNewUser');
+        }
+    } */
 }

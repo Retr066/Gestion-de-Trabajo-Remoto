@@ -10,11 +10,11 @@
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
     <!-- Styles -->
     <link type="text/css" rel="stylesheet" href="css/flatpickr.min.css">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.css') }}">
+    <link rel="stylesheet" href="css/filepond.css">
 
     @livewireStyles
 
@@ -22,9 +22,14 @@
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="js/flatpickr.js"></script>
     <script src="js/es.js"></script>
+    <script src="js/rangoPlugin.js"></script>
+
+
+
 </head>
 
 <body class="font-sans antialiased">
+
     <x-jet-banner />
 
     <div class="min-h-screen bg-gray-100">
@@ -48,11 +53,18 @@
             {{ $slot }}
         </main>
     </div>
+    <script src="js/filepond.js"></script>
+
 
     @stack('modals')
 
+
     @livewireScripts
+
     @stack('scripts')
+
+
+
 </body>
 
 </html>

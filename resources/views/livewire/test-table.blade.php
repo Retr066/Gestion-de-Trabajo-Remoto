@@ -155,7 +155,7 @@
                         <div class="bg-white px-4 py-3  border-t border-gray-200 text-gray-500 sm:px-6">
                             No hay resultados para la Busqueda "{{ $search }}" en la pagina {{ $page }}
                             al
-                            mostrar "{{ $perPage }}" por Pagina
+                            mostrar "{{ $perPage }}" por Pagina con el Rol de "{{ $user_role }}".
                         </div>
                     @endif
                 </div>
@@ -168,7 +168,7 @@
                     Livewire.emit('destroyList',user)
 
                 }else{
-                    alert('Se elimino correctamente');
+                    alert('No se realizo ninguna accion');
                 }
             }
             Livewire.on('destroy',(user)=> {

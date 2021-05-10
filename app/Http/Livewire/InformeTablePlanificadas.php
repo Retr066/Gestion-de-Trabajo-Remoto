@@ -22,12 +22,11 @@ class InformeTablePlanificadas extends Component
 
     public function render()
     {
-        $informes = Informe::where('usuario_id','LIKE','%'. $this->search.'%')
-        ->orwhere('nombres','LIKE','%'. $this->search.'%')
-        ->orwhere('nombre_area_informe','LIKE','%'. $this->search.'%')
-        ->orwhere('fecha_inicio_realizadas','LIKE','%'. $this->search.'%')
-        ->orwhere('fecha_fin_realizadas','LIKE','%'. $this->search.'%')
-        ->orwhere('horas_total_realizadas','LIKE','%'. $this->search.'%');
+        $informes = Informe::where('created_at','LIKE','%'. $this->search.'%')
+        ->orwhere('estado','LIKE','%'. $this->search.'%')
+        ->orwhere('fecha_inicio_planificadas','LIKE','%'. $this->search.'%')
+        ->orwhere('fecha_fin_planificadas','LIKE','%'. $this->search.'%')
+        ->orwhere('horas_total_planificadas','LIKE','%'. $this->search.'%');
 
         if($this->camp && $this->order){
             $informes = $informes->orderBy($this->camp,$this->order);

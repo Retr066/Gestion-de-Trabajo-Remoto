@@ -17,20 +17,20 @@ class CreateInformesTable extends Migration
             $table->bigIncrements('id');
 
             $table->bigInteger('usuario_id')->unsigned();
-            $table->string('nombres');
-            $table->string('nombre_area_informe')->nullable();
+            /* $table->string('nombres')->nullable();
+            $table->string('nombre_area_informe')->nullable(); */
 
-            $table->string('estado')->nullable();
+            $table->enum('estado',['generado','enviado_jefatura','aprovado_jefatura','rechazado_jefatura','enviado_recursos','archivado'])->nullable();
             $table->text('respuesta')->nullable();
 
-            $table->date('fecha_inicio_realizadas');
-            $table->date('fecha_fin_realizadas');
+            $table->date('fecha_inicio_realizadas')->nullable();
+            $table->date('fecha_fin_realizadas')->nullable();
 
-            $table->integer('horas_total_realizadas');
-            $table->integer('horas_total_planificadas');
+            $table->integer('horas_total_realizadas')->nullable();
+            $table->integer('horas_total_planificadas')->nullable();
 
-            $table->date('fecha_inicio_planificadas');
-            $table->date('fecha_fin_planificadas');
+            $table->date('fecha_inicio_planificadas')->nullable();
+            $table->date('fecha_fin_planificadas')->nullable();
 
 
             $table->timestamps();

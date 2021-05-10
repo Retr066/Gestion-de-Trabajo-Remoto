@@ -16,7 +16,7 @@
                         <x-component-input placeholder=" Ingrese su Area" name="nombre_area" label="Area">
                         </x-component-input>
                         <x-component-input-select name="role" label="Rol"
-                            :options="['admin' => 'SuperUsuario', 'docente' =>'Docente','jefatura'=> 'Jefe','administracion'=> 'Administracion']">
+                            :options="['docente' =>'Docente','jefatura'=> 'Jefe','administracion'=> 'Administracion']">
                         </x-component-input-select>
                     </div>
                     <div class="flex">
@@ -24,10 +24,17 @@
                         </x-component-input>
                     </div>
                     <div class="flex">
-                        <x-component-input placeholder=" Ingrese su Imagen" name="profile_photo_path" label="Imagen"
-                            type="file">
+                        <x-component-input placeholder=" Ingrese su Imagen Retr0"  name="profile_photo_path" label="Imagen"
+                             type="file" >
                         </x-component-input>
+                        <script>
+                        const inputElement = document.querySelector('input[type="file"]');
+                        const pond = FilePond.create(inputElement);
+                        console.log("vila cabro")
+                        console.log("vila cabro2")
+                        </script>
                     </div>
+
                     @if ($action == 'Registrar')
                         <div class="flex">
                             <x-component-input placeholder=" Ingrese su clave" name="password" label="Clave"
