@@ -2,11 +2,8 @@
     <div>
         <label for="{{ $name }}" class="block text-sm font-medium text-gray-700">{{ $label }}</label>
         @if($type == 'file')
-                        {{-- <div wire:loading wire:target="profile_photo_path">
-                            Processing Payment...
-                            <progress id="img-upload-bar" wire:loading wire:target="profile_photo_path"  max="100000000" style="width:100%"></progress>
-                        </div> --}}
-                        <div
+
+                    <div
                         x-data="{ isUploading: false, progress: 0 }"
                         x-on:livewire-upload-start="isUploading = true"
                         x-on:livewire-upload-finish="isUploading = false"
@@ -19,6 +16,9 @@
                         placeholder="{{ $placeholder }}"
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         <!-- Progress Bar -->
+                        <div wire:loading wire:target="profile_photo_path">
+                            Subiendo Imagen...
+                        </div>
                         <div x-show="isUploading">
                             <progress max="100" x-bind:value="progress" style="width:100%"></progress>
                         </div>

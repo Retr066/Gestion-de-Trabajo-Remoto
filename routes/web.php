@@ -42,3 +42,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/reportes', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/prueba', function () {
     return view('prueba');
 })->name('prueba');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/rubro', function () {
+    return view('rubro');
+})->name('rubro');

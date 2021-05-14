@@ -54,7 +54,7 @@
             @if (! $this->enabled)
                 <x-jet-confirms-password wire:then="enableTwoFactorAuthentication">
                     <x-jet-button type="button" wire:loading.attr="disabled">
-                        {{ __('Habilidado') }}
+                        {{ __('Habilitar') }}
                     </x-jet-button>
                 </x-jet-confirms-password>
             @else

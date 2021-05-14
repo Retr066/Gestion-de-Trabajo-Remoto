@@ -44,10 +44,5 @@
             </div>
         </x-component-modal>
     </form>
-    @push('scripts')
-    <script>
 
-
-    </script>
-    @endpush
 </div>

@@ -103,6 +103,14 @@ class User extends Authenticatable
 
 
     }
+   /*  public function scopeAllowed($query,$termino)
+    {
+        if ($termino === '')
+        {
+            return ; //Verficacion de si es administrador
+        }
+            return $query->where('id', auth()->id());
+    } */
 
     public function scopeRole($query ,$role){
         if ($role == '') {

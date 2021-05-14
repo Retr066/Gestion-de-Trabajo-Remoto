@@ -27,13 +27,13 @@ class RequestUpdateUser extends FormRequest
             'name'=> 'required|min:3|max:30|regex:/^[A-Z,a-z][A-Z,a-z, ]+$/',
             'lastname' => 'required|min:3|max:30|regex:/^[A-Z,a-z][A-Z,a-z, ]+$/',
             'nombre_area' => 'required|min:3|max:50|regex:/^[A-Z,a-z][A-Z,a-z, ]+$/',
-            'email' => ['required','email',Rule::unique('users','email')->ignore($user)],
+            'email' => ['required','max:255','email',Rule::unique('users','email')->ignore($user)],
             'role'=>'required|in:admin,docente,jefatura,administracion',
-            'profile_photo_path' => 'nullable|image|max:1024|mimes:jpeg,png,svg,jpg,gif,webp',
+            'profile_photo_path' => 'nullable|image|max:2048|mimes:jpeg,png,svg,jpg,gif,webp',
         ];
         if(!$user){
             $validation_password = [
-                'password' => 'required|confirmed',
+                'password' => 'required|confirmed|min:5|max:20',
             ];
             $values = array_merge($values,$validation_password);
         }
@@ -58,7 +58,7 @@ class RequestUpdateUser extends FormRequest
             'role.required' => 'El campo rol es obligatorio.',
             //RETRISCCION IMAGEN
             'profile_photo_path.image' => 'El campo solo acepta imagenes.',
-            'profile_photo_path.max' => 'El archivo imagen no debe pesar más de 1024 kilobytes.',
+            'profile_photo_path.max' => 'El archivo imagen no debe pesar más de 2 megas.',
             'profile_photo_path.mimes' => 'El campo imagen solo acepta estos tipos de formato:jpeg,png,svg,jpg,gif.',
         ];
     }

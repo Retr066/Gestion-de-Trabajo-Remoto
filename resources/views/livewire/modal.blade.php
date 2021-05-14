@@ -1,11 +1,12 @@
 <div>
+                    {{-- <button wire:click="$set('open',true)" class="form-input rounded-md shadow  px-3 py-1 mt-1 mr-6 block" >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-600 " fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V8z" clip-rule="evenodd" />
+                </svg>
+                        </button> --}}
 
-    <x-jet-button wire:click="$set('open',true)" >
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white-600 " viewBox="0 0 24" fill="currentColor">
-  <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V8z" clip-rule="evenodd" />
-</svg>
-    </x-jet-button>
-    <x-jet-dialog-modal wire:model="open">
+    <x-jet-dialog-modal wire:model="open" >
 
         <x-slot name="title">
             Nuevo Informe
@@ -135,15 +136,15 @@
                                     <!-- component -->
 
                                     <div class="-mx-3 md:flex mb-6">
-                                        <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+                                        <div class="md:w-1/2 px-3 mb-6 md:mb-0 ">
                                             <label
-                                                class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                                class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2 "
                                                 for="grid-first-name">
                                                 Area
                                             </label>
                                             <input
-                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                                                type="text" value="{{ Auth::user()->r_area->nombre_area }}">
+                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3 "
+                                                type="text" value="{{ Auth::user()->r_area->nombre_area  }}" readonly>
                                             <!-- <p class="text-red text-xs italic">Porfavor Rellena Este Campo</p> -->
                                         </div>
                                         <div class="md:w-1/2 px-3">
@@ -154,7 +155,7 @@
                                             </label>
                                             <input
                                                 class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                                                 type="text"  value="{{ Auth::user()->email }}">
+                                                 type="text"  value="{{ Auth::user()->email }}" readonly>
                                             <!--  <p class="text-red text-xs italic">Porfavor Rellena Este Campo.</p> -->
                                         </div>
                                     </div>
@@ -170,7 +171,7 @@
                                             </label>
                                             <input
                                                 class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                                                type="text" value="{{ Auth::user()->name }}" >
+                                                type="text" value="{{ Auth::user()->name }}" readonly>
                                             <!-- <p class="text-red text-xs italic">Porfavor Rellena Este Campo</p> -->
                                         </div>
                                         <div class="md:w-1/2 px-3">
@@ -181,7 +182,7 @@
                                             </label>
                                             <input
                                                 class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                                                 type="text"  value="{{ Auth::user()->lastname }}">
+                                                 type="text"  value="{{ Auth::user()->lastname }}" readonly>
                                             <!--  <p class="text-red text-xs italic">Porfavor Rellena Este Campo.</p> -->
                                         </div>
                                     </div>
@@ -189,24 +190,28 @@
                                         <div class="md:w-1/2 px-3 mb-6 md:mb-0">
                                             <label
                                                 class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-                                                wire:model="fecha_inicio_realizadas"
+
                                                 for="grid-city">
                                                 Fecha Inicio
                                             </label>
                                             <input
-                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 date"
-                                                id="grid-city" placeholder="dd/mm/aa">
+                                             wire:model="fecha_inicio_realizadas"
+                                             type="date"
+                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 "
+                                                id="grid-city"  placeholder="dd/mm/aa">
                                         </div>
                                         <div class="md:w-1/2 px-3">
                                             <label
-                                            wire:model="fecha_fin_realizadas"
+
                                                 class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                                                 for="grid-zip">
                                                 Fecha Fin
                                             </label>
                                             <input
-                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 date1 "
-                                                id="grid-zip" placeholder="dd/mm/aa">
+                                            type="date"
+                                            wire:model="fecha_fin_realizadas"
+                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4  "
+                                                id="grid-zip"  placeholder="dd/mm/aa">
                                         </div>
                                     </div>
                                     <!-- TABLA  -->
@@ -306,7 +311,7 @@
                                             </label>
                                             <input
                                                 class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                                                value="{{ Auth::user()->r_area->nombre_area }}" type="text" placeholder="Ingenieria de Sistemas">
+                                                value="{{ Auth::user()->r_area->nombre_area }}" type="text" placeholder="Ingenieria de Sistemas" readonly>
                                             <!-- <p class="text-red text-xs italic">Porfavor Rellena Este Campo</p> -->
                                         </div>
                                         <div class="md:w-1/2 px-3">
@@ -317,7 +322,7 @@
                                             </label>
                                             <input
                                                 class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                                                 type="text"  value="{{ Auth::user()->email }}">
+                                                 type="text"  value="{{ Auth::user()->email }}" readonly>
                                             <!--  <p class="text-red text-xs italic">Porfavor Rellena Este Campo.</p> -->
                                         </div>
                                     </div>
@@ -341,20 +346,23 @@
                                             </label>
                                             <input
                                                 class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                                                 type="text"  value="{{ Auth::user()->lastname }}">
+                                                 type="text"  value="{{ Auth::user()->lastname }}" readonly>
                                             <!--  <p class="text-red text-xs italic">Porfavor Rellena Este Campo.</p> -->
                                         </div>
                                     </div>
                                     <div class="-mx-3 md:flex mb-7">
                                         <div class="md:w-1/2 px-3 mb-6 md:mb-0">
                                             <label
+
                                                 class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                                                 for="grid-city">
                                                 Fecha Inicio
                                             </label>
                                             <input
-                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 date2"
-                                                id="grid-city" placeholder="dd/mm/aa">
+                                            type="date"
+                                            wire:model="fecha_inicio_planificadas"
+                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 "
+                                                id="grid-city"  placeholder="dd/mm/aa" >
                                         </div>
                                         <div class="md:w-1/2 px-3">
                                             <label
@@ -363,8 +371,10 @@
                                                 Fecha Fin
                                             </label>
                                             <input
-                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 date3 "
-                                                id="grid-zip "   placeholder="dd/mm/aa">
+                                            type="date"
+                                            wire:model="fecha_fin_planificadas"
+                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4  "
+                                                id="grid-zip "    placeholder="dd/mm/aa" >
                                         </div>
                                     </div>
                                     <!-- TABLA  -->
@@ -475,12 +485,12 @@
                                 </div>
 
                                 <div class="w-1/2 text-right">
-                                    <x-jet-secondary-button wire:click="$set('open',false)" x-show="step < 2">Cerrar
+                                    <x-jet-secondary-button wire:click="cerrarModal()" x-show="step < 2">Cerrar
                                         </x-jet-secundary-button>
                                         <button x-show="step < 2" @click="step++"
                                             class="w-32 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-blue-500 hover:bg-blue-600 font-medium">Siguiente</button>
 
-                                        <x-jet-button x-show="step === 2" wire:click='save()'>Guardar</x-jet-secundary-button>
+                                        <x-jet-button x-show="step === 2" wire:click="save()"  @click="reset()">Guardar</x-jet-secundary-button>
 
                                 </div>
                             </div>
@@ -493,20 +503,31 @@
                     function app() {
                         return {
                             step: 1,
+                            reset(){
+                                setTimeout(() => {
+                                    this.step--
+                                }, 800);
+                            },
                         }
+                    }
+
+                    function reset() {
+                        setTimeout(() => {
+                            step--
+                        }, 500);
                     }
 
                     const fp = flatpickr(".date", {
                         "plugins": [new rangePlugin({ input: ".date1"})],
                         "locale": "es",
-                        dateFormat: "d.m.Y",
+                        dateFormat: "Y-m-d",
                         minDate: new Date().fp_incr(-7), //-7 dias
                         maxDate: "today" // hoy
 
                     });
                     const fp1 = flatpickr(".date1", {
                         "locale": "es",
-                        dateFormat: "d.m.Y",
+                        dateFormat: "Y-m-d",
                         minDate: new Date().fp_incr(-7), //-7 dias
                         maxDate: "today" // hoy
 
@@ -515,14 +536,14 @@
                     const fp2 = flatpickr(".date2", {
                         "plugins": [new rangePlugin({ input: ".date3"})],
                         "locale": "es",
-                        dateFormat: "d.m.Y",
+                        dateFormat: "Y-m-d",
                         minDate: "today", // hoy
                         maxDate: new Date().fp_incr(7) // +7 dias
 
                     });
                     const fp3 = flatpickr(".date3", {
                         "locale": "es",
-                        dateFormat: "d.m.Y",
+                        dateFormat: "Y-m-d",
                         minDate: "today", // hoy
                         maxDate: new Date().fp_incr(7) // +7 dias
 
@@ -532,16 +553,6 @@
 
         </x-slot>
         <x-slot name="footer">
-
-
-
-
-
-
-
-            {{-- <x-jet-secondary-button wire:click="$set('open',false)">Cerrar</x-jet-secundary-button>
-                <x-jet-button>Guardar</x-jet-secundary-button> --}}
-
         </x-slot>
     </x-jet-dialog-modal>
 

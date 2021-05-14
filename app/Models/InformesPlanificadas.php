@@ -14,4 +14,11 @@ class InformesPlanificadas extends Model
         'descripcion_rubro_planificadas',
         'horas_solas_planificas'
     ];
+
+    public function r_informe()
+    {
+        return $this->hasOne(Informe::class,'usuario_id','id');
+    }
+
+
 }

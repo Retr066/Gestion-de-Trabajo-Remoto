@@ -1,6 +1,13 @@
 <div>
+
     <x-table>
         <div class="flex bg-white px-4 py-3  sm:px-6">
+                <button wire:click="abrirModal()" class="form-input rounded-md shadow  px-3 py-1 mt-1 mr-6 block" >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-600 " fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V8z" clip-rule="evenodd" />
+                </svg>
+                        </button>
             <input wire:model="search" class="form-input rounded-md shadow-sm mt-1 block w-full" type="text"
                 placeholder="Buscar...">
             <div class="form-input rounded-md shadow-sm mt-1 ml-6 block ">
@@ -17,6 +24,7 @@
                     X
                 </button>
             @endif
+
         </div>
         @if ($informes->count())
             <table class="min-w-full divide-y divide-gray-200">
@@ -25,6 +33,13 @@
                         <th scope="col"
                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             ID
+                            <button wire:click="sortable('id')">
+                                <span class="fa fa{{ $camp === 'id' ? $icon : '-circle' }}"></span>
+                            </button>
+                        </th>
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Id Asociado
                             <button wire:click="sortable('id')">
                                 <span class="fa fa{{ $camp === 'id' ? $icon : '-circle' }}"></span>
                             </button>
@@ -71,10 +86,15 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                    @foreach ($informes as $informe)
+
+                  @foreach ($informes as $informe)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm text-gray-900">{{ $informe->id }}</div>
+
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">{{ $informe->usuario_id }}</div>
 
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
@@ -96,17 +116,23 @@
                             </td>
 
 
-                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <center>
-                                    <button wire:click="" class=" text-indigo-400
-                                    hover:text-indigo-700">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                                            fill="currentColor">
-                                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-                                            <path fill-rule="evenodd"
-                                                d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
-                                                clip-rule="evenodd" />
-                                        </svg>
+                            <td class="px-6 py-4 whitespace-nowrap  text-sm font-medium">
+
+                                <button wire:click="abrirModal2()" class=" text-indigo-400
+                                hover:text-indigo-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                        fill="currentColor">
+                                        <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                                        <path fill-rule="evenodd"
+                                            d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+
+                                    <button wire:click="" class="text-gray-400 hover:text-gray-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd" />
+                                    </svg>
                                     </button>
                                     <button wire:click="" class="text-yellow-400 hover:text-yellow-700">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
@@ -138,7 +164,7 @@
                                                 clip-rule="evenodd" />
                                         </svg>
                                     </button>
-                                </center>
+
                             </td>
                         </tr>
 
@@ -157,6 +183,8 @@
                 mostrar "{{ $perPage }}" por Pagina
             </div>
         @endif
+
+
     </x-table>
 
 </div>

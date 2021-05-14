@@ -56,13 +56,6 @@ class TestTable extends Component
     }
     public function clear(){
         $this->reset();
-        /* $this->search = '';
-        $this->page = 1;
-        $this->perPage = '5';
-        $this->order =null;
-        $this->camp =null;
-        $this->icon = '-circle';
-        $this->user_role = ""; */
     }
     public function destroy(User $user){
        /*  User::find($id)->delete(); */

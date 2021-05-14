@@ -19,10 +19,13 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     public function update($user, array $input)
     {
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'min:3','max:30','regex:/^[A-Z,a-z][A-Z,a-z, ]+$/'],
+            'lastname' => ['required', 'string', 'min:3','max:30','regex:/^[A-Z,a-z][A-Z,a-z, ]+$/'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png,svg,gif', 'max:1024'],
         ])->validateWithBag('updateProfileInformation');
+
+
 
         if (isset($input['photo'])) {
             $user->updateProfilePhoto($input['photo']);
@@ -34,10 +37,20 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         } else {
             $user->forceFill([
                 'name' => $input['name'],
+                'lastname' => $input['lastname'],
                 'email' => $input['email'],
             ])->save();
         }
     }
+
+   /*  public function messages()
+        {
+            $messages = return [
+                'name.required' => 'El campo nombre es obligatorio.',
+                'name.min' => 'El campo nombre debe contener al menos 3 caracteres',
+                'name.regex' => 'El campo nombre solo acepta letras.',
+            ];
+        } */
 
     /**
      * Update the given verified user's profile information.
@@ -50,6 +63,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     {
         $user->forceFill([
             'name' => $input['name'],
+            'lastname' => $input['lastname'],
             'email' => $input['email'],
             'email_verified_at' => null,
         ])->save();

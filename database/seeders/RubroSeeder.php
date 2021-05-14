@@ -13,6 +13,8 @@ class RubroSeeder extends Seeder
      */
     public function run()
     {
-        Rubro::factory()->count(5)->create();
+        /* Rubro::factory()->count(5)->create(); */
+
+
     }
 }

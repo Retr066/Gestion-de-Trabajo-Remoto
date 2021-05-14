@@ -2,8 +2,11 @@
 
 namespace App\Http\Livewire;
 use App\Models\Informe;
+use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Auth;
+
 class InformeTable extends Component
 {
     use WithPagination;
@@ -18,20 +21,29 @@ class InformeTable extends Component
         'search'=> ['except'=> ''],
         'camp' => ['except'=>null],
         'order' => ['except'=>null],
-        'perPage' => ['except'=> '5']
+        'perPage' => ['except'=> '5'],
     ];
 
     protected $listeners = [
         'informeList' => 'render',
+
     ];
 
     public function render()
     {
-        $informes = Informe::where('created_at','LIKE','%'. $this->search.'%')
-                            ->orwhere('estado','LIKE','%'. $this->search.'%')
-                            ->orwhere('fecha_inicio_realizadas','LIKE','%'. $this->search.'%')
-                            ->orwhere('fecha_fin_realizadas','LIKE','%'. $this->search.'%')
-                            ->orwhere('horas_total_realizadas','LIKE','%'. $this->search.'%');
+
+        $informes = Informe::where('usuario_id',auth()->user()->id)
+                            ->where(function ($query){
+                                $query->orWhere('created_at','LIKE','%'. $this->search.'%')
+                                ->orWhere('id','LIKE','%'. $this->search.'%')
+                                ->orWhere('estado','LIKE','%'. $this->search.'%')
+                                ->orWhere('fecha_inicio_realizadas','LIKE','%'. $this->search.'%')
+                                ->orWhere('fecha_fin_realizadas','LIKE','%'. $this->search.'%')
+                                ->orWhere('horas_total_realizadas','LIKE','%'. $this->search.'%')
+                                ->orWhere('respuesta','LIKE','%'. $this->search.'%')
+                                ->orWhere('horas_total_realizadas','LIKE','%'. $this->search.'%')
+                                ->orWhere('horas_total_planificadas','LIKE','%'. $this->search.'%');
+                            });
 
                             if($this->camp && $this->order){
                                 $informes = $informes->orderBy($this->camp,$this->order);
@@ -45,6 +57,16 @@ class InformeTable extends Component
         ]);
     }
 
+    public function abrirModal()
+    {
+        $this->open = true;
+        $this->emit('abrirModal');
+    }
+
+    public function abrirModal2(){
+        $this->open = true;
+        $this->emit('abrirModal2');
+    }
     public function destroy($id){
         Informe::find($id)->delete();
     }

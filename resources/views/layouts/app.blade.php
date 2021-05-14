@@ -53,7 +53,6 @@
             {{ $slot }}
         </main>
     </div>
-    <script src="js/filepond.js"></script>
 
 
     @stack('modals')
