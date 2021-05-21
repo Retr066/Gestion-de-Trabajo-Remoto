@@ -27,7 +27,6 @@
         </style>
     </head>
     <body >
-
             <!-- DESDE AQUI COMIENZA TODO -->
             <div id="container-header">
     <header class="header">

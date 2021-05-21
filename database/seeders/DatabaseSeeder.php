@@ -128,5 +128,7 @@ $rubro4->nombre_rubro = "Asesorias";
 
 $rubro4->save();
 
+Rubro::factory()->count(50)->create();
+
     }
 }

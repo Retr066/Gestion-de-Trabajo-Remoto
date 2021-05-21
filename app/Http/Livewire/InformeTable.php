@@ -59,14 +59,22 @@ class InformeTable extends Component
 
     public function abrirModal()
     {
-        $this->open = true;
+
         $this->emit('abrirModal');
     }
 
+    public function editModal()
+    {
+
+        $this->emit('editModal');
+    }
+
     public function abrirModal2(){
-        $this->open = true;
+
         $this->emit('abrirModal2');
     }
+
+
     public function destroy($id){
         Informe::find($id)->delete();
     }

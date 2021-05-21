@@ -25,9 +25,9 @@
                     </div>
                       @else
 
-                      <input id="{{ $name }}" wire:model="{{ $name }}" type="{{ $type }}"
+                      <input  autocomplete="off" id="{{ $name }}" wire:model="{{ $name }}" type="{{ $type }}"
                       placeholder="{{ $placeholder }}"
-                      class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                      class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" >
                     @endif
 
     </div>

@@ -1,29 +1,16 @@
-<div>
-    <div class="flex flex-col">
+<div class="flex flex-col">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                     <div class="flex bg-white px-4 py-3  sm:px-6">
                         <button type="button" wire:click="showModal"
                             class="form-input rounded-md shadow px-3 mt-1 mr-6 block">
-                            <svg class="h-6 w-6 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
-                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="blue">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+</svg>
                         </button>
                         <input wire:model="search" class="form-input rounded-md shadow-sm mt-1 block w-full" type="text"
                             placeholder="Buscar...">
-                        <div class="form-input rounded-md shadow-sm mt-1 ml-6 block ">
-                            <select wire:model="user_role" class="ouline-none text-gray-500 text-sm">
-                                <option value="">Seleccione</option>
-                                <option value="admin">SuperUsuario</option>
-                                <option value="docente">Docente</option>
-                                <option value="jefatura">Jefatura</option>
-                                <option value="administracion">Administracion</option>
-
-                            </select>
-                        </div>
                         <div class="form-input rounded-md shadow-sm mt-1 ml-6 block ">
                             <select wire:model="perPage" class="ouline-none text-gray-500 text-sm">
                                 <option value="5">5 por Pagina</option>
@@ -32,6 +19,7 @@
                                 <option value="50">50 por Pagina</option>
                                 <option value="100">100 por Pagina</option>
                             </select>
+
                         </div>
                         @if ($search !== '')
                             <button wire:click="clear" class="form-input rounded-md shadow px-3 mt-1 ml-6 block">
@@ -40,8 +28,9 @@
                             </svg>
                             </button>
                         @endif
+
                     </div>
-                    @if ($users->count())
+                    @if ($rubros->count())
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                                 <tr>
@@ -49,31 +38,15 @@
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         ID
                                         <button wire:click="sortable('id')">
-                                            <span class="fa fa{{ $camp === 'id' ? $icon : '-circle' }}"></span>
+                                            <span class="fa fa{{ $camp === 'id' ? $icon : '-circle'  }}"></span>
                                         </button>
                                     </th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Nombre
-                                        <button wire:click="sortable('name')">
-                                            <span class="fa fa{{ $camp === 'name' ? $icon : '-circle' }}"></span>
+                                        <button wire:click="sortable('nombre_rubro')">
+                                            <span class="fa fa{{ $camp === 'nombre_rubro' ? $icon : '-circle'  }}"></span>
                                         </button>
-                                        <button wire:click="sortable('email')">
-                                            <span class="fa fa{{ $camp === 'email' ? $icon : '-circle' }}"></span>
-                                        </button>
-                                    </th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Area
-                                        <button wire:click="sortable('nombre_area')">
-                                            <span
-                                                class="fa fa{{ $camp === 'nombre_area' ? $icon : '-circle' }}"></span>
-                                        </button>
-                                    </th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Roles
-
                                     </th>
                                     <th scope="col" class="relative px-6 py-3">
                                         <span
@@ -82,46 +55,23 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                                @foreach ($users as $user)
+                                @foreach ($rubros as $rubro)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">{{ $user->id }}</div>
+                                            <div class="text-sm text-gray-900">{{ $rubro->id }}</div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
-                                                @if ($user->profile_photo_path == null)
-                                                <div class="flex-shrink-0 h-10 w-10">
-                                                    <img class="h-10 w-10 rounded-full"
-                                                    src="{{$user->image_user }}"
-                                                    alt="{{ $user->name }} ">
-                                                </div>
-                                                @else
-                                                <div class="flex-shrink-0 h-10 w-10">
-                                                    <img class="h-10 w-10 rounded-full"
-                                                    src="{{ asset('storage/'.$user->profile_photo_path) }}"
-                                                    alt="{{ $user->name }} ">
-                                                </div>
-                                                @endif
-
                                                 <div class="ml-4">
                                                     <div class="text-sm font-medium text-gray-900">
-                                                        {{ $user->name }} {{ $user->lastname }}
-                                                    </div>
-                                                    <div class="text-sm text-gray-500">
-                                                        {{ $user->email }}
+                                                        {{ $rubro->nombre_rubro }}
                                                     </div>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">{{ $user->r_area->nombre_area }}</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">{{ $user->rol }}</div>
-                                        </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <center>
-                                                <button wire:click="showModal({{ $user->id }})"
+                                                <button  wire:click="showModal({{$rubro->id}})"
                                                     class="text-yellow-400 hover:text-yellow-700">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                         viewBox="0 0 20 20" fill="currentColor">
@@ -132,7 +82,7 @@
                                                             clip-rule="evenodd" />
                                                     </svg>
                                                 </button>
-                                                <button onclick="borrarUsuario({{ $user->id }})"
+                                                <button onclick=""
                                                     class="text-red-400 hover:text-red-700">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                         viewBox="0 0 20 20" fill="currentColor">
@@ -151,31 +101,15 @@
                             </tbody>
                         </table>
                         <div class="bg-white px-4 py-3  border-t border-gray-200 sm:px-6">
-                            {{ $users->links() }}
+                            {{ $rubros->links() }}
                         </div>
                     @else
                         <div class="bg-white px-4 py-3  border-t border-gray-200 text-gray-500 sm:px-6">
                             No hay resultados para la Busqueda "{{ $search }}" en la pagina {{ $page }}
                             al
-                            mostrar "{{ $perPage }}" por Pagina con el Rol de "{{ $user_role }}".
+                            mostrar "{{ $perPage }}" por Pagina.
                         </div>
                     @endif
                 </div>
             </div>
         </div>
-        @push('scripts')
-        <script>
-            function borrarUsuario(user) {
-                if(confirm('Esta seguro de borrar este usuario ?')){
-                    Livewire.emit('destroyList',user)
-
-                }else{
-                    alert('No se realizo ninguna accion');
-                }
-            }
-            Livewire.on('destroy',(user)=> {
-            alert(`El usuario ${user.name} se borro corrrectamente`)
-            });
-        </script>
-        @endpush
-    </div>

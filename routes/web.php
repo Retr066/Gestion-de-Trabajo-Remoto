@@ -19,30 +19,30 @@ Route::get('/', function () {
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/informes', function () {
-    return view('informes');
+    return view('docente.informes');
 })->name('informes');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/informesEnviados', function () {
-    return view('informesEnviados');
+    return view('docente.informesEnviados');
 })->name('informesEnviados');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/informesAprobados', function () {
-    return view('informesAprobados');
+    return view('docente.informesAprobados');
 })->name('informesAprobados');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/informesRechazados', function () {
-    return view('informesRechazados');
+    return view('docente.informesRechazados');
 })->name('informesRechazados');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/reportes', function () {
-    return view('reportes');
+    return view('docente.reportes');
 })->name('reportes');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/prueba', function () {
-    return view('prueba');
+    return view('administracion.prueba');
 })->name('prueba');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/rubro', function () {
-    return view('rubro');
+    return view('administracion.rubro');
 })->name('rubro');
