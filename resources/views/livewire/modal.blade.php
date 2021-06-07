@@ -183,6 +183,16 @@
                                         </div>
                                     </div>
                                     <div class="-mx-3 md:flex mb-7">
+                                       {{--  <div class="w-full px-3 ">
+                                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+                                              Periodo
+                                            </label>
+                                            <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="date" type="text" placeholder="Seleccione Periodo" autocomplete="off" >
+
+                                          </div> --}}
+
+
+
                                         <div class="md:w-1/2 px-3 mb-6 md:mb-0">
                                             <label
                                                 class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
@@ -192,9 +202,10 @@
                                             </label>
                                             <input
                                              wire:model="fecha_inicio_realizadas"
-                                             type="date"
+                                             type="text"
+
                                                 class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 "
-                                                id="grid-city"  placeholder="dd/mm/aa" autocomplete="off">
+                                                id="date"  placeholder="dd/mm/aa" autocomplete="off" data-input>
                                         </div>
                                         <div class="md:w-1/2 px-3">
                                             <label
@@ -204,10 +215,11 @@
                                                 Fecha Fin
                                             </label>
                                             <input
-                                            type="date"
+
+                                            type="text"
                                             wire:model="fecha_fin_realizadas"
                                                 class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4  "
-                                                id="grid-zip"  placeholder="dd/mm/aa" autocomplete="off">
+                                                id="date1"  placeholder="dd/mm/aa" autocomplete="off" data-input>
                                         </div>
                                     </div>
                                     <!-- TABLA  -->
@@ -220,10 +232,12 @@
                                                     Rubro </label>
                                                 <!-- rubro seleccionar -->
                                                 <select
+                                                wire:model="nombre_rubro_realizadas"
                                                     class="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded"
                                                     id="grid-state">
-                                                    @foreach($rubros as $rubro)
-                                                    <option>{{ $rubro->nombre_rubro }}</option>
+                                                    <option value="" selected disabled>Selecciona mano... </option>
+                                                    @foreach($rubros as $key => $rubro)
+                                                    <option value="{{ $key }}" >{{ $rubro->nombre_rubro }}</option>
                                                     @endforeach
 
                                                 </select>
@@ -236,12 +250,16 @@
                                                     Horas Dedicadas </label>
                                                 <!-- Contador -->
                                                 <input
+                                                wire:model="horas_solas_realizadas"
                                                     class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
                                                     id="grid-city" type="number" value="0" placeholder="0">
 
                                             </div>
                                             <div class="md:w-1/3 flex  justify-center items-center mt-7">
-                                                <x-jet-button class="flex justify-center items-center
+                                                <x-jet-button
+
+                                                wire:click="saveDescripcion()"
+                                                class="flex justify-center items-center
                                                             rounded-full h-10 w-20"><i
                                                         class="text-4xl fas fa-plus"></i></x-jet-button>
 
@@ -252,72 +270,16 @@
 
                                         <div class="md:w-full px-3  md:flex mb-6">
                                             <textarea
+                                            wire:model="descripcion_rubro_realizadas"
                                                 class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"
                                                 rows="4"></textarea>
                                         </div>
                                     </div>
 
+                                    <livewire:mini-table />
 
 
-                                    <table
-                                        class="table-auto md:w-full rounded-t-lg m-5 w-5/6 mx-auto bg-gray-200 text-gray-800">
-                                        <tr class="text-left border-b-2 border-gray-300">
-                                            <th class="px-4 py-3">ID</th>
-                                            <th class="px-4 py-3">Informe Asociado</th>
-                                            <th class="px-4 py-3">Rubro</th>
-                                            <th class="px-4 py-3">Descripcion</th>
-                                            <th class="px-4 py-3">Horas</th>
-                                            <th class="px-4 py-3">Acciones</th>
-                                        </tr>
-                                        @foreach ($informesRealizadas as  $informesRealizada)
 
-
-                                        <tr class="bg-gray-100 border-b border-gray-200">
-                                            <td class="px-4 py-3">{{ $informesRealizada->id }}</td>
-                                            <td class="px-4 py-3">{{ $informesRealizada->id_informe_realizadas }}</td>
-                                            <td class="px-4 py-3">{{ $informesRealizada->nombre_rubro_realizadas }}</td>
-                                            <td class="px-4 py-3">{{ $informesRealizada->descripcion_rubro_realizadas }}</td>
-                                            <td class="px-4 py-3">{{ $informesRealizada->horas_solas_realizadas }}</td>
-                                            <td class="px-4 py-3">
-                                                <button
-                                                    class="text-yellow-400 hover:text-yellow-700">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                        viewBox="0 0 20 20" fill="currentColor">
-                                                        <path
-                                                            d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-                                                        <path fill-rule="evenodd"
-                                                            d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <button
-                                                    class="text-red-400 hover:text-red-700">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                        viewBox="0 0 20 20" fill="currentColor">
-                                                        <path fill-rule="evenodd"
-                                                            d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-
-
-                                    </table>
-                                    <div class="-mx-3 md:flex  justify-end items-end">
-                                        <div class='md:w-2/5  px-5 md:flex flex-col justify-center items-center'>
-                                            <label
-                                                class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-                                                for="grid-zip">
-                                                Horas Totales </label>
-                                            <!-- Contador -->
-                                            <input
-                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                                                id="grid-city" type="number" value="0" placeholder="0" readonly>
-                                        </div>
-
-                                    </div>
 
 
 
@@ -374,30 +336,30 @@
                                         </div>
                                     </div>
                                     <div class="-mx-3 md:flex mb-7">
+
                                         <div class="md:w-1/2 px-3 mb-6 md:mb-0">
                                             <label
-
-                                                class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                                class=" block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                                                 for="grid-city">
                                                 Fecha Inicio
                                             </label>
                                             <input
-                                            type="date"
+                                            type="text"
                                             wire:model="fecha_inicio_planificadas"
-                                                class="appearance-none  block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4  "
-                                                id="grid-city"  placeholder="dd/mm/aa" autocomplete="off">
+                                                class="  appearance-none  block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4  "
+                                                id="date2"  placeholder="dd/mm/aa" autocomplete="off">
                                         </div>
                                         <div class="md:w-1/2 px-3">
                                             <label
-                                                class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                                class=" block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                                                 for="grid-zip">
                                                 Fecha Fin
                                             </label>
                                             <input
-                                            type="date"
+                                            type="text"
                                             wire:model="fecha_fin_planificadas"
-                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4  "
-                                                id="grid-zip "    placeholder="dd/mm/aa" autocomplete="off">
+                                                class="  appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4  "
+                                                id="date3"    placeholder="dd/mm/aa" autocomplete="off">
                                         </div>
                                     </div>
                                     <!-- TABLA  -->
@@ -546,61 +508,120 @@
                     <!-- / Bottom Navigation https://placehold.co/300x300/e2e8f0/cccccc -->
                 </div>
 
-                <script>
-                    function app() {
-                        return {
-                            step: 1,
-                            reset(){
-                                setTimeout(() => {
-                                    this.step--
-                                }, 800);
-                            },
-                        }
-                    }
-
-                    function reset() {
-                        setTimeout(() => {
-                            step--
-                        }, 500);
-                    }
-
-                    const fp = flatpickr(".date", {
-                        "plugins": [new rangePlugin({ input: ".date1"})],
-                        "locale": "es",
-                        dateFormat: "Y-m-d",
-                        minDate: new Date().fp_incr(-7), //-7 dias
-                        maxDate: "today" // hoy
-
-                    });
-                    const fp1 = flatpickr(".date1", {
-                        "locale": "es",
-                        dateFormat: "Y-m-d",
-                        minDate: new Date().fp_incr(-7), //-7 dias
-                        maxDate: "today" // hoy
-
-                    });
-                    //PLANIFICADAS
-                    const fp2 = flatpickr(".date2", {
-                        "plugins": [new rangePlugin({ input: ".date3"})],
-                        "locale": "es",
-                        dateFormat: "Y-m-d",
-                        minDate: "today", // hoy
-                        maxDate: new Date().fp_incr(7) // +7 dias
-
-                    });
-                    const fp3 = flatpickr(".date3", {
-                        "locale": "es",
-                        dateFormat: "Y-m-d",
-                        minDate: "today", // hoy
-                        maxDate: new Date().fp_incr(7) // +7 dias
-
-                    });
-
-                </script>
-
         </x-slot>
         <x-slot name="footer">
         </x-slot>
     </x-jet-dialog-modal>
 
+
+    @push('scripts')
+    <script>
+        function app() {
+            return {
+                step: 1,
+                reset(){
+                    setTimeout(() => {
+                        this.step--
+                    }, 800);
+                },
+            }
+        }
+
+        function reset() {
+            setTimeout(() => {
+                step--
+            }, 500);
+        }
+
+        const inputValue = document.getElementById("date");
+        inputValue.addEventListener('change',()=>{
+            const valor =  inputValue.value ;
+            flatpickr("#date1",{
+
+            dateFormat: "Y-m-d",
+            minDate: `'${valor}'`, //-7 dias
+            maxDate:"today",
+            locale: {
+            firstDayOfWeek: 1,
+            weekdays: {
+            shorthand: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+            longhand: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            },
+            months: {
+            shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Оct', 'Nov', 'Dic'],
+            longhand: ['Enero', 'Febreo', 'Мarzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            },
+            }});
+
+
+        });
+
+        const fp = flatpickr("#date",{
+
+            dateFormat: "Y-m-d",
+            minDate:new Date().fp_incr(-30),
+            maxDate:"today",
+            //-7 dias
+            /*  maxDate: (new Date().setFullYear((new Date()).getFullYear() - 18)), // hoy */
+            locale: {
+            firstDayOfWeek: 1,
+            weekdays: {
+            shorthand: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+            longhand: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            },
+            months: {
+            shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Оct', 'Nov', 'Dic'],
+            longhand: ['Enero', 'Febreo', 'Мarzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            },
+
+            }});
+
+
+
+        const inputValue2 = document.getElementById("date2");
+        inputValue2.addEventListener('change',()=>{
+            const valor2 =  inputValue2.value ;
+            flatpickr("#date3",{
+
+            dateFormat: "Y-m-d",
+            minDate: `'${valor2}'`, //-7 dias
+            maxDate:new Date().fp_incr(+30),
+            locale: {
+            firstDayOfWeek: 1,
+            weekdays: {
+            shorthand: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+            longhand: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            },
+            months: {
+            shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Оct', 'Nov', 'Dic'],
+            longhand: ['Enero', 'Febreo', 'Мarzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            },
+            }});
+
+
+        });
+
+        const fp2 = flatpickr("#date2",{
+
+            dateFormat: "Y-m-d",
+            maxDate:new Date().fp_incr(+30),
+            minDate:"today",
+            //-7 dias
+            /*  maxDate: (new Date().setFullYear((new Date()).getFullYear() - 18)), // hoy */
+            locale: {
+            firstDayOfWeek: 1,
+            weekdays: {
+            shorthand: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+            longhand: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            },
+            months: {
+            shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Оct', 'Nov', 'Dic'],
+            longhand: ['Enero', 'Febreo', 'Мarzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            },
+
+            }});
+
+
+    </script>
+@endpush
 </div>

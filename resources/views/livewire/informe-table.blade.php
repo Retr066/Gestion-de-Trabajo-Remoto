@@ -134,7 +134,7 @@
                                     <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd" />
                                     </svg>
                                     </button>
-                                    <button wire:click="editModal()" class="text-yellow-400 hover:text-yellow-700">
+                                    <button wire:click="$emit('editModal',{{ $informe }})" class="text-yellow-400 hover:text-yellow-700">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                             fill="currentColor">
                                             <path
@@ -144,7 +144,7 @@
                                                 clip-rule="evenodd" />
                                         </svg>
                                     </button>
-                                    <button wire:click="destroy({{ $informe->id }})"
+                                    <button onclick="borrarInforme({{$informe->id}})"
                                         class="text-red-400 hover:text-red-700">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                             fill="currentColor">
@@ -185,6 +185,37 @@
         @endif
 
 
+
     </x-table>
 
+
+
 </div>
+
+@push('scripts')
+        <script>
+            function borrarInforme(informe) {
+                Swal.fire({
+                    title: 'Estas Seguro?',
+                    text: "No habra Vuelta Atras!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si, Borralo!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Livewire.emit('deleteInformeList', informe)
+
+                    }
+                })
+            }
+            Livewire.on('deleteInforme', (informe) => {
+                Swal.fire(
+                    'Borrado!',
+                    `El usuario ${informe.id} se borro corrrectamente`,
+                    'success'
+                )
+            });
+        </script>
+        @endpush

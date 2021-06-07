@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Models\Area;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Spatie\Permission\Models\Role;
 class TestTable extends Component
 {
     use WithPagination;
@@ -15,6 +16,7 @@ class TestTable extends Component
     public $order = null;
     public $icon = '-circle';
     public $showModal = 'hidden';
+    public $roles;
 
     protected $queryString = [
         'search'=> ['except'=> ''],
@@ -33,7 +35,10 @@ class TestTable extends Component
     {
 
         $users = User::termino($this->search)
-        ->role($this->user_role);
+        ->when($this->user_role != '',function($query){
+             return $query->role($this->user_role);
+        });
+
 
 
 
@@ -59,6 +64,7 @@ class TestTable extends Component
     }
     public function destroy(User $user){
        /*  User::find($id)->delete(); */
+       can('usuario delete');
        $user->r_area()->delete();
        $user->delete();
        $this->emit('destroy',$user);
@@ -69,6 +75,7 @@ class TestTable extends Component
     }
     public function mount(){
         $this->icon = $this->iconDirection($this->order);
+        $this->roles = Role::pluck('name','name')->toArray();
     }
 
     public function sortable($camp)
@@ -104,8 +111,10 @@ class TestTable extends Component
 
     public function showModal(User $user){
         if($user->name){
+            can('usuario update');
           $this->emit('showModal',$user);
         } else {
+            can('usuario create');
             $this->emit('showModalNewUser');
         }
     }

@@ -5,10 +5,9 @@
             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
             <option value=''>Selecione</option>
             @foreach ($options as $key => $option)
-
+            @if($option <> 'SuperUsuario')
             <option value="{{ $key }}">{{ $option }}</option>
-
-
+             @endif
             @endforeach
 
         </select>

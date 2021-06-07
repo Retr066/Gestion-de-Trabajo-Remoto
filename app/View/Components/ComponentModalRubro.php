@@ -7,16 +7,20 @@ use Illuminate\View\Component;
 class ComponentModalRubro extends Component
 {
 
-    public $showModal;
     /**
 
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(string $showModal)
+
+     public $showModal;
+     public $action;
+
+    public function __construct(string $showModal, string $action)
     {
         $this->showModal = $showModal;
+        $this->action = $action;
     }
 
     /**

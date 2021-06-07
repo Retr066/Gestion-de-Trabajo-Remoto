@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Livewire\WithFileUploads;
 use Livewire\TemporaryUploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Permission\Models\Role;
 class LiveModal extends Component
 {
     use WithFileUploads;
@@ -19,6 +20,7 @@ class LiveModal extends Component
     public $nombre_area = '';
     public $email = '';
     public $role = '';
+    public $roles = [];
     public $user = null;
     public $action = '';
     public $method = '';
@@ -32,6 +34,12 @@ class LiveModal extends Component
         'showModalNewUser' => 'sacarModalNuevo'
     ];
 
+
+
+    public function hydrate(){
+        $this->roles = Role::pluck('name','name')->toArray();
+    }
+
     public function render()
     {
         return view('livewire.live-modal');
@@ -44,7 +52,7 @@ class LiveModal extends Component
         $this->lastname = $user->lastname;
         $this->email = $user->email;
         $this->nombre_area = $user->r_area->nombre_area;
-        $this->role = $user->role;
+        $this->role = $user->roles()->first()->name ?? '';
         $this->nombreModal = 'Editar Usuario';
         $this->action = 'Actualizar';
         $this->method = 'actualizarUsuario';
@@ -78,6 +86,7 @@ class LiveModal extends Component
        }
 
        $this->user->update($values);
+       $this->user->syncRoles([$values['role']]);
        $this->user->r_area()->update(['nombre_area'=> $values['nombre_area']]);
        $this->emit('userListUpdate');
        $this->resetErrorBag();
@@ -103,6 +112,8 @@ class LiveModal extends Component
         if($values['profile_photo_path']){
             $user->profile_photo_path = $this->loadImage($values['profile_photo_path']);
         }
+
+        $user->assignRole($values['role']);
         $user->password = bcrypt($values['password']);
 
         DB::transaction(function () use($user,$area){

@@ -15,9 +15,12 @@
                     <div class="flex">
                         <x-component-input placeholder=" Ingrese su Area" name="nombre_area" label="Area">
                         </x-component-input>
-                        <x-component-input-select name="role" label="Rol"
+                       {{--  <x-component-input-select name="role" label="Rol"
                             :options="['docente' =>'Docente','jefatura'=> 'Jefe','administracion'=> 'Administracion']">
-                        </x-component-input-select>
+                        </x-component-input-select> --}}
+                        <x-component-input-select name="role" label="Rol"
+                        :options="$roles">
+                    </x-component-input-select>
                     </div>
                     <div class="flex">
                         <x-component-input placeholder=" Ingrese su Correo" name="email" label="Correo">

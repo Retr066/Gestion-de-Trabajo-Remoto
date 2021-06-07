@@ -10,7 +10,7 @@ class RubroTable extends Component
 {
     use WithPagination;
     public $search = '';
-    public $perPage = 5;
+    public $perPage = '5';
     public $camp = null;
     public $order = null;
     public $icon = '-circle';
@@ -23,9 +23,15 @@ class RubroTable extends Component
         'perPage' => ['except'=> '5'],
     ];
 
+    protected $listeners = [
+
+        'rubroListUpdate' => 'render',
+        'deleteRubroList' => 'deleteRubro'
+    ];
+
     public function render()
     {
-        $rubros= Rubro::where('nombre_rubro', 'like', "%{$this->search}%");
+        $rubros = Rubro::termino($this->search);
 
 
         if ($this->camp && $this->order) {
@@ -41,46 +47,52 @@ class RubroTable extends Component
                'rubros' =>  $rubros
         ]);
     }
+
+    public function clear(){
+        $this->reset();
+
+    }
+
+    public function deleteRubro(Rubro $rubro){
+
+        $rubro->delete();
+          $this->emit('deleteRubro', $rubro);
+}
+
+public function updatingSearch()
+{
+    $this->resetPage();
+}
+
     public function mount()
     {
             $this->icon = $this->iconDirection($this->order);
     }
 
-    public function clear(){
-        $this->reset();
-    }
-
-    public function updatingSearch()
-    {
-        $this->resetPage();
-    }
-
-
     public function sortable($camp)
     {
-            if($camp !== $this->camp){
+        if($camp !== $this->camp){
+            $this->order = null;
+        }
+        switch ($this->order) {
+            case null:
+                $this->order = 'asc';
+
+                break;
+            case 'asc':
+                $this->order = 'desc';
+
+                break;
+            case 'desc':
                 $this->order = null;
-            }
-            switch ($this->order){
-                case null:
-                          $this->order = 'asc';
-                          $this->icon = '-arrow-circle-up';
-                    break;
-                case 'asc':
-                          $this->order = 'desc';
-                          $this->icon = '-arrow-circle-down';
-                    break;
-                    case 'desc':
-                        $this->order = null;
-                        $this->icon = '-circle';
-                  break;
 
-
-            }
-        $this->icon = $this->iconDirection($this->order);
+                break;
+        }
+        $this->icon =$this->iconDirection($this->order);
         $this->camp = $camp;
-
     }
+
+
     public function iconDirection($sort): string
     {
         if (!$sort) {
@@ -91,9 +103,12 @@ class RubroTable extends Component
         return $sort === 'asc' ? '-arrow-circle-up' : '-arrow-circle-down';
     }
 
-    public function showModal(Rubro $rubro)
-    {
-        $this->emit('showModal', $rubro);
-    }
+    public function showModal(Rubro $rubro){
 
+        if($rubro->nombre_rubro){
+            $this->emit('showModal',$rubro);
+          } else {
+              $this->emit('showModalNewRubro');
+          }
+    }
 }

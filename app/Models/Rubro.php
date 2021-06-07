@@ -11,4 +11,13 @@ class Rubro extends Model
     protected $fillable = [
         'nombre_rubro',
     ];
+
+    public function scopeTermino($query, $termino){
+        if($termino === ''){
+            return;
+        }
+        return $query->where('nombre_rubro', 'like', "%{$termino}%");
+    }
+
+
 }

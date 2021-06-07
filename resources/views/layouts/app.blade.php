@@ -11,18 +11,19 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
     <!-- Styles -->
-    <link type="text/css" rel="stylesheet" href="css/flatpickr.min.css">
+    <link type="text/css" rel="stylesheet" href="{{ asset('css/flatpickr.min.css') }}">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
 
     @livewireStyles
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
-    <script src="js/flatpickr.js"></script>
-    <script src="js/es.js"></script>
-    <script src="js/rangoPlugin.js"></script>
+     <script src="{{ asset('js/es.js') }}"></script>
+    <script src="{{ asset('js/flatpickr.js') }}"></script>
+    <script src="{{ asset('js/rangoPlugin.js') }}"></script>
 
 
 
@@ -38,19 +39,26 @@
 
 
         <!-- Page Heading -->
-        {{-- @if (isset($header))
+        @if (isset($header))
                 <header class="bg-white shadow">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
                 </header>
-            @endif --}}
+            @endif
 
         <!-- Page Content -->
 
         <main>
 
-            {{ $slot }}
+            <div class="md:flex ">
+                <div class="w-auto min-w-full md:min-w-0  ">
+                    <livewire:sidebar />
+                </div>
+                <div class="w-5/6 min-w-full md:min-w-0">
+                {{ $slot }}
+                </div>
+            </div>
         </main>
     </div>
 

@@ -26,7 +26,7 @@ class InformeTable extends Component
 
     protected $listeners = [
         'informeList' => 'render',
-
+        'deleteInformeList' => 'deleteInforme'
     ];
 
     public function render()
@@ -63,11 +63,7 @@ class InformeTable extends Component
         $this->emit('abrirModal');
     }
 
-    public function editModal()
-    {
 
-        $this->emit('editModal');
-    }
 
     public function abrirModal2(){
 
@@ -75,9 +71,11 @@ class InformeTable extends Component
     }
 
 
-    public function destroy($id){
-        Informe::find($id)->delete();
-    }
+    public function deleteInforme(Informe $informe){
+
+        $informe->delete();
+          $this->emit('deleteInforme', $informe);
+}
 
     public function mount(){
         $this->icon = $this->iconDirection($this->order);

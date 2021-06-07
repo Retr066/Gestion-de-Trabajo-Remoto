@@ -24,6 +24,9 @@ class ComponentModal extends Component
      *
      * @return \Illuminate\Contracts\View\View|\Closure|string
      */
+
+    protected $listeners = ['deletePermission' => 'render'];
+
     public function render()
     {
         return view('components.component-modal');

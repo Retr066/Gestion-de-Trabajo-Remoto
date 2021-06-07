@@ -1,7 +1,8 @@
 <?php
 
 namespace Database\Seeders;
-
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use  App\Models\User;
 use Illuminate\Database\Seeder;
 use  App\Models\Area;
@@ -23,19 +24,19 @@ class DatabaseSeeder extends Seeder
        $user = User::create([
             'name' =>'Jherson',
             'email' => 'jherson@gmail.com',
-             'role' => 'admin',
+
             'password' => bcrypt('12345'),
         ]);
         $user2 =  User::create([
             'name' =>'Jhonatan',
             'email' => 'jhonatan@gmail.com',
-            'role' => 'admin',
+
             'password' => bcrypt('12345'),
         ]);
         $user3 = User::create([
             'name' =>'Sulca',
             'email' => 'Sulca@gmail.com',
-            'role' => 'admin',
+
             'password' => bcrypt('12345'),
         ]);
 
@@ -97,6 +98,37 @@ class DatabaseSeeder extends Seeder
 
 
         Area::factory()->count(50)->create();
+
+        $admin = Role::create(['name' => 'SuperUsuario']);
+        $docente = Role::create(['name' => 'Docente']);
+        $jefatura = Role::create(['name' => 'Jefatura']);
+        $administracion = Role::create(['name' => 'Administracion']);
+        $role = Role::create(['name' => 'role']);
+
+        $permission = [
+            'create',
+            'read',
+            'update',
+            'delete',
+        ];
+
+        foreach(Role::all() as $role){
+            foreach($permission as $p){
+                if($role->name == 'SuperUsuario') $role->name = 'usuario';
+                Permission::create(['name' => "{$role->name} $p"]);
+            }
+        }
+
+        $admin->syncPermissions(Permission::all());
+        $docente->syncPermissions(Permission::where('name','like','%Docente%')->get());
+        $jefatura->syncPermissions(Permission::where('name','like','%Jefatura%')->get());
+        $administracion->syncPermissions(Permission::where('name','like','%Administracion%')->get());
+        $role->syncPermissions(Permission::where('name','like','%role%')->get());
+
+
+        $user->assignRole('SuperUsuario');
+        $user2->assignRole('SuperUsuario');
+        $user3->assignRole('Docente');
 
         /* Informe::factory()->count()->create(); */
         /* InformesRealizadas::factory()->count(50)->create();

@@ -4,6 +4,7 @@
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                     <div class="flex bg-white px-4 py-3  sm:px-6">
+                        @can('Administracion create')
                         <button type="button" wire:click="showModal"
                             class="form-input rounded-md shadow px-3 mt-1 mr-6 block">
                             <svg class="h-6 w-6 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -12,15 +13,19 @@
                                     d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
                             </svg>
                         </button>
+                        @endcan
                         <input wire:model="search" class="form-input rounded-md shadow-sm mt-1 block w-full" type="text"
                             placeholder="Buscar...">
                         <div class="form-input rounded-md shadow-sm mt-1 ml-6 block ">
                             <select wire:model="user_role" class="ouline-none text-gray-500 text-sm">
                                 <option value="">Seleccione</option>
-                                <option value="admin">SuperUsuario</option>
-                                <option value="docente">Docente</option>
-                                <option value="jefatura">Jefatura</option>
-                                <option value="administracion">Administracion</option>
+                                @foreach ($roles as $key => $option)
+                                <option value="{{ $key }}">{{ $option }}</option>
+                                @endforeach
+                                {{-- <option value="SuperUsuario">SuperUsuario</option>
+                                <option value="Docente">Docente</option>
+                                <option value="Jefatura">Jefatura</option>
+                                <option value="Administracion">Administracion</option> --}}
 
                             </select>
                         </div>
@@ -117,10 +122,11 @@
                                             <div class="text-sm text-gray-900">{{ $user->r_area->nombre_area }}</div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">{{ $user->rol }}</div>
+                                            <div class="text-sm text-gray-900">{{ $user->roles()->first()->name ?? 'N/A' }}</div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <center>
+                                                @can('Administracion update')
                                                 <button wire:click="showModal({{ $user->id }})"
                                                     class="text-yellow-400 hover:text-yellow-700">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
@@ -132,6 +138,8 @@
                                                             clip-rule="evenodd" />
                                                     </svg>
                                                 </button>
+                                                @endcan
+                                                @can('Administracion delete')
                                                 <button onclick="borrarUsuario({{ $user->id }})"
                                                     class="text-red-400 hover:text-red-700">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
@@ -141,6 +149,15 @@
                                                             clip-rule="evenodd" />
                                                     </svg>
                                                 </button>
+                                                @endcan
+                                                @can('Administracion update')
+                                                <a
+                                                    class="text-purple-600 mb-5 hover:text-purple-900"
+                                                    wire:click="$emit('addPermission',{{ $user->id }},'user')"
+                                                    >
+                                                    Permisos
+                                                </a>
+                                                @endcan
                                             </center>
 
                                         </td>
@@ -165,16 +182,29 @@
         </div>
         @push('scripts')
         <script>
-            function borrarUsuario(user) {
-                if(confirm('Esta seguro de borrar este usuario ?')){
-                    Livewire.emit('destroyList',user)
 
-                }else{
-                    alert('No se realizo ninguna accion');
-                }
+            function borrarUsuario(user) {
+                Swal.fire({
+                    title: 'Estas Seguro?',
+                    text: "No habra Vuelta Atras!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si, Borralo!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Livewire.emit('destroyList', user)
+
+                    }
+                })
             }
             Livewire.on('destroy',(user)=> {
-            alert(`El usuario ${user.name} se borro corrrectamente`)
+                Swal.fire(
+                    'Borrado!',
+                    `El usuario ${user.name} se borro corrrectamente`,
+                    'success'
+                )
             });
         </script>
         @endpush

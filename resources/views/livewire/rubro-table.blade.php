@@ -6,8 +6,8 @@
                         <button type="button" wire:click="showModal"
                             class="form-input rounded-md shadow px-3 mt-1 mr-6 block">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="blue">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-</svg>
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                                                    </svg>
                         </button>
                         <input wire:model="search" class="form-input rounded-md shadow-sm mt-1 block w-full" type="text"
                             placeholder="Buscar...">
@@ -21,7 +21,7 @@
                             </select>
 
                         </div>
-                        @if ($search !== '')
+                        @if ($search !== '' OR $perPage !== '5')
                             <button wire:click="clear" class="form-input rounded-md shadow px-3 mt-1 ml-6 block">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M6.707 4.879A3 3 0 018.828 4H15a3 3 0 013 3v6a3 3 0 01-3 3H8.828a3 3 0 01-2.12-.879l-4.415-4.414a1 1 0 010-1.414l4.414-4.414zm4 2.414a1 1 0 00-1.414 1.414L10.586 10l-1.293 1.293a1 1 0 101.414 1.414L12 11.414l1.293 1.293a1 1 0 001.414-1.414L13.414 10l1.293-1.293a1 1 0 00-1.414-1.414L12 8.586l-1.293-1.293z" clip-rule="evenodd" />
@@ -82,7 +82,7 @@
                                                             clip-rule="evenodd" />
                                                     </svg>
                                                 </button>
-                                                <button onclick=""
+                                                <button onclick="borrarRubro({{$rubro->id}})"
                                                     class="text-red-400 hover:text-red-700">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                         viewBox="0 0 20 20" fill="currentColor">
@@ -113,3 +113,30 @@
                 </div>
             </div>
         </div>
+        @push('scripts')
+        <script>
+            function borrarRubro(rubro) {
+                Swal.fire({
+                    title: 'Estas Seguro?',
+                    text: "No habra Vuelta Atras!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si, Borralo!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Livewire.emit('deleteRubroList', rubro)
+
+                    }
+                })
+            }
+            Livewire.on('deleteRubro', (rubro) => {
+                Swal.fire(
+                    'Borrado!',
+                    `El usuario ${rubro.name} se borro corrrectamente`,
+                    'success'
+                )
+            });
+        </script>
+        @endpush

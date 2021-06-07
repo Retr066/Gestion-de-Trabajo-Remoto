@@ -8,6 +8,7 @@ use App\Models\InformesPlanificadas;
 use App\Models\InformesRealizadas;
 use Livewire\Component;
 use Auth;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\RequestUpdateUser;
 class Modal extends Component
 {
@@ -18,6 +19,9 @@ class Modal extends Component
     public $fecha_inicio_planificadas = '' ;
     public $fecha_fin_planificadas = '';
     public $tituloModal ='';
+    public $nombre_rubro_realizadas = '';
+    public $descripcion_rubro_realizadas = '';
+    public $horas_solas_realizadas = '' ;
 
     public $open = false;
 
@@ -39,7 +43,9 @@ class Modal extends Component
             'fecha_fin_planificadas' =>$this->fecha_fin_planificadas,
 
         ]);
-        $this->reset(['open','fecha_inicio_realizadas','fecha_fin_realizadas','fecha_inicio_planificadas','fecha_fin_planificadas']);
+
+        $this->cerrarModal();
+       /*  $this->reset(['open','fecha_inicio_realizadas','fecha_fin_realizadas','fecha_inicio_planificadas','fecha_fin_planificadas']); */
 
         $this->emit('informeList');
     }
@@ -59,9 +65,27 @@ class Modal extends Component
     }
 
 
+    public function saveDescripcion(){
+        InformesRealizadas::create([
+            'id_informe_realizadas' => Auth::user()->id,
+            'nombre_rubro_realizadas' => $this->nombre_rubro_realizadas,
+            'descripcion_rubro_realizadas' => $this->descripcion_rubro_realizadas,
+            'horas_solas_realizadas'=>$this->horas_solas_realizadas,
+        ]);
+
+        $this->emit('saveDescripcion');
+         $this->nombre_rubro_realizadas = '';
+         $this->descripcion_rubro_realizadas = '';
+         $this->horas_solas_realizadas = '' ;
 
 
+    }
 
+    public function sumarHoras() {
+      /* $test = InformesRealizadas::select('horas_solas_realizadas')->get(); */
+
+
+    }
 
     public function abrirModal()
     {
