@@ -70,8 +70,8 @@ class LiveModal extends Component
         $this->nombreModal = 'Registrar Usuario';
         $this->action = 'Registrar';
         $this->method = 'registrarUsuario';
-
         $this->showModal = '';
+
     }
     public function actualizarUsuario()
     {

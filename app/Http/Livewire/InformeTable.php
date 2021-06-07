@@ -57,11 +57,7 @@ class InformeTable extends Component
         ]);
     }
 
-    public function abrirModal()
-    {
 
-        $this->emit('abrirModal');
-    }
 
 
 

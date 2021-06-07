@@ -1,7 +1,133 @@
 <div>
 
 
-    <x-jet-dialog-modal wire:model="open" >
+    {{-- <div class="flex justify-center h-screen items-center bg-gray-200 antialiased">
+        <div class="flex flex-col w-11/12 sm:w-5/6 lg:w-1/2 max-w-2xl mx-auto rounded-lg border border-gray-300 shadow-xl">
+          <div
+            class="flex flex-row justify-between p-6 bg-white border-b border-gray-200 rounded-tl-lg rounded-tr-lg"
+          >
+            <p class="font-semibold text-gray-800">Add a step</p>
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              ></path>
+            </svg>
+          </div>
+          <div class="flex flex-col px-6 py-5 bg-gray-50">
+            <p class="mb-2 font-semibold text-gray-700">Bots Message</p>
+            <textarea
+              type="text"
+              name=""
+              placeholder="Type message..."
+              class="p-5 mb-5 bg-white border border-gray-200 rounded shadow-sm h-36"
+              id=""
+            ></textarea>
+            <div class="flex flex-col sm:flex-row items-center mb-5 sm:space-x-5">
+              <div class="w-full sm:w-1/2">
+                <p class="mb-2 font-semibold text-gray-700">Customer Response</p>
+                <select
+                  type="text"
+                  name=""
+                  class="w-full p-5 bg-white border border-gray-200 rounded shadow-sm appearance-none"
+                  id=""
+                >
+                  <option value="0">Add service</option>
+                </select>
+              </div>
+              <div class="w-full sm:w-1/2 mt-2 sm:mt-0">
+                <p class="mb-2 font-semibold text-gray-700">Next step</p>
+                <select
+                  type="text"
+                  name=""
+                  class="w-full p-5 bg-white border border-gray-200 rounded shadow-sm appearance-none"
+                  id=""
+                >
+                  <option value="0">Book Appointment</option>
+                </select>
+              </div>
+            </div>
+            <hr />
+
+            <div class="flex items-center mt-5 mb-3 space-x-4">
+              <input
+                class="inline-flex rounded-full"
+                type="checkbox"
+                id="check1"
+                name="check1"
+              />
+              <label class="inline-flex font-semibold text-gray-400" for="check1">
+                Add a crew</label
+              ><br />
+              <input
+                class="inline-flex"
+                type="checkbox"
+                id="check2"
+                name="check2"
+                     checked
+              />
+              <label class="inline-flex font-semibold text-blue-500" for="check2">
+                Add a specific agent</label
+              ><br />
+            </div>
+            <div
+              class="flex flex-row items-center justify-between p-5 bg-white border border-gray-200 rounded shadow-sm"
+            >
+              <div class="flex flex-row items-center">
+                <img
+                  class="w-10 h-10 mr-3 rounded-full"
+                  src="https://randomuser.me/api/portraits/lego/7.jpg"
+                  alt=""
+                />
+                <div class="flex flex-col">
+                  <p class="font-semibold text-gray-800">Xu Lin Bashir</p>
+                  <p class="text-gray-400">table.co</p>
+                </div>
+              </div>
+              <h1 class="font-semibold text-red-400">Remove</h1>
+            </div>
+          </div>
+          <div
+            class="flex flex-row items-center justify-between p-5 bg-white border-t border-gray-200 rounded-bl-lg rounded-br-lg"
+          >
+            <p class="font-semibold text-gray-600">Cancel</p>
+            <button class="px-4 py-2 text-white font-semibold bg-blue-500 rounded">
+              Save
+            </button>
+          </div>
+        </div>
+      </div> --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <x-jet-dialog-modal data-background="static" wire:model="open">
 
         <x-slot name="title">
             {{ $tituloModal }}
@@ -140,7 +266,7 @@
                                             </label>
                                             <input
                                                 class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3 "
-                                                type="text" value="{{ Auth::user()->r_area->nombre_area  }}" readonly>
+                                                type="text" value="{{ Auth::user()->r_area->nombre_area }}" readonly>
                                             <!-- <p class="text-red text-xs italic">Porfavor Rellena Este Campo</p> -->
                                         </div>
                                         <div class="md:w-1/2 px-3">
@@ -151,14 +277,14 @@
                                             </label>
                                             <input
                                                 class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                                                 type="text"  value="{{ Auth::user()->email }}" readonly>
+                                                type="text" value="{{ Auth::user()->email }}" readonly>
                                             <!--  <p class="text-red text-xs italic">Porfavor Rellena Este Campo.</p> -->
                                         </div>
                                     </div>
                                     <!--
                                     OO
                                      -->
-                                     <div class="-mx-3 md:flex mb-6">
+                                    <div class="-mx-3 md:flex mb-6">
                                         <div class="md:w-1/2 px-3 mb-6 md:mb-0">
                                             <label
                                                 class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
@@ -178,12 +304,12 @@
                                             </label>
                                             <input
                                                 class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                                                 type="text"  value="{{ Auth::user()->lastname }}" readonly>
+                                                type="text" value="{{ Auth::user()->lastname }}" readonly>
                                             <!--  <p class="text-red text-xs italic">Porfavor Rellena Este Campo.</p> -->
                                         </div>
                                     </div>
                                     <div class="-mx-3 md:flex mb-7">
-                                       {{--  <div class="w-full px-3 ">
+                                        {{-- <div class="w-full px-3 ">
                                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
                                               Periodo
                                             </label>
@@ -196,30 +322,22 @@
                                         <div class="md:w-1/2 px-3 mb-6 md:mb-0">
                                             <label
                                                 class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-
                                                 for="grid-city">
                                                 Fecha Inicio
                                             </label>
-                                            <input
-                                             wire:model="fecha_inicio_realizadas"
-                                             type="text"
-
+                                            <input wire:model="fecha_inicio_realizadas" type="text"
                                                 class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 "
-                                                id="date"  placeholder="dd/mm/aa" autocomplete="off" data-input>
+                                                id="date" placeholder="dd/mm/aa" autocomplete="off" data-input>
                                         </div>
                                         <div class="md:w-1/2 px-3">
                                             <label
-
                                                 class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                                                 for="grid-zip">
                                                 Fecha Fin
                                             </label>
-                                            <input
-
-                                            type="text"
-                                            wire:model="fecha_fin_realizadas"
+                                            <input type="text" wire:model="fecha_fin_realizadas"
                                                 class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4  "
-                                                id="date1"  placeholder="dd/mm/aa" autocomplete="off" data-input>
+                                                id="date1" placeholder="dd/mm/aa" autocomplete="off" data-input>
                                         </div>
                                     </div>
                                     <!-- TABLA  -->
@@ -231,13 +349,14 @@
                                                     for="grid-zip">
                                                     Rubro </label>
                                                 <!-- rubro seleccionar -->
-                                                <select
-                                                wire:model="nombre_rubro_realizadas"
+                                                <select wire:model="nombre_rubro_realizadas"
                                                     class="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded"
                                                     id="grid-state">
                                                     <option value="" selected disabled>Selecciona mano... </option>
-                                                    @foreach($rubros as $key => $rubro)
-                                                    <option value="{{ $key }}" >{{ $rubro->nombre_rubro }}</option>
+                                                    @foreach ($rubros as $key => $rubro)
+                                                        <option value="{{ $rubro->nombre_rubro }}">
+                                                            {{ $rubro->nombre_rubro }}
+                                                        </option>
                                                     @endforeach
 
                                                 </select>
@@ -249,28 +368,30 @@
                                                     for="grid-zip">
                                                     Horas Dedicadas </label>
                                                 <!-- Contador -->
-                                                <input
-                                                wire:model="horas_solas_realizadas"
+                                                <input wire:model="horas_solas_realizadas"
                                                     class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
                                                     id="grid-city" type="number" value="0" placeholder="0">
 
                                             </div>
                                             <div class="md:w-1/3 flex  justify-center items-center mt-7">
-                                                <x-jet-button
-
-                                                wire:click="saveDescripcion()"
-                                                class="flex justify-center items-center
+                                                @if ($hidden2 == 'hidden')
+                                                    <x-jet-button wire:click="saveDescripcion()" class="{{ $hidden }} flex justify-center items-center
                                                             rounded-full h-10 w-20"><i
-                                                        class="text-4xl fas fa-plus"></i></x-jet-button>
-
+                                                            class="text-4xl fas fa-plus"></i></x-jet-button>
+                                                @endif
+                                                @if ($hidden2 == '')
+                                                    <x-jet-button wire:click="updateRealizadas()" class=" {{ $hidden2 }}  flex justify-center items-center
+                                                        rounded-full h-10 w-20"> <i
+                                                            class="text-4xl fas fa-pen-square"></i>
+                                                    </x-jet-button>
+                                                @endif
                                             </div>
 
 
                                         </div>
 
                                         <div class="md:w-full px-3  md:flex mb-6">
-                                            <textarea
-                                            wire:model="descripcion_rubro_realizadas"
+                                            <textarea wire:model="descripcion_rubro_realizadas"
                                                 class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"
                                                 rows="4"></textarea>
                                         </div>
@@ -296,7 +417,8 @@
                                             </label>
                                             <input
                                                 class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                                                value="{{ Auth::user()->r_area->nombre_area }}" type="text" placeholder="Ingenieria de Sistemas" readonly>
+                                                value="{{ Auth::user()->r_area->nombre_area }}" type="text"
+                                                placeholder="Ingenieria de Sistemas" readonly>
                                             <!-- <p class="text-red text-xs italic">Porfavor Rellena Este Campo</p> -->
                                         </div>
                                         <div class="md:w-1/2 px-3">
@@ -307,7 +429,7 @@
                                             </label>
                                             <input
                                                 class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                                                 type="text"  value="{{ Auth::user()->email }}" readonly>
+                                                type="text" value="{{ Auth::user()->email }}" readonly>
                                             <!--  <p class="text-red text-xs italic">Porfavor Rellena Este Campo.</p> -->
                                         </div>
                                     </div>
@@ -331,7 +453,7 @@
                                             </label>
                                             <input
                                                 class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                                                 type="text"  value="{{ Auth::user()->lastname }}" readonly>
+                                                type="text" value="{{ Auth::user()->lastname }}" readonly>
                                             <!--  <p class="text-red text-xs italic">Porfavor Rellena Este Campo.</p> -->
                                         </div>
                                     </div>
@@ -343,11 +465,9 @@
                                                 for="grid-city">
                                                 Fecha Inicio
                                             </label>
-                                            <input
-                                            type="text"
-                                            wire:model="fecha_inicio_planificadas"
+                                            <input type="text" wire:model="fecha_inicio_planificadas"
                                                 class="  appearance-none  block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4  "
-                                                id="date2"  placeholder="dd/mm/aa" autocomplete="off">
+                                                id="date2" placeholder="dd/mm/aa" autocomplete="off">
                                         </div>
                                         <div class="md:w-1/2 px-3">
                                             <label
@@ -355,11 +475,9 @@
                                                 for="grid-zip">
                                                 Fecha Fin
                                             </label>
-                                            <input
-                                            type="text"
-                                            wire:model="fecha_fin_planificadas"
+                                            <input type="text" wire:model="fecha_fin_planificadas"
                                                 class="  appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4  "
-                                                id="date3"    placeholder="dd/mm/aa" autocomplete="off">
+                                                id="date3" placeholder="dd/mm/aa" autocomplete="off">
                                         </div>
                                     </div>
                                     <!-- TABLA  -->
@@ -375,8 +493,8 @@
                                                     class="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded"
                                                     id="grid-state">
 
-                                                    @foreach($rubros as $key =>$rubro)
-                                                    <option value=''>{{ $rubro->nombre_rubro }}</option>
+                                                    @foreach ($rubros as $key => $rubro)
+                                                        <option value=''>{{ $rubro->nombre_rubro }}</option>
                                                     @endforeach
 
                                                 </select>
@@ -394,7 +512,8 @@
                                             </div>
                                             <div class="md:w-1/3 flex  justify-center items-center mt-7">
                                                 <x-jet-button class="flex justify-center items-center
-                                                        rounded-full h-10 w-20 " wire:click="listRubro()"><i class="text-4xl fas fa-plus"></i>
+                                                        rounded-full h-10 w-20 " wire:click="listRubro()"><i
+                                                        class="text-4xl fas fa-plus"></i>
                                                 </x-jet-button>
 
                                             </div>
@@ -421,36 +540,38 @@
                                             <th class="px-4 py-3">Horas</th>
                                             <th class="px-4 py-3">Acciones</th>
                                         </tr>
-                                        @foreach ($informesPlanificadas as  $informesPlanificada)
-                                        <tr class="bg-gray-100 border-b border-gray-200">
-                                            <td class="px-4 py-3">{{ $informesPlanificada->id }}</td>
-                                            <td class="px-4 py-3">{{ $informesPlanificada->id_informe_planificadas }}</td>
-                                            <td class="px-4 py-3">{{ $informesPlanificada->nombre_rubro_planificadas }}</td>
-                                            <td class="px-4 py-3">{{ $informesPlanificada->descripcion_rubro_planificadas }}</td>
-                                            <td class="px-4 py-3">{{ $informesPlanificada->horas_solas_planificas }}</td>
-                                            <td class="px-4 py-3">
-                                                <button
-                                                    class="text-yellow-400 hover:text-yellow-700">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                        viewBox="0 0 20 20" fill="currentColor">
-                                                        <path
-                                                            d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-                                                        <path fill-rule="evenodd"
-                                                            d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <button
-                                                    class="text-red-400 hover:text-red-700">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                        viewBox="0 0 20 20" fill="currentColor">
-                                                        <path fill-rule="evenodd"
-                                                            d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                            </td>
-                                        </tr>
+                                        @foreach ($informesPlanificadas as $informesPlanificada)
+                                            <tr class="bg-gray-100 border-b border-gray-200">
+                                                <td class="px-4 py-3">{{ $informesPlanificada->id }}</td>
+                                                <td class="px-4 py-3">
+                                                    {{ $informesPlanificada->id_informe_planificadas }}</td>
+                                                <td class="px-4 py-3">
+                                                    {{ $informesPlanificada->nombre_rubro_planificadas }}</td>
+                                                <td class="px-4 py-3">
+                                                    {{ $informesPlanificada->descripcion_rubro_planificadas }}</td>
+                                                <td class="px-4 py-3">
+                                                    {{ $informesPlanificada->horas_solas_planificas }}</td>
+                                                <td class="px-4 py-3">
+                                                    <button class="text-yellow-400 hover:text-yellow-700">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                            <path
+                                                                d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                                                            <path fill-rule="evenodd"
+                                                                d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                                                                clip-rule="evenodd" />
+                                                        </svg>
+                                                    </button>
+                                                    <button class="text-red-400 hover:text-red-700">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                            <path fill-rule="evenodd"
+                                                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                                clip-rule="evenodd" />
+                                                        </svg>
+                                                    </button>
+                                                </td>
+                                            </tr>
                                         @endforeach
 
                                     </table>
@@ -499,7 +620,8 @@
                                         <button x-show="step < 2" @click="step++"
                                             class="w-32 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-blue-500 hover:bg-blue-600 font-medium">Siguiente</button>
 
-                                        <x-jet-button x-show="step === 2" wire:click="save()"  @click="reset()">Guardar</x-jet-secundary-button>
+                                        <x-jet-button x-show="step === 2" wire:click="save()" @click="reset()">Guardar
+                                            </x-jet-secundary-button>
 
                                 </div>
                             </div>
@@ -515,113 +637,136 @@
 
 
     @push('scripts')
-    <script>
-        function app() {
-            return {
-                step: 1,
-                reset(){
-                    setTimeout(() => {
-                        this.step--
-                    }, 800);
-                },
+        <script>
+            function app() {
+                return {
+                    step: 1,
+                    reset() {
+                        setTimeout(() => {
+                            this.step--
+                        }, 800);
+                    },
+                }
             }
-        }
 
-        function reset() {
-            setTimeout(() => {
-                step--
-            }, 500);
-        }
+            function reset() {
+                setTimeout(() => {
+                    step--
+                }, 500);
+            }
 
-        const inputValue = document.getElementById("date");
-        inputValue.addEventListener('change',()=>{
-            const valor =  inputValue.value ;
-            flatpickr("#date1",{
+            const inputValue = document.getElementById("date");
+            inputValue.addEventListener('change', () => {
+                const valor = inputValue.value;
+                flatpickr("#date1", {
 
-            dateFormat: "Y-m-d",
-            minDate: `'${valor}'`, //-7 dias
-            maxDate:"today",
-            locale: {
-            firstDayOfWeek: 1,
-            weekdays: {
-            shorthand: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
-            longhand: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-            },
-            months: {
-            shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Оct', 'Nov', 'Dic'],
-            longhand: ['Enero', 'Febreo', 'Мarzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-            },
-            }});
-
-
-        });
-
-        const fp = flatpickr("#date",{
-
-            dateFormat: "Y-m-d",
-            minDate:new Date().fp_incr(-30),
-            maxDate:"today",
-            //-7 dias
-            /*  maxDate: (new Date().setFullYear((new Date()).getFullYear() - 18)), // hoy */
-            locale: {
-            firstDayOfWeek: 1,
-            weekdays: {
-            shorthand: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
-            longhand: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-            },
-            months: {
-            shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Оct', 'Nov', 'Dic'],
-            longhand: ['Enero', 'Febreo', 'Мarzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-            },
-
-            }});
+                    dateFormat: "Y-m-d",
+                    minDate: `'${valor}'`, //-7 dias
+                    maxDate: "today",
+                    locale: {
+                        firstDayOfWeek: 1,
+                        weekdays: {
+                            shorthand: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+                            longhand: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes',
+                                'Sábado'
+                            ],
+                        },
+                        months: {
+                            shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep',
+                                'Оct', 'Nov', 'Dic'
+                            ],
+                            longhand: ['Enero', 'Febreo', 'Мarzo', 'Abril', 'Mayo', 'Junio', 'Julio',
+                                'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+                            ],
+                        },
+                    }
+                });
 
 
+            });
 
-        const inputValue2 = document.getElementById("date2");
-        inputValue2.addEventListener('change',()=>{
-            const valor2 =  inputValue2.value ;
-            flatpickr("#date3",{
+            const fp = flatpickr("#date", {
 
-            dateFormat: "Y-m-d",
-            minDate: `'${valor2}'`, //-7 dias
-            maxDate:new Date().fp_incr(+30),
-            locale: {
-            firstDayOfWeek: 1,
-            weekdays: {
-            shorthand: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
-            longhand: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-            },
-            months: {
-            shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Оct', 'Nov', 'Dic'],
-            longhand: ['Enero', 'Febreo', 'Мarzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-            },
-            }});
+                dateFormat: "Y-m-d",
+                minDate: new Date().fp_incr(-30),
+                maxDate: "today",
+                //-7 dias
+                /*  maxDate: (new Date().setFullYear((new Date()).getFullYear() - 18)), // hoy */
+                locale: {
+                    firstDayOfWeek: 1,
+                    weekdays: {
+                        shorthand: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+                        longhand: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                    },
+                    months: {
+                        shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Оct', 'Nov',
+                            'Dic'
+                        ],
+                        longhand: ['Enero', 'Febreo', 'Мarzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto',
+                            'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+                        ],
+                    },
 
-
-        });
-
-        const fp2 = flatpickr("#date2",{
-
-            dateFormat: "Y-m-d",
-            maxDate:new Date().fp_incr(+30),
-            minDate:"today",
-            //-7 dias
-            /*  maxDate: (new Date().setFullYear((new Date()).getFullYear() - 18)), // hoy */
-            locale: {
-            firstDayOfWeek: 1,
-            weekdays: {
-            shorthand: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
-            longhand: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-            },
-            months: {
-            shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Оct', 'Nov', 'Dic'],
-            longhand: ['Enero', 'Febreo', 'Мarzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-            },
-
-            }});
+                }
+            });
 
 
-    </script>
-@endpush
+
+            const inputValue2 = document.getElementById("date2");
+            inputValue2.addEventListener('change', () => {
+                const valor2 = inputValue2.value;
+                flatpickr("#date3", {
+
+                    dateFormat: "Y-m-d",
+                    minDate: `'${valor2}'`, //-7 dias
+                    maxDate: new Date().fp_incr(+30),
+                    locale: {
+                        firstDayOfWeek: 1,
+                        weekdays: {
+                            shorthand: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+                            longhand: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes',
+                                'Sábado'
+                            ],
+                        },
+                        months: {
+                            shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep',
+                                'Оct', 'Nov', 'Dic'
+                            ],
+                            longhand: ['Enero', 'Febreo', 'Мarzo', 'Abril', 'Mayo', 'Junio', 'Julio',
+                                'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+                            ],
+                        },
+                    }
+                });
+
+
+            });
+
+            const fp2 = flatpickr("#date2", {
+
+                dateFormat: "Y-m-d",
+                maxDate: new Date().fp_incr(+30),
+                minDate: "today",
+                //-7 dias
+                /*  maxDate: (new Date().setFullYear((new Date()).getFullYear() - 18)), // hoy */
+                locale: {
+                    firstDayOfWeek: 1,
+                    weekdays: {
+                        shorthand: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+                        longhand: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                    },
+                    months: {
+                        shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Оct', 'Nov',
+                            'Dic'
+                        ],
+                        longhand: ['Enero', 'Febreo', 'Мarzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto',
+                            'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+                        ],
+                    },
+
+                }
+            });
+
+        </script>
+    @endpush
 </div>
