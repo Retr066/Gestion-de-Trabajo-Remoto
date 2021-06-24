@@ -1,32 +1,52 @@
 <?php
 
 namespace App\Http\Livewire;
-
+use App\Models\User;
+use App\Models\Rubro;
+use App\Models\Informe;
+use App\Models\InformesPlanificadas;
+use App\Models\InformesRealizadas;
 use Livewire\Component;
 
 class VerModal extends Component
 {
 
-    public $open = false;
+    public $abrir = false;
+    public $id_informe = '';
+    public $count = 1;
 
     protected $listeners = [
-        'abrirModal2',
+        'ShowModal'=> 'verModalDescripcion',
 
     ];
 
-    public function abrirModal2()
-    {
-        $this->open = true;
-    }
-
-    public function cerrarModal2()
-    {
-        $this->open = false;
-
+    public function mount(){
+        $this->abrir = false;
+        $this->count = 1;
     }
 
     public function render()
     {
-        return view('livewire.ver-modal');
+        $informesPlanificadas = InformesPlanificadas::where('id_informe_planificadas', $this->id_informe)->get();
+        $informesRealizadas = InformesRealizadas::where('id_informe_realizadas',$this->id_informe)->get();
+        $informes = Informe::where('id',$this->id_informe)->get();
+
+
+        return view('livewire.ver-modal',compact('informesRealizadas','informesPlanificadas','informes'));
     }
+
+    public function verModalDescripcion($id_informe)
+    {
+
+        $this->abrir = true;
+        $this->id_informe = $id_informe;
+
+    }
+
+    public function cerrar()
+    {
+        $this->reset();
+
+    }
+
 }

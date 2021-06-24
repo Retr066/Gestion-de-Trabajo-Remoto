@@ -59,16 +59,19 @@ class DatabaseSeeder extends Seeder
 
          $informe = Informe::factory()->create([
                 'usuario_id' =>  $user->id,
+                'estado' => 'generado',
                 /* 'nombres' => $user->name,
                 'nombre_area_informe'=>$user->r_area->nombre_area, */
             ]);
             $informe2 =  Informe::factory()->create([
                 'usuario_id' =>  $user2->id,
+                'estado' => 'enviado_jefatura',
                 /* 'nombres' => $user2->name,
                 'nombre_area_informe'=>$user2->r_area->nombre_area, */
             ]);
             $informe3 = Informe::factory()->create([
                 'usuario_id' =>  $user->id,
+                'estado' => 'generado',
                 /* 'nombres' => $user->name,
                 'nombre_area_informe'=>$user->r_area->nombre_area, */
             ]);
@@ -161,7 +164,6 @@ $rubro4->nombre_rubro = "Asesorias";
 
 $rubro4->save();
 
-Rubro::factory()->count(50)->create();
 
     }
 }

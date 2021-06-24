@@ -14,6 +14,7 @@ use Spatie\Permission\Models\Role;
 class LiveModal extends Component
 {
     use WithFileUploads;
+
     public $showModal = 'hidden';
     public $name = '';
     public $lastname = '';
@@ -38,6 +39,7 @@ class LiveModal extends Component
 
     public function hydrate(){
         $this->roles = Role::pluck('name','name')->toArray();
+
     }
 
     public function render()
@@ -60,9 +62,11 @@ class LiveModal extends Component
     }
     public function cerrarModal()
     {
+        $this->reset(['showModal','name','lastname','nombre_area','email','role','roles','user','method','nombreModal',
+                        'password','password_confirmation','profile_photo_path']);
         $this->resetErrorBag();
         $this->resetValidation();
-        $this->reset();
+
     }
     public function sacarModalNuevo()
     {
@@ -89,9 +93,7 @@ class LiveModal extends Component
        $this->user->syncRoles([$values['role']]);
        $this->user->r_area()->update(['nombre_area'=> $values['nombre_area']]);
        $this->emit('userListUpdate');
-       $this->resetErrorBag();
-       $this->resetValidation();
-       $this->reset();
+       $this->cerrarModal();
 
     }
 

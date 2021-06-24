@@ -31,7 +31,7 @@ class RequestUpdateUser extends FormRequest
             'nombre_area' => 'required|min:3|max:50|regex:/^[A-Z,a-z][A-Z,a-z, ]+$/',
             'email' => ['required','max:255','email',Rule::unique('users','email')->ignore($user)],
             'role'=>"required|in:{$roles}",
-            'profile_photo_path' => 'nullable|image|max:2048|mimes:jpeg,png,svg,jpg,gif,webp',
+            'profile_photo_path' => 'nullable|image|max:3072|mimes:jpeg,png,svg,jpg,gif,webp',
         ];
         if(!$user){
             $validation_password = [

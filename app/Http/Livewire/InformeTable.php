@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire;
 use App\Models\Informe;
+use App\Models\InformesRealizadas;
+use App\Models\InformesPlanificadas;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Auth;
+use PDF;
 
 class InformeTable extends Component
 {
@@ -15,6 +18,7 @@ class InformeTable extends Component
     public $camp = null;
     public $order = null;
     public $icon = '-circle';
+    public $informe_estado = '';
 
 
     protected $queryString = [
@@ -22,27 +26,27 @@ class InformeTable extends Component
         'camp' => ['except'=>null],
         'order' => ['except'=>null],
         'perPage' => ['except'=> '5'],
+        'informe_estado'=>['except'=> ''],
     ];
 
     protected $listeners = [
         'informeList' => 'render',
-        'deleteInformeList' => 'deleteInforme'
+        'deleteInformeList' => 'deleteInforme',
+        'enviarInforme',
+
+
     ];
 
     public function render()
     {
 
         $informes = Informe::where('usuario_id',auth()->user()->id)
+                    ->whereIn('estado',['generado','enviado_recursos','enviado_jefatura'])
                             ->where(function ($query){
                                 $query->orWhere('created_at','LIKE','%'. $this->search.'%')
                                 ->orWhere('id','LIKE','%'. $this->search.'%')
                                 ->orWhere('estado','LIKE','%'. $this->search.'%')
-                                ->orWhere('fecha_inicio_realizadas','LIKE','%'. $this->search.'%')
-                                ->orWhere('fecha_fin_realizadas','LIKE','%'. $this->search.'%')
-                                ->orWhere('horas_total_realizadas','LIKE','%'. $this->search.'%')
-                                ->orWhere('respuesta','LIKE','%'. $this->search.'%')
-                                ->orWhere('horas_total_realizadas','LIKE','%'. $this->search.'%')
-                                ->orWhere('horas_total_planificadas','LIKE','%'. $this->search.'%');
+                                ->orWhere('updated_at','LIKE','%'. $this->search.'%')->estados($this->informe_estado);
                             });
 
                             if($this->camp && $this->order){
@@ -61,17 +65,24 @@ class InformeTable extends Component
 
 
 
-    public function abrirModal2(){
 
-        $this->emit('abrirModal2');
-    }
 
 
     public function deleteInforme(Informe $informe){
 
         $informe->delete();
           $this->emit('deleteInforme', $informe);
-}
+    }
+
+
+
+    public function enviarInforme(Informe $informe){
+        $informe->update([
+            'id' => $informe->id,
+            'estado' => 'enviado_jefatura'
+        ]);
+        $this->emit('listEnviar',$informe);
+    }
 
     public function mount(){
         $this->icon = $this->iconDirection($this->order);
@@ -119,11 +130,13 @@ class InformeTable extends Component
         }
         return $sort === 'asc' ? '-arrow-circle-up' : '-arrow-circle-down';
     }
-    /*  public function showModal(User $user){
-        if($user->name){
-          $this->emit('showModal',$user);
-        } else {
-            $this->emit('showModalNewUser');
-        }
-    } */
+   public function GenerarPdf($id){
+    $user_id = auth()->user()->id;
+      $user = User::find($user_id);
+    $informes = Informe::find($id);
+    $informesRealizadas = InformesRealizadas::where('id_informe_realizadas', $id)->get();
+    $informesPlanificadas = InformesPlanificadas::where('id_informe_planificadas', $id)->get();
+    $pdf = PDF::loadView('docente.pdf',compact('informesRealizadas','informes','user','informesPlanificadas'));
+      return  $pdf->stream('reporteInforme.'.date('y-m-d').'.pdf');
+   }
 }

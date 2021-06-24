@@ -15,7 +15,7 @@ class Modalrubro extends Component
 {
     use WithFileUploads;
     public $showModal = 'hidden';
-    public $name = '';
+    public $nombre_rubro = '';
     public $rubro = null;
     public $action = '';
     public $method = '';
@@ -35,7 +35,7 @@ class Modalrubro extends Component
        public function sacarModal(Rubro $rubro)
        {
             $this->rubro = $rubro;
-            $this->name = $rubro->nombre_rubro;
+            $this->nombre_rubro = $rubro->nombre_rubro;
             $this->nombreModal = 'Editar Rubro';
             $this->action = 'Actualizar';
             $this->method = 'actualizarRubro';

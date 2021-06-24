@@ -22,7 +22,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'name' => ['required', 'string', 'min:3','max:30','regex:/^[A-Z,a-z][A-Z,a-z, ]+$/'],
             'lastname' => ['required', 'string', 'min:3','max:30','regex:/^[A-Z,a-z][A-Z,a-z, ]+$/'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'photo' => ['nullable', 'mimes:jpg,jpeg,png,svg,gif', 'max:1024'],
+            'photo' => ['nullable', 'mimes:jpg,jpeg,png,svg,gif', 'max:3072'],
         ])->validateWithBag('updateProfileInformation');
 
 

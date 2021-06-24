@@ -5,14 +5,14 @@
                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                     <div class="flex bg-white px-4 py-3  sm:px-6">
                         @can('Administracion create')
-                        <button type="button" wire:click="showModal"
-                            class="form-input rounded-md shadow px-3 mt-1 mr-6 block">
-                            <svg class="h-6 w-6 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
-                            </svg>
-                        </button>
+                            <button type="button" wire:click="showModal"
+                                class="form-input rounded-md shadow px-3 mt-1 mr-6 block">
+                                <svg class="h-6 w-6 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                                </svg>
+                            </button>
                         @endcan
                         <input wire:model="search" class="form-input rounded-md shadow-sm mt-1 block w-full" type="text"
                             placeholder="Buscar...">
@@ -20,12 +20,10 @@
                             <select wire:model="user_role" class="ouline-none text-gray-500 text-sm">
                                 <option value="">Seleccione</option>
                                 @foreach ($roles as $key => $option)
-                                <option value="{{ $key }}">{{ $option }}</option>
+                                    @if ($key != 'SuperUsuario')
+                                        <option value="{{ $key }}">{{ $option }}</option>
+                                    @endif
                                 @endforeach
-                                {{-- <option value="SuperUsuario">SuperUsuario</option>
-                                <option value="Docente">Docente</option>
-                                <option value="Jefatura">Jefatura</option>
-                                <option value="Administracion">Administracion</option> --}}
 
                             </select>
                         </div>
@@ -40,9 +38,12 @@
                         </div>
                         @if ($search !== '')
                             <button wire:click="clear" class="form-input rounded-md shadow px-3 mt-1 ml-6 block">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M6.707 4.879A3 3 0 018.828 4H15a3 3 0 013 3v6a3 3 0 01-3 3H8.828a3 3 0 01-2.12-.879l-4.415-4.414a1 1 0 010-1.414l4.414-4.414zm4 2.414a1 1 0 00-1.414 1.414L10.586 10l-1.293 1.293a1 1 0 101.414 1.414L12 11.414l1.293 1.293a1 1 0 001.414-1.414L13.414 10l1.293-1.293a1 1 0 00-1.414-1.414L12 8.586l-1.293-1.293z" clip-rule="evenodd" />
-                            </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M6.707 4.879A3 3 0 018.828 4H15a3 3 0 013 3v6a3 3 0 01-3 3H8.828a3 3 0 01-2.12-.879l-4.415-4.414a1 1 0 010-1.414l4.414-4.414zm4 2.414a1 1 0 00-1.414 1.414L10.586 10l-1.293 1.293a1 1 0 101.414 1.414L12 11.414l1.293 1.293a1 1 0 001.414-1.414L13.414 10l1.293-1.293a1 1 0 00-1.414-1.414L12 8.586l-1.293-1.293z"
+                                        clip-rule="evenodd" />
+                                </svg>
                             </button>
                         @endif
                     </div>
@@ -95,17 +96,16 @@
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
                                                 @if ($user->profile_photo_path == null)
-                                                <div class="flex-shrink-0 h-10 w-10">
-                                                    <img class="h-10 w-10 rounded-full"
-                                                    src="{{$user->image_user }}"
-                                                    alt="{{ $user->name }} ">
-                                                </div>
+                                                    <div class="flex-shrink-0 h-10 w-10">
+                                                        <img class="h-10 w-10 rounded-full"
+                                                            src="{{ $user->image_user }}" alt="{{ $user->name }} ">
+                                                    </div>
                                                 @else
-                                                <div class="flex-shrink-0 h-10 w-10">
-                                                    <img class="h-10 w-10 rounded-full"
-                                                    src="{{ asset('storage/'.$user->profile_photo_path) }}"
-                                                    alt="{{ $user->name }} ">
-                                                </div>
+                                                    <div class="flex-shrink-0 h-10 w-10">
+                                                        <img class="h-10 w-10 rounded-full"
+                                                            src="{{ asset('storage/' . $user->profile_photo_path) }}"
+                                                            alt="{{ $user->name }} ">
+                                                    </div>
                                                 @endif
 
                                                 <div class="ml-4">
@@ -119,44 +119,55 @@
                                             </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">{{ $user->r_area->nombre_area }}</div>
+                                            <div class="text-sm text-gray-900">{{ $user->r_area->nombre_area }}
+                                            </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">{{ $user->roles()->first()->name ?? 'N/A' }}</div>
+                                            <div class="text-sm text-gray-900">
+                                                {{ $user->roles()->first()->name ?? 'N/A' }}</div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <center>
                                                 @can('Administracion update')
-                                                <button wire:click="showModal({{ $user->id }})"
-                                                    class="text-yellow-400 hover:text-yellow-700">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                        viewBox="0 0 20 20" fill="currentColor">
-                                                        <path
-                                                            d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-                                                        <path fill-rule="evenodd"
-                                                            d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
+                                                    <button wire:click="showModal({{ $user->id }})"
+                                                        class="text-yellow-400 hover:text-yellow-700">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                            <path
+                                                                d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                                                            <path fill-rule="evenodd"
+                                                                d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                                                                clip-rule="evenodd" />
+                                                        </svg>
+                                                    </button>
                                                 @endcan
                                                 @can('Administracion delete')
-                                                <button onclick="borrarUsuario({{ $user->id }})"
-                                                    class="text-red-400 hover:text-red-700">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                        viewBox="0 0 20 20" fill="currentColor">
-                                                        <path fill-rule="evenodd"
-                                                            d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
+                                                    <button onclick="borrarUsuario({{ $user->id }})"
+                                                        class="text-red-400 hover:text-red-700">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                            <path fill-rule="evenodd"
+                                                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                                clip-rule="evenodd" />
+                                                        </svg>
+                                                    </button>
                                                 @endcan
                                                 @can('Administracion update')
-                                                <a
-                                                    class="text-purple-600 mb-5 hover:text-purple-900"
-                                                    wire:click="$emit('addPermission',{{ $user->id }},'user')"
-                                                    >
-                                                    Permisos
-                                                </a>
+                                                    <a class="text-purple-600 mb-5 hover:text-purple-900"
+                                                        wire:click="$emit('addPermission',{{ $user->id }},'user')">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                            <path fill-rule="evenodd"
+                                                                d="M6.625 2.655A9 9 0 0119 11a1 1 0 11-2 0 7 7 0 00-9.625-6.492 1 1 0 11-.75-1.853zM4.662 4.959A1 1 0 014.75 6.37 6.97 6.97 0 003 11a1 1 0 11-2 0 8.97 8.97 0 012.25-5.953 1 1 0 011.412-.088z"
+                                                                clip-rule="evenodd" />
+                                                            <path fill-rule="evenodd"
+                                                                d="M5 11a5 5 0 1110 0 1 1 0 11-2 0 3 3 0 10-6 0c0 1.677-.345 3.276-.968 4.729a1 1 0 11-1.838-.789A9.964 9.964 0 005 11zm8.921 2.012a1 1 0 01.831 1.145 19.86 19.86 0 01-.545 2.436 1 1 0 11-1.92-.558c.207-.713.371-1.445.49-2.192a1 1 0 011.144-.83z"
+                                                                clip-rule="evenodd" />
+                                                            <path fill-rule="evenodd"
+                                                                d="M10 10a1 1 0 011 1c0 2.236-.46 4.368-1.29 6.304a1 1 0 01-1.838-.789A13.952 13.952 0 009 11a1 1 0 011-1z"
+                                                                clip-rule="evenodd" />
+                                                        </svg>
+                                                    </a>
                                                 @endcan
                                             </center>
 
@@ -181,31 +192,31 @@
             </div>
         </div>
         @push('scripts')
-        <script>
+            <script>
+                function borrarUsuario(user) {
+                    Swal.fire({
+                        title: 'Estas Seguro?',
+                        text: "No habra Vuelta Atras!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Si, Borralo!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Livewire.emit('destroyList', user)
 
-            function borrarUsuario(user) {
-                Swal.fire({
-                    title: 'Estas Seguro?',
-                    text: "No habra Vuelta Atras!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Si, Borralo!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        Livewire.emit('destroyList', user)
+                        }
+                    })
+                }
+                Livewire.on('destroy', (user) => {
+                    Swal.fire(
+                        'Borrado!',
+                        `El usuario ${user.name} se borro corrrectamente`,
+                        'success'
+                    )
+                });
 
-                    }
-                })
-            }
-            Livewire.on('destroy',(user)=> {
-                Swal.fire(
-                    'Borrado!',
-                    `El usuario ${user.name} se borro corrrectamente`,
-                    'success'
-                )
-            });
-        </script>
+            </script>
         @endpush
     </div>

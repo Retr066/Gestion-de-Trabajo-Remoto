@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Models\Area;
 use Auth;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -21,17 +22,18 @@ class Informe extends Model
     ];
 
 
-    /* protected $dates = [
-        'fecha_inicio_realizadas' => 'datetime:Y-m-d',
-        'fecha_fin_realizadas' => 'datetime:Y-m-d',
-        'fecha_inicio_planificadas' => 'datetime:Y-m-d',
-        'fecha_fin_planificadas' => 'datetime:Y-m-d',
-    ]; */
+
 
     public function r_user()
     {
-        return $this->hasMany(User::class, 'usuario_id', 'id');
+        return $this->belongsTo(User::class, 'usuario_id', 'id');
     }
+
+    public function r_area()
+    {
+        return $this->belongsTo(Area::class,'usuario_id','user_id');
+    }
+
     public function r_informe_realizadas()
     {
         return $this->hasMany(InformesRealizadas::class,'id_informe_realizadas','id');
@@ -41,24 +43,51 @@ class Informe extends Model
         return $this->hasMany(InformesPlanificadas::class,'id_informe_planificadas','id');
     }
 
+    public function getEstadoCambiadoAttribute(): string
+    {
+        if($this->estado === 'generado') {
+            return 'Generado';
+        }else if($this->estado === 'enviado_jefatura'){
+            return 'Enviado';
+        }else if($this->estado === 'rechazado_jefatura'){
+            return 'Desaprobado';
+        }else if ($this->estado === 'enviado_recursos'){
+            return 'Aprobado';
+        }else{
+            return 'No tienes Estado';
+        }
+    }
+
+
 
     public function scopeTermino($query,$termino)
     {
 
-        $id_user = Auth::user()->id;
+
         if($termino === ''){
             return;
         }
         return $query->where('id','LIKE',"%{$termino}%")
-        ->orWhere(['usuario_id'=>500])
-        ->orWhere('created_at','LIKE',"%{$termino}%")
+        ->orWhere('updated_at','LIKE',"%{$termino}%")
         ->orwhere('estado','LIKE',"%{$termino}%")
-        ->orwhere('fecha_inicio_realizadas','LIKE',"%{$termino}%")
-        ->orwhere('fecha_fin_realizadas','LIKE',"%{$termino}%")
-        ->orwhere('horas_total_realizadas','LIKE',"%{$termino}%");
+        ->orWhereHas('r_user',function($query2) use ($termino){
+            $query2->where('name','LIKE',"%.{$termino}.%")
+            ->orWhere('lastname','LIKE',"%.{$termino}.%")
+            ->orWhere('email','LIKE',"%.{$termino}.%");
+        });
 
 
     }
+
+
+    public function scopeEstados($query ,$estado){
+        if ($estado == '') {
+        return;
+        }
+
+        return $query->where('estado',$estado);
+    }
+
 
 
 }

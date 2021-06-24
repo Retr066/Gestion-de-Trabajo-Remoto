@@ -13,12 +13,13 @@
 
 
             <tr class="bg-gray-100 border-b border-gray-200">
-                <x-component-td id="a"> {{ $informesRealizada->id }} </x-component-td>
-                <x-component-td id="aea"> {{ $informesRealizada->id_informe_realizadas }} </x-component-td>
-                <x-component-td id="aea1"> {{ $informesRealizada->nombre_rubro_realizadas }} </x-component-td>
-                <x-component-td id="aea2"> {{ $informesRealizada->descripcion_rubro_realizadas }} </x-component-td>
-                <x-component-td id="aea3"> {{ $informesRealizada->horas_solas_realizadas }} </x-component-td>
-                <x-component-td id="aea4">
+                <x-component-td> {{ $informesRealizada->id }} </x-component-td>
+                <x-component-td> {{ $informesRealizada->id_informe_realizadas }} </x-component-td>
+                <x-component-td> {{ $informesRealizada->nombre_rubro_realizadas }} </x-component-td>
+                <td style="max-width: 10rem;" class="px-4 py-3 break-words">
+                    {{ $informesRealizada->descripcion_rubro_realizadas }}</td>
+                <x-component-td> {{ $informesRealizada->horas_solas_realizadas }} </x-component-td>
+                <x-component-td>
 
                     <button wire:click="updateDescripcion({{ $informesRealizada }})"
                         class="text-yellow-400 hover:text-yellow-700">

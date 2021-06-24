@@ -1,132 +1,4 @@
 <div>
-
-
-    {{-- <div class="flex justify-center h-screen items-center bg-gray-200 antialiased">
-        <div class="flex flex-col w-11/12 sm:w-5/6 lg:w-1/2 max-w-2xl mx-auto rounded-lg border border-gray-300 shadow-xl">
-          <div
-            class="flex flex-row justify-between p-6 bg-white border-b border-gray-200 rounded-tl-lg rounded-tr-lg"
-          >
-            <p class="font-semibold text-gray-800">Add a step</p>
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"
-              ></path>
-            </svg>
-          </div>
-          <div class="flex flex-col px-6 py-5 bg-gray-50">
-            <p class="mb-2 font-semibold text-gray-700">Bots Message</p>
-            <textarea
-              type="text"
-              name=""
-              placeholder="Type message..."
-              class="p-5 mb-5 bg-white border border-gray-200 rounded shadow-sm h-36"
-              id=""
-            ></textarea>
-            <div class="flex flex-col sm:flex-row items-center mb-5 sm:space-x-5">
-              <div class="w-full sm:w-1/2">
-                <p class="mb-2 font-semibold text-gray-700">Customer Response</p>
-                <select
-                  type="text"
-                  name=""
-                  class="w-full p-5 bg-white border border-gray-200 rounded shadow-sm appearance-none"
-                  id=""
-                >
-                  <option value="0">Add service</option>
-                </select>
-              </div>
-              <div class="w-full sm:w-1/2 mt-2 sm:mt-0">
-                <p class="mb-2 font-semibold text-gray-700">Next step</p>
-                <select
-                  type="text"
-                  name=""
-                  class="w-full p-5 bg-white border border-gray-200 rounded shadow-sm appearance-none"
-                  id=""
-                >
-                  <option value="0">Book Appointment</option>
-                </select>
-              </div>
-            </div>
-            <hr />
-
-            <div class="flex items-center mt-5 mb-3 space-x-4">
-              <input
-                class="inline-flex rounded-full"
-                type="checkbox"
-                id="check1"
-                name="check1"
-              />
-              <label class="inline-flex font-semibold text-gray-400" for="check1">
-                Add a crew</label
-              ><br />
-              <input
-                class="inline-flex"
-                type="checkbox"
-                id="check2"
-                name="check2"
-                     checked
-              />
-              <label class="inline-flex font-semibold text-blue-500" for="check2">
-                Add a specific agent</label
-              ><br />
-            </div>
-            <div
-              class="flex flex-row items-center justify-between p-5 bg-white border border-gray-200 rounded shadow-sm"
-            >
-              <div class="flex flex-row items-center">
-                <img
-                  class="w-10 h-10 mr-3 rounded-full"
-                  src="https://randomuser.me/api/portraits/lego/7.jpg"
-                  alt=""
-                />
-                <div class="flex flex-col">
-                  <p class="font-semibold text-gray-800">Xu Lin Bashir</p>
-                  <p class="text-gray-400">table.co</p>
-                </div>
-              </div>
-              <h1 class="font-semibold text-red-400">Remove</h1>
-            </div>
-          </div>
-          <div
-            class="flex flex-row items-center justify-between p-5 bg-white border-t border-gray-200 rounded-bl-lg rounded-br-lg"
-          >
-            <p class="font-semibold text-gray-600">Cancel</p>
-            <button class="px-4 py-2 text-white font-semibold bg-blue-500 rounded">
-              Save
-            </button>
-          </div>
-        </div>
-      </div> --}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <x-jet-dialog-modal data-background="static" wire:model="open">
 
         <x-slot name="title">
@@ -218,7 +90,7 @@
 
                 </style>
 
-                <div x-data="app()" x-cloak>
+                <div x-data="{ step: @entangle('count')}" x-cloak>
                     <div class="max-w-3xl mx-auto ">
                         <div x-show.transition="step != 'complete'">
                             <!-- Top Navigation -->
@@ -328,6 +200,8 @@
                                             <input wire:model="fecha_inicio_realizadas" type="text"
                                                 class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 "
                                                 id="date" placeholder="dd/mm/aa" autocomplete="off" data-input>
+                                            @error('fecha_inicio_realizadas') <span
+                                                class="error text-red-700">{{ $message }}</span> @enderror
                                         </div>
                                         <div class="md:w-1/2 px-3">
                                             <label
@@ -338,6 +212,8 @@
                                             <input type="text" wire:model="fecha_fin_realizadas"
                                                 class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4  "
                                                 id="date1" placeholder="dd/mm/aa" autocomplete="off" data-input>
+                                            @error('fecha_fin_realizadas') <span
+                                                class="error text-red-700">{{ $message }}</span> @enderror
                                         </div>
                                     </div>
                                     <!-- TABLA  -->
@@ -360,7 +236,8 @@
                                                     @endforeach
 
                                                 </select>
-
+                                                @error('nombre_rubro_realizadas') <span
+                                                    class="error text-red-700">{{ $message }}</span> @enderror
                                             </div>
                                             <div class="md:w-2/5  px-5 flex flex-col justify-center items-start">
                                                 <label
@@ -372,6 +249,8 @@
                                                     class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
                                                     id="grid-city" type="number" value="0" placeholder="0">
 
+                                                @error('horas_solas_realizadas') <span
+                                                    class="error text-red-700">{{ $message }}</span> @enderror
                                             </div>
                                             <div class="md:w-1/3 flex  justify-center items-center mt-7">
                                                 @if ($hidden2 == 'hidden')
@@ -390,19 +269,17 @@
 
                                         </div>
 
-                                        <div class="md:w-full px-3  md:flex mb-6">
+                                        <div class="md:w-full px-3  mb-6">
                                             <textarea wire:model="descripcion_rubro_realizadas"
                                                 class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"
                                                 rows="4"></textarea>
+                                            @error('descripcion_rubro_realizadas') <span
+                                                class="error text-red-700">{{ $message }}</span> @enderror
                                         </div>
+
                                     </div>
 
                                     <livewire:mini-table />
-
-
-
-
-
 
                                 </div>
                                 <div x-show.transition.in="step === 2">
@@ -468,6 +345,8 @@
                                             <input type="text" wire:model="fecha_inicio_planificadas"
                                                 class="  appearance-none  block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4  "
                                                 id="date2" placeholder="dd/mm/aa" autocomplete="off">
+                                            @error('fecha_inicio_planificadas') <span
+                                                class="error text-red-700">{{ $message }}</span> @enderror
                                         </div>
                                         <div class="md:w-1/2 px-3">
                                             <label
@@ -478,6 +357,8 @@
                                             <input type="text" wire:model="fecha_fin_planificadas"
                                                 class="  appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4  "
                                                 id="date3" placeholder="dd/mm/aa" autocomplete="off">
+                                            @error('fecha_fin_planificadas') <span
+                                                class="error text-red-700">{{ $message }}</span> @enderror
                                         </div>
                                     </div>
                                     <!-- TABLA  -->
@@ -489,14 +370,16 @@
                                                     for="grid-zip">
                                                     Rubro </label>
                                                 <!-- rubro seleccionar -->
-                                                <select
+                                                <select wire:model="nombre_rubro_planificadas"
                                                     class="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded"
                                                     id="grid-state">
-
+                                                    <option value="" selected disabled>Selecciona mano... </option>
                                                     @foreach ($rubros as $key => $rubro)
-                                                        <option value=''>{{ $rubro->nombre_rubro }}</option>
+                                                        <option value='{{ $rubro->nombre_rubro }}'>
+                                                            {{ $rubro->nombre_rubro }}</option>
                                                     @endforeach
-
+                                                    @error('nombre_rubro_planificadas') <span
+                                                        class="error text-red-700">{{ $message }}</span> @enderror
                                                 </select>
                                             </div>
                                             <div class="md:w-2/5  px-5 flex flex-col justify-center items-start">
@@ -505,89 +388,43 @@
                                                     for="grid-zip">
                                                     Horas Dedicadas </label>
                                                 <!-- Contador -->
-                                                <input
+                                                <input wire:model="horas_solas_planificas"
                                                     class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                                                    id="grid-city" type="number" value="0" placeholder="0">
-
+                                                    id="grid-city" type="number" placeholder="0">
+                                                @error('horas_solas_planificas') <span
+                                                    class="error text-red-700">{{ $message }}</span> @enderror
                                             </div>
                                             <div class="md:w-1/3 flex  justify-center items-center mt-7">
-                                                <x-jet-button class="flex justify-center items-center
-                                                        rounded-full h-10 w-20 " wire:click="listRubro()"><i
-                                                        class="text-4xl fas fa-plus"></i>
-                                                </x-jet-button>
-
+                                                @if ($hidden4 == 'hidden')
+                                                    <x-jet-button class="{{ $hidden3 }}  flex justify-center items-center
+                                                        rounded-full h-10 w-20 "
+                                                        wire:click="saveDescripcionPlanificadas()"><i
+                                                            class="text-4xl fas fa-plus"></i>
+                                                    </x-jet-button>
+                                                @endif
+                                                @if ($hidden4 == '')
+                                                    <x-jet-button wire:click="updatePlanificadas()" class=" {{ $hidden4 }}  flex justify-center items-center
+                                                        rounded-full h-10 w-20"> <i
+                                                            class="text-4xl fas fa-pen-square"></i>
+                                                    </x-jet-button>
+                                                @endif
                                             </div>
 
 
                                         </div>
 
-                                        <div class="md:w-full px-3  md:flex mb-6">
-                                            <textarea
+                                        <div class="md:w-full px-3   mb-6">
+                                            <textarea wire:model="descripcion_rubro_planificadas"
                                                 class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"
                                                 rows="4"></textarea>
+                                            @error('descripcion_rubro_planificadas') <span
+                                                class="error text-red-700">{{ $message }}</span> @enderror
                                         </div>
                                     </div>
 
 
 
-                                    <table
-                                        class="table-auto md:w-full rounded-t-lg m-5 w-5/6 mx-auto bg-gray-200 text-gray-800">
-                                        <tr class="text-left border-b-2 border-gray-300">
-                                            <th class="px-4 py-3">ID</th>
-                                            <th class="px-4 py-3">Informe Asociado</th>
-                                            <th class="px-4 py-3">Rubro</th>
-                                            <th class="px-4 py-3">Descripcion</th>
-                                            <th class="px-4 py-3">Horas</th>
-                                            <th class="px-4 py-3">Acciones</th>
-                                        </tr>
-                                        @foreach ($informesPlanificadas as $informesPlanificada)
-                                            <tr class="bg-gray-100 border-b border-gray-200">
-                                                <td class="px-4 py-3">{{ $informesPlanificada->id }}</td>
-                                                <td class="px-4 py-3">
-                                                    {{ $informesPlanificada->id_informe_planificadas }}</td>
-                                                <td class="px-4 py-3">
-                                                    {{ $informesPlanificada->nombre_rubro_planificadas }}</td>
-                                                <td class="px-4 py-3">
-                                                    {{ $informesPlanificada->descripcion_rubro_planificadas }}</td>
-                                                <td class="px-4 py-3">
-                                                    {{ $informesPlanificada->horas_solas_planificas }}</td>
-                                                <td class="px-4 py-3">
-                                                    <button class="text-yellow-400 hover:text-yellow-700">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                            viewBox="0 0 20 20" fill="currentColor">
-                                                            <path
-                                                                d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-                                                            <path fill-rule="evenodd"
-                                                                d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-                                                                clip-rule="evenodd" />
-                                                        </svg>
-                                                    </button>
-                                                    <button class="text-red-400 hover:text-red-700">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                            viewBox="0 0 20 20" fill="currentColor">
-                                                            <path fill-rule="evenodd"
-                                                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                                clip-rule="evenodd" />
-                                                        </svg>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-
-                                    </table>
-                                    <div class="-mx-3 md:flex  justify-end items-end">
-                                        <div class='md:w-2/5  px-5 md:flex flex-col justify-center items-center'>
-                                            <label
-                                                class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-                                                for="grid-zip">
-                                                Horas Totales </label>
-                                            <!-- Contador -->
-                                            <input
-                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                                                id="grid-city" type="number" value="0" placeholder="0" readonly>
-                                        </div>
-
-                                    </div>
+                                    <livewire:mini-table-planificadas />
 
 
 
@@ -617,17 +454,17 @@
                                 <div class="w-1/2 text-right">
                                     <x-jet-secondary-button wire:click="cerrarModal()" x-show="step < 2">Cerrar
                                         </x-jet-secundary-button>
-                                        <button x-show="step < 2" @click="step++"
+                                        <button x-show="step < 2" wire:click="validador"
                                             class="w-32 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-blue-500 hover:bg-blue-600 font-medium">Siguiente</button>
 
-                                        <x-jet-button x-show="step === 2" wire:click="save()" @click="reset()">Guardar
+                                        <x-jet-button x-show="step === 2" wire:click="save()">Guardar
                                             </x-jet-secundary-button>
 
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- / Bottom Navigation https://placehold.co/300x300/e2e8f0/cccccc -->
+
                 </div>
 
         </x-slot>
@@ -638,23 +475,6 @@
 
     @push('scripts')
         <script>
-            function app() {
-                return {
-                    step: 1,
-                    reset() {
-                        setTimeout(() => {
-                            this.step--
-                        }, 800);
-                    },
-                }
-            }
-
-            function reset() {
-                setTimeout(() => {
-                    step--
-                }, 500);
-            }
-
             const inputValue = document.getElementById("date");
             inputValue.addEventListener('change', () => {
                 const valor = inputValue.value;

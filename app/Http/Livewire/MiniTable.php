@@ -16,10 +16,11 @@ class MiniTable extends Component
     public $can_submit = 'true';
     protected $listeners = [
         'saveDescripcion' => 'render',
-        'editModal' => 'mount',
+        'editModal' => 'lastID',
         'updateRealizadas' => 'render',
         'ActiveButtonDelete',
-        'cerrarModal'=> 'limpia'
+        'cerrarModal'=> 'limpia',
+        'listMiniTable' => 'lastID'
 
 
     ];
@@ -29,21 +30,25 @@ class MiniTable extends Component
 
     }
 
-    public function render()
-    {
+    public function sumarHoras(){
         $test = DB::table('informes_realizadas')->where('id_informe_realizadas',$this->id_informe)->sum('horas_solas_realizadas');
         $this->horas_total_realizadas = $test;
+        $this->emit('sumar',$test);
+    }
 
+    public function render()
 
-        $informesPlanificadas = InformesPlanificadas::where('id_informe_planificadas', $this->id_informe)->get();
+    {
+        $this->sumarHoras();
+
         $informesRealizadas = InformesRealizadas::where('id_informe_realizadas',$this->id_informe)->get();
         return view('livewire.mini-table',[
-            'informesPlanificadas'=> $informesPlanificadas,
+
             'informesRealizadas' => $informesRealizadas,
         ]);
     }
 
-    public function mount(Informe $informe){
+    public function lastID(Informe $informe){
         $this->id_informe = $informe->id;
     }
 
@@ -51,8 +56,7 @@ class MiniTable extends Component
 
         InformesRealizadas::find($id)->delete();
           $this->render();
-          $test = DB::table('informes_realizadas')->sum('horas_solas_realizadas');
-        $this->horas_total_planificadas = $test;
+
 }
 
 public function updateDescripcion(InformesRealizadas $informesRealizada ){

@@ -15,23 +15,22 @@
                     <div class="flex">
                         <x-component-input placeholder=" Ingrese su Area" name="nombre_area" label="Area">
                         </x-component-input>
-                       {{--  <x-component-input-select name="role" label="Rol"
+                        {{-- <x-component-input-select name="role" label="Rol"
                             :options="['docente' =>'Docente','jefatura'=> 'Jefe','administracion'=> 'Administracion']">
                         </x-component-input-select> --}}
-                        <x-component-input-select name="role" label="Rol"
-                        :options="$roles">
-                    </x-component-input-select>
+                        <x-component-input-select name="role" label="Rol" :options="$roles">
+                        </x-component-input-select>
                     </div>
                     <div class="flex">
                         <x-component-input placeholder=" Ingrese su Correo" name="email" label="Correo">
                         </x-component-input>
                     </div>
                     <div class="flex">
-                        <x-component-input placeholder=" Ingrese su Imagen Retr0"  name="profile_photo_path" label="Imagen"
-                             type="file" >
+                        <x-component-input placeholder=" Ingrese su Imagen Retr0" name="profile_photo_path"
+                            label="Imagen" type="file">
                         </x-component-input>
 
-                     </div>
+                    </div>
 
                     @if ($action == 'Registrar')
                         <div class="flex">
@@ -39,7 +38,7 @@
                                 type="password">
                             </x-component-input>
                             <x-component-input placeholder=" Confirme de clave" name="password_confirmation"
-                                 type="password" label="Confirmacion de clave">
+                                type="password" label="Confirmacion de clave">
                             </x-component-input>
                         </div>
                     @endif

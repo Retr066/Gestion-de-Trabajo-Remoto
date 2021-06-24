@@ -16,7 +16,7 @@ class TestTable extends Component
     public $order = null;
     public $icon = '-circle';
     public $showModal = 'hidden';
-    public $roles;
+    public $roles = [];
 
     protected $queryString = [
         'search'=> ['except'=> ''],
@@ -60,10 +60,10 @@ class TestTable extends Component
         ],);
     }
     public function clear(){
-        $this->reset();
+        $this->reset(['search','perPage','user_role','camp','order','icon']);
     }
     public function destroy(User $user){
-       /*  User::find($id)->delete(); */
+
        can('usuario delete');
        $user->r_area()->delete();
        $user->delete();
@@ -72,9 +72,14 @@ class TestTable extends Component
     public function updatingSearch()
     {
         $this->resetPage();
+
     }
     public function mount(){
         $this->icon = $this->iconDirection($this->order);
+        $this->roles = Role::pluck('name','name')->toArray();
+
+    }
+    public function hydrate(){
         $this->roles = Role::pluck('name','name')->toArray();
     }
 
