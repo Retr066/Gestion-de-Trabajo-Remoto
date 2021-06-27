@@ -1,5 +1,5 @@
 @can('role read')
-    <div class="flex flex-row">
+    <div class="md:flex flex-row">
         <div class="flex-1">
             @can('role create')
                 <button wire:click="$emit('toogleModal')">

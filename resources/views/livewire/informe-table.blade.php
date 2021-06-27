@@ -192,6 +192,7 @@
             <div class="bg-white px-4 py-3  border-t border-gray-200 sm:px-6">
                 {{ $informes->links() }}
             </div>
+
         @else
             <div class="bg-white px-4 py-3  border-t border-gray-200 text-gray-500 sm:px-6">
                 No hay resultados para la Busqueda "{{ $search }}" en la pagina {{ $page }} al
