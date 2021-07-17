@@ -20,6 +20,7 @@
                     <option value="generado">Generado</option>
                     <option value="enviado_recursos">Aprobado</option>
                     <option value="enviado_jefatura">Enviado</option>
+                    <option value="archivado">Archivado</option>
                 </select>
             </div>
             <div class="form-input rounded-md shadow-sm mt-1 ml-6 block ">
@@ -111,6 +112,11 @@
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <span
                                         class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">{{ $informe->estado_cambiado }}</span>
+                                </td>
+                             @elseif ($informe->estado_cambiado == 'Archivado')
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span
+                                        class="bg-blue-200 text-blue-600 py-1 px-3 rounded-full text-xs">{{ $informe->estado_cambiado }}</span>
                                 </td>
                             @endif
 

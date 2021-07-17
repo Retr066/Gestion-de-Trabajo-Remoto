@@ -1,16 +1,18 @@
 <?php
 
 namespace App\Http\Livewire;
+
+use Livewire\Component;
 use App\Models\Informe;
 use App\Models\InformesRealizadas;
 use App\Models\InformesPlanificadas;
 use App\Models\User;
-use Livewire\Component;
 use Livewire\WithPagination;
 use Auth;
-use PDF;
 
-class InformeTable extends Component
+
+
+class AdministracionTable extends Component
 {
     use WithPagination;
     public $search = '';
@@ -29,59 +31,51 @@ class InformeTable extends Component
         'informe_estado'=>['except'=> ''],
     ];
 
+
     protected $listeners = [
-        'informeList' => 'render',
-        'deleteInformeList' => 'deleteInforme',
-        'enviarInforme',
-
-
+        'listRechazo' => 'render',
+        'archivarInforme'
     ];
 
     public function render()
     {
-
-        $informes = Informe::where('usuario_id',auth()->user()->id)
-                    ->whereIn('estado',['generado','enviado_recursos','enviado_jefatura','archivado'])
+            $informes = Informe::termino($this->search)
+                    ->whereIn('estado',['enviado_recursos','archivado'])
                             ->where(function ($query){
                                 $query->orWhere('created_at','LIKE','%'. $this->search.'%')
                                 ->orWhere('id','LIKE','%'. $this->search.'%')
                                 ->orWhere('estado','LIKE','%'. $this->search.'%')
                                 ->orWhere('updated_at','LIKE','%'. $this->search.'%')->estados($this->informe_estado);
-                            });
+                    });
+
 
                             if($this->camp && $this->order){
-                                $informes = $informes->orderBy($this->camp,$this->order);
+                                if($this->camp === 'email'){
+                                    $informes = $informes->orderBy(User::select('email')->whereColumn('users.id','informes.usuario_id',),$this->order);
+                                }elseif($this->camp === 'name'){
+                                    $informes = $informes->orderBy(User::select('name')->whereColumn('users.id','informes.usuario_id',),$this->order);
+                                }elseif($this->camp === 'lastname'){
+                                    $informes = $informes->orderBy(User::select('lastname')->whereColumn('users.id','informes.usuario_id',),$this->order);
+                                }else{
+                                    $informes = $informes->orderBy($this->camp,$this->order);
+                                }
+
                               }else{
                                   $this->camp = null;
                                   $this->order = null;
                               }
                             $informes = $informes->paginate($this->perPage);
-        return view('livewire.informe-table',[
-            'informes' => $informes,
-        ]);
+        return view('livewire.administracion-table',compact('informes'));
     }
 
+    public function archivarInforme(Informe $informe){
 
-
-
-
-
-
-
-    public function deleteInforme(Informe $informe){
-
-        $informe->delete();
-          $this->emit('deleteInforme', $informe);
-    }
-
-
-
-    public function enviarInforme(Informe $informe){
         $informe->update([
             'id' => $informe->id,
-            'estado' => 'enviado_jefatura'
+            'estado' =>'archivado'
         ]);
-        $this->emit('listEnviar',$informe);
+
+        $this->render();
     }
 
     public function mount(){
@@ -130,13 +124,4 @@ class InformeTable extends Component
         }
         return $sort === 'asc' ? '-arrow-circle-up' : '-arrow-circle-down';
     }
-   public function GenerarPdf($id){
-    $user_id = auth()->user()->id;
-      $user = User::find($user_id);
-    $informes = Informe::find($id);
-    $informesRealizadas = InformesRealizadas::where('id_informe_realizadas', $id)->get();
-    $informesPlanificadas = InformesPlanificadas::where('id_informe_planificadas', $id)->get();
-    $pdf = PDF::loadView('docente.pdf',compact('informesRealizadas','informes','user','informesPlanificadas'));
-      return  $pdf->stream('reporteInforme.'.date('y-m-d').'.pdf');
-   }
 }

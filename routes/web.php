@@ -45,4 +45,6 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::view('administracion/rubro', 'administracion.rubro')->name('rubro')->middleware('can_view:Administracion');
     Route::view('administracion/permisos', 'Administracion.permisos')->name('permisos')->middleware('can_view:Administracion');
     Route::view('bienvenido', 'Administracion.bienvenido')->name('bienvenido');
+    Route::view('administracion/informes', 'administracion.informesAdministracion')->name('informesAdministracion')->middleware('can_view:Administracion');
+    Route::view('administracion/list', 'administracion.list')->name('listAdministracion')->middleware('can_view:Administracion');
 });

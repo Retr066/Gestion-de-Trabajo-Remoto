@@ -53,6 +53,8 @@ class Informe extends Model
             return 'Desaprobado';
         }else if ($this->estado === 'enviado_recursos'){
             return 'Aprobado';
+        }else if ($this->estado === 'archivado'){
+            return 'Archivado';
         }else{
             return 'No tienes Estado';
         }
