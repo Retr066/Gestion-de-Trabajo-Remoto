@@ -84,6 +84,11 @@ class Comparar extends Component
 
     public function generarComparacion(){
         $this->validate();
+        if($this->informe_realizado === $this->informe_planificado )
+        {
+            session()->flash('message', 'No se puede camparar el mismo Informe, pruebe con otro.');
+        }else{
+
         $actividades_realizadas = InformesRealizadas::where('id_informe_realizadas',$this->informe_realizado)->get();
         $actividades_planificadas = InformesPlanificadas::where('id_informe_planificadas',$this->informe_planificado)->get();
         $informe = Informe::where('id' , $this->informe_realizado)->first();
@@ -99,6 +104,7 @@ class Comparar extends Component
         $this->user = $user;
         $this->data_realizado = $actividades_realizadas;
         $this->data_planificado = $actividades_planificadas;
+         }
     }
     public function render()
     {
