@@ -29,7 +29,7 @@ class RequestUpdateUser extends FormRequest
             'name'=> 'required|min:3|max:30|regex:/^[A-Z,a-z][A-Z,a-z, ]+$/',
             'lastname' => 'required|min:3|max:30|regex:/^[A-Z,a-z][A-Z,a-z, ]+$/',
             'nombre_area' => 'required|min:3|max:50|regex:/^[A-Z,a-z][A-Z,a-z, ]+$/',
-            'email' => ['required','max:255','email',Rule::unique('users','email')->ignore($user)],
+            'email' => ['required','max:255','regex:/(.*)@barinaga\.edu\.pe$/i',Rule::unique('users','email')->ignore($user)],
             'role'=>"required|in:{$roles}",
             'profile_photo_path' => 'nullable|image|max:3072|mimes:jpeg,png,svg,jpg,gif,webp',
         ];
@@ -56,6 +56,8 @@ class RequestUpdateUser extends FormRequest
             'nombre_area.required' => 'El campo area es obligatorio.',
             'nombre_area.min' => 'El campo area debe contener al menos 3 caracteres',
             'nombre_area.regex' => 'El campo area solo acepta letras.',
+            //RESTRICCION Correo
+            'email.regex' => 'El campo correo solo acepta el dominio @barinaga.edu.pe.',
             //RESTRICCION ROL
             'role.required' => 'El campo rol es obligatorio.',
             //RETRISCCION IMAGEN

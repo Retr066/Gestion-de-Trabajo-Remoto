@@ -36,7 +36,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::view('jefatura/list', 'jefatura.list')->name('listJefatura')->middleware('can_view:Jefatura');
     Route::view('jefatura/informes', 'jefatura.informesJefatura')->name('informesJefatura')->middleware('can_view:Jefatura');
-
+    Route::view('jefatura/comparar', 'jefatura.comparar')->name('comparar')->middleware('can_view:Jefatura');
 });
 
 //Rutas para administracion

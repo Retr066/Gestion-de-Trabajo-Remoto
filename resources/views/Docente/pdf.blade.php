@@ -253,7 +253,7 @@ a {
     </div>
 
 
-    <div class="footer__logo" style="background-image: url('{{ public_path('img') }}/logo.png');" width="100px" height="100px" >
+    <div class="footer__logo" style="background-image: url('{{ public_path('img') }}/logo.png');"  >
     </div>
 
         <div class="footer__contact" id="footer__contact" style="opacity: 1 !important;">
