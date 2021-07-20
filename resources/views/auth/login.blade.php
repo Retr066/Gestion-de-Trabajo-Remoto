@@ -17,7 +17,7 @@
 
             <div>
                 <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" placeholder="{{ __('xyz@barinaga.edu.pe') }}" pattern="^[a-zA-Z0-9.!#$%&’+/=?^_`{|}~-]+@barinaga+(?:.edu.pe+)$"  required autofocus />
             </div>
 
             <div class="mt-4">

@@ -8,7 +8,7 @@ use App\Models\Rubro;
 use App\Models\InformesRealizadas;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
-
+use Spatie\Permission\Models\Role;
 class Reportes extends Component
 {
     public $informes_generados;
@@ -26,7 +26,7 @@ class Reportes extends Component
 
     public function getUsuariosProperty()
     {
-        $data = User::all();
+        $data  = User::role('Docente')->get();
         return $data;
     }
 
@@ -55,11 +55,18 @@ class Reportes extends Component
         $datos_rubro = InformesRealizadas::whereIn('id_informe_realizadas',$informe)->get();
 
         $datos = DB::select('select nombre_rubro_realizadas, SUM(horas_solas_realizadas) AS HorasTotales FROM informes INNER join informes_realizadas on informes.id=informes_realizadas.id_informe_realizadas WHERE informes.usuario_id = ? GROUP BY nombre_rubro_realizadas',[$this->Idusuario]);
-        if($datos == []){
+        $datos1 = DB::select('select nombre_rubro_planificadas, SUM(horas_solas_planificas) AS HorasTotalesPla FROM informes INNER join informes_planificadas on informes.id=informes_planificadas.id_informe_planificadas WHERE informes.usuario_id = ? GROUP BY nombre_rubro_planificadas',[$this->Idusuario]);
+        if($datos == [] ){
             return;
         }else{
 
             $this->emit('DatosGraficos',$datos);
+        }
+        if($datos1 == [] ){
+            return;
+        }else{
+
+            $this->emit('DatosGraficos1',$datos1);
         }
 
 

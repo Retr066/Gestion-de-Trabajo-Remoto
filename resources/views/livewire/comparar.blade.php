@@ -3,7 +3,7 @@
     <div class="border border-gray-300 p-6 grid grid-cols-1 gap-6 bg-white shadow-lg rounded-lg m-3">
         <div class="flex flex-col items-center">
 
-            <div class="w-full md:w-1/2 flex flex-col items-center h-64">
+            <div class="w-full md:w-1/2 flex flex-col items-center">
                 <div class="w-full px-4">
                     <div class="flex flex-col items-center relative">
                         @if($picked)
@@ -98,7 +98,7 @@
 
     </div>
     <div class="flex justify-center"><button
-       wire:click="generarComparacion()"  class="p-2 border md:w-1/4 w-full rounded-md bg-gray-800 text-white">Generar Comparacion</button></div>
+       wire:click="generarComparacion()"  class="cabeceratable p-2 border md:w-1/4 w-full rounded-md bg-gray-800 text-white">Generar Comparacion</button></div>
        @if (session()->has('message'))
        <div class="alert alert-danger bg-red-200 text-gray-800 text-center">
            {{ session('message') }}

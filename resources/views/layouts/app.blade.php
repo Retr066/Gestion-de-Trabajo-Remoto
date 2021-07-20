@@ -12,11 +12,24 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
     <!-- Styles -->
     <link type="text/css" rel="stylesheet" href="{{ asset('css/flatpickr.min.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <script src="{{ asset('chart.js/chart.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    <style>
+        :root {
+        --cabecera-color: #334C96;
+        --cabecera-letras: white;
+        }
+        .cabeceratable {
+            background-color:  var(--cabecera-color) ;
+            color: var(--cabecera-letras);
+        }
 
+    </style>
 
     @livewireStyles
 

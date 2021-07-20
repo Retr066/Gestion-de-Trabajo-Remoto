@@ -42,10 +42,10 @@
         </div>
         @if ($informes->count())
             <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
+                <thead class="cabeceratable">
                     <tr>
                         <th scope="col"
-                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            class="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider">
                             N°
                             <button wire:click="sortable('id')">
                                 <span class="fa fa{{ $camp === 'id' ? $icon : '-circle' }}"></span>
@@ -53,14 +53,14 @@
                         </th>
 
                         <th scope="col"
-                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            class="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider">
                             Fecha de Creacion
                             <button wire:click="sortable('created_at')">
                                 <span class="fa fa{{ $camp === 'created_at' ? $icon : '-circle' }}"></span>
                             </button>
                         </th>
                         <th scope="col"
-                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            class="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider">
                             Fecha de Ultima Actualizacion
                             <button wire:click="sortable('updated_at')">
                                 <span class="fa fa{{ $camp === 'updated_at' ? $icon : '-circle' }}"></span>
@@ -68,7 +68,7 @@
                         </th>
 
                         <th scope="col"
-                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            class="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider">
                             Estado
                             <button wire:click="sortable('estado')">
                                 <span class="fa fa{{ $camp === 'estado' ? $icon : '-circle' }}"></span>
@@ -76,7 +76,7 @@
                         </th>
                         <th scope="col" class="relative px-6 py-3">
                             <span
-                                class="text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</span>
+                                class="text-left text-xs font-medium  uppercase tracking-wider">Acciones</span>
                         </th>
                     </tr>
                 </thead>

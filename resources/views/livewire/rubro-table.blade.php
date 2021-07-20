@@ -39,17 +39,17 @@
                 </div>
                 @if ($rubros->count())
                     <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-50">
+                        <thead class="cabeceratable">
                             <tr>
                                 <th scope="col"
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    class="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider">
                                     ID
                                     <button wire:click="sortable('id')">
                                         <span class="fa fa{{ $camp === 'id' ? $icon : '-circle' }}"></span>
                                     </button>
                                 </th>
                                 <th scope="col"
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    class="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider">
                                     Nombre
                                     <button wire:click="sortable('nombre_rubro')">
                                         <span class="fa fa{{ $camp === 'nombre_rubro' ? $icon : '-circle' }}"></span>
@@ -57,7 +57,7 @@
                                 </th>
                                 <th scope="col" class="relative px-6 py-3">
                                     <span
-                                        class="text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</span>
+                                        class="text-left text-xs font-medium  uppercase tracking-wider">Acciones</span>
                                 </th>
                             </tr>
                         </thead>
