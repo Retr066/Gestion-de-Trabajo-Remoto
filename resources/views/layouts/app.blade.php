@@ -17,15 +17,20 @@
     <script src="{{ asset('chart.js/chart.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
     <style>
         :root {
         --cabecera-color: #334C96;
         --cabecera-letras: white;
+        --color-sidebar: #1D2435;
         }
         .cabeceratable {
             background-color:  var(--cabecera-color) ;
+            color: var(--cabecera-letras);
+        }
+        .sidebarcolor {
+            background-color: var(--color-sidebar);
             color: var(--cabecera-letras);
         }
 

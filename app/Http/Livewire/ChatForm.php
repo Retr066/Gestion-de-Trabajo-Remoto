@@ -23,6 +23,7 @@ class ChatForm extends Component
     // Cuando se Inicia el Componente (antes de Render)
     public function mount()
     {
+
         // Instanciamos Faker
         $this->faker = \Faker\Factory::create();
 

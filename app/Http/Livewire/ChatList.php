@@ -15,8 +15,7 @@ class ChatList extends Component
     public function mount()
     {
         $ultimoId = 0;
-        $this->mensajes = [];
-
+        $this->mensajes = $this->traerUltimosDatos();
         $this->usuario = request()->query('usuario', $this->usuario) ?? "";
     }
 
@@ -30,6 +29,32 @@ class ChatList extends Component
         $this->usuario = $usuario;
     }
 
+    public function traerUltimosDatos()
+    {
+        $mensajes = Chat::orderBy("created_at", "desc")->take(5)->get();
+
+            $datos = array();
+
+            foreach($mensajes as $mensaje)
+            {
+
+                    $item = [
+                        "id" => $mensaje->id,
+                        "usuario" => $mensaje->usuario,
+                        "mensaje" => $mensaje->mensaje,
+                        "recibido" => ($mensaje->usuario != $this->usuario),
+                        "fecha" => $mensaje->created_at->diffForHumans()
+                    ];
+
+                    array_unshift($datos, $item);
+                    //array_push($this->mensajes, $item);
+
+
+            }
+
+            return $datos;
+    }
+
     public function actualizarMensajes($data)
     {
         if($this->usuario != "")
@@ -37,7 +62,7 @@ class ChatList extends Component
             // El contenido de la Push
             //$data = \json_decode(\json_encode($data));
 
-            $mensajes = Chat::orderBy("created_at", "desc")->take(5)->get();
+            $mensajes = Chat::orderBy("created_at", "desc")->get();
             //$this->mensajes = [];
 
             foreach($mensajes as $mensaje)
@@ -60,7 +85,7 @@ class ChatList extends Component
 
             }
 
-            if(count($this->mensajes) > 5)
+            if(count($this->mensajes) > 100)
             {
                 array_pop($this->mensajes);
             }
@@ -87,6 +112,7 @@ class ChatList extends Component
     }
     public function render()
     {
+
         return view('livewire.chat-list');
     }
 }

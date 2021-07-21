@@ -1,67 +1,64 @@
 <div>
-    <a href="/" style="color: black;">
-        <h5 class="pb-0 mb-0"><strong>Live Chat with</strong></h5>
-        <h2 class="pt-0 mt-0"><strong>Laravel7 + LiveWire + Pusher</strong></h2>
-    </a>
-
-    <!-- El Usuario -->
-    <div class="form-group">
-        <label for="usuario"><strong>Usuario</strong></label>
-        <input
-            type="text"
-            wire:model="usuario"
-            class="form-control"
-            id="usuario">
-
-        <!-- Validación -->
-        @error("usuario")
-            <small class="text-danger">{{ $message }}</small>
-        @else
-            <small class="text-muted">Tu nombre: {{$usuario}}</small>
-        @enderror
-    </div>
-
-    <!-- Mensaje de Chat a Enviar -->
-    <div class="form-group">
-        <label for="mensaje"><strong>Mensaje</strong></label>
-        <input type="text"
-            wire:model="mensaje"
-            wire:keydown.enter="enviarMensaje"
-            class="form-control"
-            id="mensaje">
-
-        <!-- Validación -->
-        @error("mensaje")
-            <small class="text-danger">{{ $message }}</small>
-        @else
-            <small class="text-muted">Escribe tu mensaje y teclea <code>ENTER</code> para enviarlo</small>
-        @enderror
-    </div>
-
-    <div wire:offline class="alert alert-danger text-center">
-        <strong>Se ha perdido la conexión a Internet</strong>
-    </div>
-
-    <div class="row">
-        <div class="col-6">
-            <!-- Mensajes de alerta -->
-            <div style="position: absolute;"
-            class="alert alert-success collapse"
-            role="alert"
-            id="avisoSuccess"
-            >Se ha enviado</div>
+    <div class="md:w-full md:p-3  md:flex md:flex-col bg-white overflow-hidden shadow-xl sm:rounded-lg content-evenly">
+        <div class="md:w-full font-bold text-3xl tracking-wider">
+            Chat Global Para Docentes y Jefes
         </div>
-        <div class="col-6 pt-2 text-right">
-            <button
-                class="btn btn-primary"
-                wire:click="enviarMensaje"
-                wire:loading.attr="disabled"
-                wire:offline.attr="disabled"
-            >Enviar Mensaje</button>
+        <div class="md:w-full md:py-5">
+            <div class="md:w-full md:mb-3 font-bold text-xl tracking-wider" >
+                Usuario
+            </div>
+            <div>
+                    <input type="text" wire:model="usuario" id="usuario"
+                    class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md">
+            </div>
+            <div>
+                @error("usuario")
+                    <small class="text-red-600">{{ $message }}</small>
+                @else
+                    <small class="text-gray-500">Usted es: {{$usuario}}</small>
+                @enderror
+            </div>
+        </div>
+
+        <div class="md:w-full md:pb-5">
+             <div class="md:w-full md:mb-3 font-bold text-xl tracking-wider" >
+                Mensaje
+            </div>
+            <div >
+                    <input type="text" wire:model="mensaje" wire:keydown.enter="enviarMensaje" id="mensaje" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md">
+            </div>
+            <div>
+                @error("mensaje")
+                <small class="text-red-600">{{ $message }}</small>
+                @else
+                <small class="text-gray-500">Escribe tu mensaje y teclea <code>ENTER</code> para enviarlo</small>
+                @enderror
+            </div>
+
+        </div>
+
+        <div wire:offline class="bg-red-400 md:w-1/3 md:my-3 text-center  rounded-md text-white">
+       <strong>Se ha perdido la conexión a Internet</strong>
+        </div>
+
+        <div class="md:w-full md:pb-5">
+                <div  class="md:w-1/3 text-white ">
+                        <div style="position: absolute; display:none"
+                        class="bg-green-400 rounded-md p-2 "
+                        role="alert"
+                        id="avisoSuccess"
+                        >Se ha enviado</div>
+                </div>
+                <div class=" pt-2 text-right">
+                        <button
+                            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-700 text-base font-medium text-white hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
+                            wire:click="enviarMensaje"
+                            wire:loading.attr="disabled"
+                            wire:offline.attr="disabled"
+                        >Enviar Mensaje</button>
+                </div>
         </div>
     </div>
-
-
 </div>
 @push('scripts')
      <script>
