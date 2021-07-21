@@ -15,10 +15,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <script src="{{ asset('chart.js/chart.js') }}"></script>
+    <script src="{{ asset('pusher-js/pusher.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
-    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
     <style>
         :root {
         --cabecera-color: #334C96;

@@ -13,6 +13,7 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
 mix.copy('node_modules/chart.js/dist/chart.js', 'public/chart.js/chart.js')
+mix.copy('node_modules/pusher-js/dist/web/pusher.min.js', 'public/pusher-js/pusher.min.js')
     .postCss('resources/css/app.css', 'public/css', [
         require('postcss-import'),
         require('tailwindcss'),
