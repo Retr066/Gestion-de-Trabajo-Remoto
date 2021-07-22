@@ -28,8 +28,9 @@ Route::get('informes/Pdf/{id}/dowload', [InformeTable::class, 'GenerarPdf'])->wh
 //Rutas para Docentes
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::view('docente/informesRechazados', 'docente.informesRechazados')->name('informesRechazados')->middleware('can_view:Docente');
-    Route::view('docente/reportes', 'docente.reportes')->name('reportes')->middleware('can_view:Docente');
+    Route::view('docente/reportes', 'docente.reportes')->name('reportesdocente')->middleware('can_view:Docente');
     Route::view('docente/list', 'docente.list')->name('listDocente')->middleware('can_view:Docente');
+    Route::view('docente/chat', 'jefatura.chat')->name('chat_docente')->middleware('can_view:Docente');
 });
 
 //Rutas para Jefatura
@@ -37,8 +38,14 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::view('jefatura/list', 'jefatura.list')->name('listJefatura')->middleware('can_view:Jefatura');
     Route::view('jefatura/informes', 'jefatura.informesJefatura')->name('informesJefatura')->middleware('can_view:Jefatura');
     Route::view('jefatura/comparar', 'jefatura.comparar')->name('comparar')->middleware('can_view:Jefatura');
-    Route::view('jefatura/chat', 'jefatura.chat')->name('chat')->middleware('can_view:Jefatura');
+    Route::view('jefatura/chat', 'jefatura.chat')->name('chat_jefatura')->middleware('can_view:Jefatura');
+    Route::view('jefatura/reportes', 'jefatura.reportes')->name('reportesjefatura')->middleware('can_view:Jefatura');
+
 });
+
+/* Route::middleware(['auth:sanctum', 'verified'])->get('/jefatura/chat', function () {
+    return view('jefatura.chat');
+})->name('chat')->middleware('can_view:Jefatura')->middleware('can_view:Docente'); */
 
 //Rutas para administracion
 Route::group(['middleware' => 'auth:sanctum'], function () {
@@ -48,4 +55,5 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::view('bienvenido', 'Administracion.bienvenido')->name('bienvenido');
     Route::view('administracion/informes', 'administracion.informesAdministracion')->name('informesAdministracion')->middleware('can_view:Administracion');
     Route::view('administracion/list', 'administracion.list')->name('listAdministracion')->middleware('can_view:Administracion');
+    Route::view('administracion/reportes', 'jefatura.reportes')->name('reportesadministracion')->middleware('can_view:Administracion');
 });

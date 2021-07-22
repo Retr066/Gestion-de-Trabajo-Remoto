@@ -4,10 +4,13 @@ namespace App\Http\Livewire;
 use App\Events\Notification;
 use Livewire\Component;
 use  App\Models\Chat;
+use App\Models\User;
+use Auth;
 class ChatForm extends Component
 {
     public $usuario;
     public $mensaje;
+
 
     // Generar datos para pruebas
     private $faker;
@@ -25,14 +28,14 @@ class ChatForm extends Component
     {
 
         // Instanciamos Faker
-        $this->faker = \Faker\Factory::create();
+       /*  $this->faker = \Faker\Factory::create(); */
 
         // Obtenemos el valor de usuario de la barra de direcciones
         // si no existe, generamos uno con Faker
-        $this->usuario = request()->query('usuario', $this->usuario) ?? $this->faker->name;
-
+        /* $this->usuario = request()->query('usuario', $this->usuario) ?? $this->faker->name; */
+        $this->usuario = auth()->user()->name.' '.auth()->user()->lastname;
         // Generamos el primer texto de prueba
-        $this->mensaje = $this->faker->realtext(20);
+        /* $this->mensaje = $this->faker->realtext(20); */
     }
 
     // Cuando el otro componente nos solicitan el usuario
@@ -55,7 +58,7 @@ class ChatForm extends Component
         // Solo validamos el campo que genera el update
         $validatedData = $this->validateOnly($field, [
             'usuario' => 'required',
-            'mensaje' => 'required',
+            'mensaje' => 'required|max:500',
         ]);
     }
 
@@ -63,11 +66,16 @@ class ChatForm extends Component
     {
         $validatedData = $this->validate([
             'usuario' => 'required',
-            'mensaje' => 'required',
+            'mensaje' => 'required|max:500',
         ]);
 
         // Guardamos el mensaje en la BBDD
+        $id_user = auth()->user()->id;
+        $rol  =  $rol_user = auth()->user()->getRoleNames();
+
         Chat::create([
+            'usuario_id' => $id_user,
+            'role' => $rol[0],
             "usuario" => $this->usuario,
             "mensaje" => $this->mensaje
         ]);
@@ -82,8 +90,8 @@ class ChatForm extends Component
         $this->emit('enviadoOK', $this->mensaje);
 
         // Creamos un nuevo texto aleatorio (para el próximo mensaje)
-        $this->faker = \Faker\Factory::create();
-        $this->mensaje = $this->faker->realtext(20);
+        /* $this->faker = \Faker\Factory::create(); */
+        $this->mensaje = '';
 
     }
     public function render()

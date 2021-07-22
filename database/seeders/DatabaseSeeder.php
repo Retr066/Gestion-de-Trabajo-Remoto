@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
         // DOCENTES
         $user3 = User::create([
             'name' =>'Martha',
-		'lastname' =>'Flores Arnau',
+	    	'lastname' =>'Flores Arnau',
             'email' => 'mflores@barinaga.edu.pe',
             'password' => bcrypt('mflores12345'),
         ]);
@@ -98,14 +98,14 @@ class DatabaseSeeder extends Seeder
         //JEFATURA
         $user13 = User::create([
             'name' =>'Juan',
-		'lastname' =>'Peyon Garcia',
+		    'lastname' =>'Peyon Garcia',
             'email' => 'jpeyonr@barinaga.edu.pe',
             'password' => bcrypt('jpeyonr12345'),
         ]);
 
         $user14 = User::create([
             'name' =>'Manuel',
-		'lastname' =>'Ramos Torre',
+		    'lastname' =>'Ramos Torre',
             'email' => 'mramos@barinaga.edu.pe',
             'password' => bcrypt('mramos12345'),
         ]);

@@ -10,6 +10,11 @@ class Chat extends Model
     use HasFactory;
     protected $table = "chats";
     protected $fillable = [
-        "usuario", "mensaje"
+        'usuario_id','role',"usuario", "mensaje"
     ];
+
+    public function r_user()
+    {
+        return $this->belongsTo(User::class, 'usuario_id', 'id');
+    }
 }

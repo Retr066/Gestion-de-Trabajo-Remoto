@@ -116,10 +116,10 @@ class TestTable extends Component
 
     public function showModal(User $user){
         if($user->name){
-            can('usuario update');
+
           $this->emit('showModal',$user);
         } else {
-            can('usuario create');
+
             $this->emit('showModalNewUser');
         }
     }
