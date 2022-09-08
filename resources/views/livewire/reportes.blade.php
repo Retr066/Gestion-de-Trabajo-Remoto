@@ -74,7 +74,7 @@
                                 Dias Habiles Sin Cortes
                             </div>
                             <div class="text-xl font-bold">
-                                {{ round($dias_habiles) }} dias
+                                {{ round($dias_habiles) }}
                             </div>
                         </div>
                         <svg class="stroke-current text-gray-500" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
@@ -98,7 +98,7 @@
                                Porcentaje Horas x mes habil
                             </div>
                             <div class="text-xl font-bold">
-                                {{ round($horas_mes_habil) }}%
+                                {{ round($horas_mes_habil) }}
                             </div>
                         </div>
                         <svg class="stroke-current text-gray-500" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">

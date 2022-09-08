@@ -99,8 +99,8 @@ class Comparar extends Component
         $this->fecha_envio_realizada = $informe->updated_at;
         $this->fecha_envio_planificada = $informe2->updated_at;
         $user = User::where('id',$this->id_user)->get();
-        $this->nombre = 'Actividades Realizadas  Nª de Informe:'.$informe->id;
-        $this->nombre2 = 'Actividades Planificadas Nª de Informe:'.$informe2->id;
+        $this->nombre = 'Actividades Realizadas';
+        $this->nombre2 = 'Actividades Planificadas';
         $this->user = $user;
         $this->data_realizado = $actividades_realizadas;
         $this->data_planificado = $actividades_planificadas;

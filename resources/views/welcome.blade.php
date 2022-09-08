@@ -41,27 +41,9 @@
          <a href="#section-2"><h2  class="titles__Item">Nosotros</h2></a>
          <a href="#section-3"><h2  class="titles__Item">Propuesta</h2></a>
          <a href="#section-4"><h2 class="titles__Item">Contactenos</h2></a>
-
-          @auth
-            @php
-            $rol = auth()->user()->getRoleNames();
-            @endphp
-           @endauth
-
-
          @if (Route::has('login'))
          @auth
-            @if($rol[0] == 'Docente')
-        <a href="{{ url('/informes') }}" ><h2 class="titles__sublogin"><img class="titles__login" src="img/docente.png" alt="docente"/></h2></a>
-            @elseif($rol[0] == 'Jefatura')
-            <a href="{{ url('/jefatura/informes') }}" ><h2 class="titles__sublogin"><img class="titles__login" src="img/docente.png" alt="docente"/></h2></a>
-            @elseif($rol[0] == 'Administracion')
-            <a href="{{ url('/administracion/prueba') }}" ><h2 class="titles__sublogin"><img class="titles__login" src="img/docente.png" alt="docente"/></h2></a>
-            @elseif($rol[0] == 'SuperUsuario')
-            <a href="{{ url('/informes') }}" ><h2 class="titles__sublogin"><img class="titles__login" src="img/docente.png" alt="docente"/></h2></a>
-            @else
-            <a href="{{ url('/bienvenido') }}" ><h2 class="titles__sublogin"><img class="titles__login" src="img/docente.png" alt="docente"/></h2></a>
-            @endif
+    <a href="{{ url('/informes') }}" ><h2 class="titles__sublogin"><img class="titles__login" src="img/docente.png" alt="docente"/></h2></a>
          @else
              <a href="{{ route('login') }}"><img class="titles__login" src="img/user.svg" alt="user"/></a>
          {{--   @if (Route::has('register'))

@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Str;
 
 function canView(string $permission): bool

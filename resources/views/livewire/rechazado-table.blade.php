@@ -224,8 +224,8 @@
         }
         Livewire.on('listEnviar', (informe) => {
             Swal.fire(
-                'Enviado!',
-                `El reporte ${informe.id} se envio corrrectamente`,
+                'Borrado!',
+                `El usuario ${informe.id} se envio corrrectamente`,
                 'success'
             )
         });

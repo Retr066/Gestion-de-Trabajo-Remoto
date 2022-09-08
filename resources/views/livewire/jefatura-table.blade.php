@@ -124,7 +124,7 @@
                                     </button>
                                 @endcan
                                 @can('Jefatura create')
-                                    <a href="{{ route('pdf', $informe->id) }}" class="text-gray-400 hover:text-gray-700" target="_blank">
+                                    <a href="{{ route('pdf', $informe->id) }}" class="text-gray-400 hover:text-gray-700">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                             fill="currentColor">
                                             <path fill-rule="evenodd"
