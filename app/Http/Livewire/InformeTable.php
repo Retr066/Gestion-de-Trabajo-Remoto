@@ -132,7 +132,7 @@ class InformeTable extends Component
     }
    public function GenerarPdf($id){
     $user_id = auth()->user()->id;
-      $user = User::find($user_id);
+    $user = User::find($user_id);
     $informes = Informe::find($id);
     $informesRealizadas = InformesRealizadas::where('id_informe_realizadas', $id)->get();
     $informesPlanificadas = InformesPlanificadas::where('id_informe_planificadas', $id)->get();
