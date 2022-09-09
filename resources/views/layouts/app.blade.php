@@ -11,13 +11,13 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
     <!-- Styles -->
-    <link type="text/css" rel="stylesheet" href="{{ asset('css/flatpickr.min.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ mix('css/flatpickr.min.css') }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <script src="{{ asset('chart.js/chart.js') }}"></script>
-    <script src="{{ asset('pusher-js/pusher.min.js') }}"></script>
+    <script src="{{ mix('chart.js/chart.js') }}"></script>
+    <script src="{{ mix('pusher-js/pusher.min.js') }}"></script>
     <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
-    <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.css') }}">
+    <link rel="stylesheet" href="{{ mix('assets/fontawesome/css/all.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <style>
         :root {
@@ -40,9 +40,9 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
-     <script src="{{ asset('js/es.js') }}"></script>
-    <script src="{{ asset('js/flatpickr.js') }}"></script>
-    <script src="{{ asset('js/rangoPlugin.js') }}"></script>
+     <script src="{{ mix('js/es.js') }}"></script>
+    <script src="{{ mix('js/flatpickr.js') }}"></script>
+    <script src="{{ mix('js/rangoPlugin.js') }}"></script>
 
 
 
