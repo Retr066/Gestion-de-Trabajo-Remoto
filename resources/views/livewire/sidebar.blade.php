@@ -58,14 +58,14 @@
                 @endif
                 @if (canView('Docente'))
                     <a class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                        href="{{ route('reportesdocente') }}"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2  inline-block text-white" viewBox="0 0 20 20" fill="currentColor">
+                        href="{{ route('reportesdocente') }}" ><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2  inline-block text-white" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
                     <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
                     </svg>Reportes</a>
                 @endif
                 @if (canView('Docente'))
                     <a class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                        href="{{ route('listDocente') }}"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2  inline-block text-purple-400" viewBox="0 0 20 20" fill="currentColor">
+                        href="{{ route('listDocente') }}" ><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2  inline-block text-purple-400" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
                     </svg>Permisos Docentes</a>
                 @endif
@@ -85,7 +85,13 @@
                     </svg>Informes Jefatura</a>
                 @endif
 
-
+                @if (canView('Jefatura'))
+                    <a class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                        href="{{ route('reportesjefatura') }}"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2  inline-block text-white" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
+                    <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
+                    </svg>Reportes</a>
+                @endif
 
                 @if (canView('Jefatura'))
                     <a class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
@@ -93,11 +99,16 @@
                     <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
                     </svg>Permisos Jefatura</a>
                 @endif
-                @if (canView('Jefatura'))
+                @if (canView('Docente'))
                 <a class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                    href="{{ route('chat') }}"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2  inline-block text-blue-400" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
-                </svg>chat</a>
+                    href="{{ route('chat_docente') }}"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2  inline-block text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd" />
+                      </svg>Chat</a>
+                @elseif (canView('Jefatura'))
+                <a class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                    href="{{ route('chat_jefatura') }}"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2  inline-block text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd" />
+                      </svg>Chat</a>
                 @endif
                 {{-- rutas para administracion --}}
                 @if (canView('Administracion'))
@@ -107,6 +118,14 @@
                     <path fill-rule="evenodd" d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" clip-rule="evenodd" />
                     </svg>Informes Administración</a>
                 @endif
+                @if (canView('Administracion'))
+                    <a class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                        href="{{ route('reportesadministracion') }}"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2  inline-block text-white" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
+                    <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
+                    </svg>Reportes</a>
+                @endif
+
                 @if (canView('Administracion'))
                     <a class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                         href="{{ route('listAdministracion') }}"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2  inline-block text-purple-400" viewBox="0 0 20 20" fill="currentColor">

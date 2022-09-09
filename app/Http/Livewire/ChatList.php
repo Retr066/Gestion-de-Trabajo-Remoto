@@ -3,17 +3,22 @@
 namespace App\Http\Livewire;
 use  App\Models\Chat;
 use Livewire\Component;
-
+use Auth;
+use Spatie\Permission\Models\Role;
 class ChatList extends Component
 {
     public $usuario;
     public $mensajes;
     protected $ultimoId;
-
+    public $usuario_id;
+    public $rol_name;
     protected $listeners = ['mensajeRecibido', 'cambioUsuario'];
 
     public function mount()
     {
+       /*  $data  =  $rol_user = auth()->user()->getRoleNames();
+        $this->rol_name = $data[0]; */
+        $this->usuario_id = Auth::user()->id;
         $ultimoId = 0;
         $this->mensajes = $this->traerUltimosDatos();
         $this->usuario = request()->query('usuario', $this->usuario) ?? "";
@@ -29,11 +34,17 @@ class ChatList extends Component
         $this->usuario = $usuario;
     }
 
+
+
+
+
+
     public function traerUltimosDatos()
     {
-        $mensajes = Chat::orderBy("created_at", "desc")->take(5)->get();
 
-            $datos = array();
+        $mensajes = Chat::orderBy("created_at", "desc")->take(15)->get();
+
+        $datos = array();
 
             foreach($mensajes as $mensaje)
             {
@@ -41,8 +52,11 @@ class ChatList extends Component
                     $item = [
                         "id" => $mensaje->id,
                         "usuario" => $mensaje->usuario,
+                        'rol' => $mensaje->role,
                         "mensaje" => $mensaje->mensaje,
-                        "recibido" => ($mensaje->usuario != $this->usuario),
+                        'profile_photo_path' => $mensaje->r_user->profile_photo_path,
+                        'profile_photo_url' => $mensaje->r_user->profile_photo_url,
+                        "recibido" => ($mensaje->usuario_id != $this->usuario_id),
                         "fecha" => $mensaje->created_at->diffForHumans()
                     ];
 
@@ -50,13 +64,17 @@ class ChatList extends Component
                     //array_push($this->mensajes, $item);
 
 
+
             }
+
+            $datos = array_reverse($datos);
 
             return $datos;
     }
 
     public function actualizarMensajes($data)
     {
+
         if($this->usuario != "")
         {
             // El contenido de la Push
@@ -74,10 +92,14 @@ class ChatList extends Component
                     $item = [
                         "id" => $mensaje->id,
                         "usuario" => $mensaje->usuario,
+                        'rol' => $mensaje->role,
                         "mensaje" => $mensaje->mensaje,
-                        "recibido" => ($mensaje->usuario != $this->usuario),
+                        'profile_photo_path' => $mensaje->r_user->profile_photo_path,
+                        'profile_photo_url' => $mensaje->r_user->profile_photo_url,
+                        "recibido" => ($mensaje->usuario_id != $this->usuario_id),
                         "fecha" => $mensaje->created_at->diffForHumans()
                     ];
+
 
                     array_unshift($this->mensajes, $item);
                     //array_push($this->mensajes, $item);

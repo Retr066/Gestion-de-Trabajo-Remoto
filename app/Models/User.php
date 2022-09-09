@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use App\Models\Area;
+use App\Models\Chat;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -91,6 +92,11 @@ class User extends Authenticatable
     public function r_informe()
     {
         return $this->hasMany(Informe::class,'usuario_id','id');
+    }
+
+    public function r_chat()
+    {
+        return $this->hasMany(Chat::class,'usuario_id','id');
     }
 
     public function scopeTermino($query,$termino)
