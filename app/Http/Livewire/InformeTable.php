@@ -136,7 +136,7 @@ class InformeTable extends Component
     $informes = Informe::find($id);
     $informesRealizadas = InformesRealizadas::where('id_informe_realizadas', $id)->get();
     $informesPlanificadas = InformesPlanificadas::where('id_informe_planificadas', $id)->get();
-    $pdf = PDF::loadView('docente.pdf',compact('informesRealizadas','informes','user','informesPlanificadas'));
+    $pdf = PDF::loadView('Docente.pdf',compact('informesRealizadas','informes','user','informesPlanificadas'));
       return  $pdf->stream('reporteInforme.'.date('y-m-d').'.pdf');
    }
 }
