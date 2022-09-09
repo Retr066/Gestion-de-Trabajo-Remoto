@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <script src="{{ asset('chart.js/chart.js') }}"></script>
     <script src="{{ asset('pusher-js/pusher.min.js') }}"></script>
+    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <style>

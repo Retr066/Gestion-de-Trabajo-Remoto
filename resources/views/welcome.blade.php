@@ -196,7 +196,7 @@
     <footer class="footer">
         <label class="footer__label">@Todos los derechos reservados byRetr0</label>
     </footer>
-    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+   
     <script src="js/script.js"></script>
     </body>
 </html>
