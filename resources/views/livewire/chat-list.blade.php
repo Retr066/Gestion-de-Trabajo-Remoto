@@ -52,14 +52,15 @@
     </div>
 @endforeach
 
-
-
-
 </div>
+
 @push('scripts')
+    
      <script>
+      
          // Enable pusher logging - don't include this in production
         Pusher.logToConsole = true;
+        console.log('hola','{{env('PUSHER_APP_KEY')}}');
   var pusher = new Pusher('{{env('PUSHER_APP_KEY')}}', {
       cluster: '{{env('PUSHER_APP_CLUSTER')}}',
       forceTLS: true

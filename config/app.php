@@ -14,6 +14,8 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'pusher_key' => env('PUSHER_APP_KEY', 'your-pusher-key'),
+    'pusher_cluster' => env('PUSHER_APP_CLUSTER', 'your-pusher-cluster'),
 
     /*
     |--------------------------------------------------------------------------

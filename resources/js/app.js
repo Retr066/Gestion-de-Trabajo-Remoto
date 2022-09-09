@@ -1,9 +1,9 @@
 //require('./bootstrap');
+import Echo from 'laravel-echo';
+
 
 require('alpinejs');
 window.Swal = require('sweetalert2');
-import Echo from 'laravel-echo';
-
 window.Pusher = require('pusher-js');
 
 window.Echo = new Echo({
