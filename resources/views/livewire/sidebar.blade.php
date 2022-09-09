@@ -58,7 +58,7 @@
                 @endif
                 @if (canView('Docente'))
                     <a class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                        href="{{ route('reportes') }}"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2  inline-block text-white" viewBox="0 0 20 20" fill="currentColor">
+                        href="{{ route('reportesdocente') }}"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2  inline-block text-white" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
                     <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
                     </svg>Reportes</a>
